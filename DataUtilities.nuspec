@@ -1,0 +1,5 @@
+<package
+><metadata><version>1.0.0</version><id>PeterO.DataUtilities</id><requireLicenseAcceptance>false</requireLicenseAcceptance><releaseNotes>Version 1.0:
+
+- First release</releaseNotes><summary></summary><license type='expression'>CC0-1.0</license><projectUrl>https://github.com/peteroupc/DataUtilities</projectUrl><authors>Peter Occil</authors><description>A portable library for .NET for text strings and reading and writing to them.</description><owners>Peter Occil</owners><title>DataUtilities Library</title><tags>text, DataUtilities, strings</tags><dependencies><group /></dependencies></metadata><files><file src='DataUtilities/bin/Release/netstandard1.0/DataUtilities.dll' target='/lib/netstandard1.0' /><file src='DataUtilities/bin/Release/netstandard1.0/DataUtilities.xml' target='/lib/netstandard1.0' /><file src='DataUtilities20/bin/Release/DataUtilities.dll' target='/lib/net20' /><file src='DataUtilities20/bin/Release/DataUtilities.xml' target='/lib/net20' /><file src='DataUtilities40/bin/Release/DataUtilities.dll' target='/lib/net40' /><file src='DataUtilities40/bin/Release/DataUtilities.xml' target='/lib/net40' /></files></package
+>

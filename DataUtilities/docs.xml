@@ -1,0 +1,2434 @@
+<docs>
+<doc name="T:PeterO.ArrayWriter">
+<summary>An array of bytes that grows as needed.</summary>
+</doc>
+<doc name="M:PeterO.ArrayWriter.#ctor">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.ArrayWriter'/> class with a default backing store
+            size of 16.</summary>
+</doc>
+<doc name="M:PeterO.ArrayWriter.#ctor(System.Int32)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.ArrayWriter'/> class.</summary>
+            <param name='initialSize'>The initial size of the array writer's
+            backing store.</param>
+</doc>
+<doc name="M:PeterO.ArrayWriter.Clear">
+<summary>Offers a fast way to reset the length of the array
+            writer's data to 0.</summary>
+</doc>
+<doc name="M:PeterO.ArrayWriter.ToArray">
+<summary>Generates an array of all bytes written so far to
+            it.</summary>
+            <returns>A byte array.</returns>
+</doc>
+<doc name="M:PeterO.ArrayWriter.Write(System.Byte[],System.Int32,System.Int32)">
+<summary>Writes a series of bytes to the array.</summary>
+            <param name='src'>Byte array containing the data to write.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='src'/> begins.</param>
+            <param name='length'>The number of elements in the desired portion
+            of <paramref name='src'/> (but not more than <paramref name='src'/>
+            's length).</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='src'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='src'/> 's length, or <paramref name='src'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+</doc>
+<doc name="M:PeterO.ArrayWriter.WriteByte(System.Int32)">
+<summary>Writes an 8-bit byte to the array.</summary>
+            <param name='byteValue'>An integer containing the byte to write.
+            Only the lower 8 bits of this value will be used.</param>
+</doc>
+<doc name="T:PeterO.Cbor.CBORDataUtilities">
+<summary>Contains methods useful for reading and writing data, with a focus on
+      CBOR.
+    </summary>
+</doc>
+<doc name="M:PeterO.Cbor.CBORDataUtilities.ParseJSONNumber(System.String)">
+<summary>Parses a number whose format follows the JSON specification. See
+      #ParseJSONNumber(String, integersOnly, parseOnly) for more information.
+    </summary>
+    <param name='str'>A string to parse. The string is not allowed to contain white space
+      characters, including spaces.
+    </param>
+    <returns>A CBOR object that represents the parsed number. Returns positive zero if
+      the number is a zero that starts with a minus sign (such as "-0" or
+      "-0.0"). Returns null if the parsing fails, including if the string is
+      null or empty.
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.CBORDataUtilities.ParseJSONNumber(System.String,System.Boolean,System.Boolean)">
+<summary>Parses a number whose format follows the JSON specification (RFC 8259).
+      Roughly speaking, a valid number consists of an optional minus sign, one
+      or more basic digits (starting with 1 to 9 unless the only digit is 0), an
+      optional decimal point (".", full stop) with one or more basic digits, and
+      an optional letter E or e with an optional plus or minus sign and one or
+      more basic digits (the exponent).
+    </summary>
+    <param name='str'>A string to parse. The string is not allowed to contain white space
+      characters, including spaces.
+    </param>
+    <param name='integersOnly'>If true, no decimal points or exponents are allowed in the string.
+    </param>
+    <param name='positiveOnly'>If true, only positive numbers are allowed (the leading minus is
+      disallowed).
+    </param>
+    <returns>A CBOR object that represents the parsed number. Returns positive zero if
+      the number is a zero that starts with a minus sign (such as "-0" or
+      "-0.0"). Returns null if the parsing fails, including if the string is
+      null or empty.
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.CBORDataUtilities.ParseJSONNumber(System.String,System.Boolean,System.Boolean,System.Boolean)">
+<summary>Parses a number whose format follows the JSON specification (RFC 8259).
+      Roughly speaking, a valid number consists of an optional minus sign, one
+      or more basic digits (starting with 1 to 9 unless the only digit is 0), an
+      optional decimal point (".", full stop) with one or more basic digits, and
+      an optional letter E or e with an optional plus or minus sign and one or
+      more basic digits (the exponent).
+    </summary>
+    <param name='str'>A string to parse. The string is not allowed to contain white space
+      characters, including spaces.
+    </param>
+    <param name='integersOnly'>If true, no decimal points or exponents are allowed in the string.
+    </param>
+    <param name='positiveOnly'>If true, only positive numbers are allowed (the leading minus is
+      disallowed).
+    </param>
+    <param name='preserveNegativeZero'>If true, returns positive zero if the number is a zero that starts with a
+      minus sign (such as "-0" or "-0.0"). Otherwise, returns negative zero in
+      this case.
+    </param>
+    <returns>A CBOR object that represents the parsed number. Returns null if the
+      parsing fails, including if the string is null or empty.
+    </returns>
+</doc>
+<doc name="T:PeterO.Cbor.URIUtility">
+<summary>Contains utility methods for processing Uniform Resource Identifiers
+      (URIs) and Internationalized Resource Identifiers (IRIs) under RFC3986 and
+      RFC3987, respectively. In the following documentation, URIs and IRIs
+      include URI references and IRI references, for convenience.
+    </summary>
+</doc>
+<doc name="T:PeterO.Cbor.URIUtility.ParseMode">
+<summary>Specifies whether certain characters are allowed when parsing IRIs and
+      URIs.
+    </summary>
+</doc>
+<doc name="F:PeterO.Cbor.URIUtility.ParseMode.IRILenient">
+<summary>The rules only check for the appropriate delimiters when splitting the
+      path, without checking if all the characters in each component are valid.
+      Even with this mode, strings with unpaired surrogate code points are
+      considered invalid.
+    </summary>
+</doc>
+<doc name="F:PeterO.Cbor.URIUtility.ParseMode.IRIStrict">
+<summary>The rules follow the syntax for parsing IRIs. In particular, many code
+      points outside the Basic Latin range (U+0000 to U+007F) are allowed.
+      Strings with unpaired surrogate code points are considered invalid.
+    </summary>
+</doc>
+<doc name="F:PeterO.Cbor.URIUtility.ParseMode.IRISurrogateLenient">
+<summary>The rules only check for the appropriate delimiters when splitting the
+      path, without checking if all the characters in each component are valid.
+      Unpaired surrogate code points are treated as though they were replacement
+      characters instead for the purposes of these rules, so that strings with
+      those code points are not considered invalid strings.
+    </summary>
+</doc>
+<doc name="F:PeterO.Cbor.URIUtility.ParseMode.URILenient">
+<summary>The rules only check for the appropriate delimiters when splitting the
+      path, without checking if all the characters in each component are valid.
+      Code points outside the Basic Latin range (U+0000 to U+007F) are not
+      allowed.
+    </summary>
+</doc>
+<doc name="F:PeterO.Cbor.URIUtility.ParseMode.URIStrict">
+<summary>The rules follow the syntax for parsing IRIs, except that code points
+      outside the Basic Latin range (U+0000 to U+007F) are not allowed.
+    </summary>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.escapeURI(System.String,System.Int32)">
+<summary>Escapes characters that can't appear in URIs or IRIs. The function is
+      idempotent; that is, calling the function again on the result with the
+      same mode doesn't change the result.
+    </summary>
+    <param name='s'>A string to escape.
+    </param>
+    <param name='mode'>The parameter
+      <paramref name='mode'/>
+       is a 32-bit signed integer.
+    </param>
+    <returns>A string possibly containing escaped characters, or null if s is null.
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.hasScheme(System.String)">
+<summary>Determines whether the string is a valid IRI with a scheme component. This
+      can be used to check for relative IRI references.
+      <para>The following cases return true:
+      </para>
+      <code>xx-x:mm example:/ww</code> The following cases return false:
+      <code>x@y:/z /x/y/z example.xyz</code> .
+    </summary>
+    <param name='refValue'>A string representing an IRI to check.
+    </param>
+    <returns><c>true</c> if the string is a valid IRI with a scheme component; otherwise, <c>false</c> .
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.hasSchemeForURI(System.String)">
+<summary>Determines whether the string is a valid URI with a scheme component. This
+      can be used to check for relative URI references. The following cases
+      return true:
+      <code>http://example/z xx-x:mm example:/ww</code> The following cases return false:
+      <code>x@y:/z /x/y/z example.xyz</code> .
+    </summary>
+    <param name='refValue'>A string representing an IRI to check.
+    </param>
+    <returns><c>true</c> if the string is a valid URI with a scheme component; otherwise, <c>false</c> .
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.isValidCurieReference(System.String,System.Int32,System.Int32)">
+<summary>Determines whether the substring is a valid CURIE reference under RDFA
+      1.1. (The CURIE reference is the part after the colon.).
+    </summary>
+    <param name='s'>A string containing a CURIE reference. Can be null.
+    </param>
+    <param name='offset'>A zero-based index showing where the desired portion of "s" begins.
+    </param>
+    <param name='length'>The number of elements in the desired portion of "s" (but not more than
+      "s" 's length).
+    </param>
+    <returns><c>true</c> if the substring is a valid CURIE reference under RDFA 1; otherwise, <c>false</c> . Returns false if
+      <paramref name='s'/>
+       is null.
+    </returns>
+    <exception cref='ArgumentException'>Either
+      <paramref name='offset'/>
+       or
+      <paramref name='length'/>
+       is less than 0 or greater than
+      <paramref name='s'/>
+       's length, or
+      <paramref name='s'/>
+       ' s length minus
+      <paramref name='offset'/>
+       is less than
+      <paramref name='length'/>
+       .
+    </exception>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.relativeResolve(System.String,System.String)">
+<summary>Resolves a URI or IRI relative to another URI or IRI.
+    </summary>
+    <param name='refValue'>A string representing a URI or IRI reference. Example:
+      <c>dir/file.txt</c> .
+    </param>
+    <param name='baseURI'>A string representing an absolute URI reference. Example:
+      <c>http://example.com/my/path/</c> .
+    </param>
+    <returns>The resolved IRI, or null if
+      <paramref name='refValue'/>
+       is null or is not a valid IRI. If
+      <paramref name='baseURI'/>
+       is null or is not a valid IRI, returns refValue. Example:
+      <c>http://example.com/my/path/dir/file.txt</c> .
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.relativeResolve(System.String,System.String,PeterO.Cbor.URIUtility.ParseMode)">
+<summary>Resolves a URI or IRI relative to another URI or IRI.
+    </summary>
+    <param name='refValue'>A string representing a URI or IRI reference. Example:
+      <c>dir/file.txt</c> . Can be null.
+    </param>
+    <param name='baseURI'>A string representing an absolute URI reference. Example:
+      <c>http://example.com/my/path/</c> .
+    </param>
+    <param name='parseMode'>Parse mode that specifies whether certain characters are allowed when
+      parsing IRIs and URIs.
+    </param>
+    <returns>The resolved IRI, or null if
+      <paramref name='refValue'/>
+       is null or is not a valid IRI. If
+      <paramref name='baseURI'/>
+       is null or is not a valid IRI, returns refValue.
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.splitIRI(System.String)">
+<summary>Parses an Internationalized Resource Identifier (IRI) reference under
+      RFC3987. If the IRI reference is syntactically valid, splits the string
+      into its components and returns an array containing the indices into the
+      components.
+    </summary>
+    <param name='s'>A string that contains an IRI. Can be null.
+    </param>
+    <returns>If the string is a valid IRI reference, returns an array of 10 integers.
+      Each of the five pairs corresponds to the start and end index of the IRI's
+      scheme, authority, path, query, or fragment component, respectively. The
+      scheme, authority, query, and fragment components, if present, will each
+      be given without the ending colon, the starting "//", the starting "?",
+      and the starting "#", respectively. If a component is absent, both indices
+      in that pair will be -1. If the string is null or is not a valid IRI,
+      returns null.
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.splitIRI(System.String,PeterO.Cbor.URIUtility.ParseMode)">
+<summary>Parses an Internationalized Resource Identifier (IRI) reference under
+      RFC3987. If the IRI is syntactically valid, splits the string into its
+      components and returns an array containing the indices into the
+      components.
+    </summary>
+    <param name='s'>A string representing an IRI. Can be null.
+    </param>
+    <param name='parseMode'>The parameter
+      <paramref name='parseMode'/>
+       is a ParseMode object.
+    </param>
+    <returns>If the string is a valid IRI reference, returns an array of 10 integers.
+      Each of the five pairs corresponds to the start and end index of the IRI's
+      scheme, authority, path, query, or fragment component, respectively. The
+      scheme, authority, query, and fragment components, if present, will each
+      be given without the ending colon, the starting "//", the starting "?",
+      and the starting "#", respectively. If a component is absent, both indices
+      in that pair will be -1. If the string is null or is not a valid IRI,
+      returns null.
+    </returns>
+</doc>
+<doc name="M:PeterO.Cbor.URIUtility.splitIRI(System.String,System.Int32,System.Int32,PeterO.Cbor.URIUtility.ParseMode)">
+<summary>Parses a substring that represents an Internationalized Resource
+      Identifier (IRI) under RFC3987. If the IRI is syntactically valid, splits
+      the string into its components and returns an array containing the indices
+      into the components.
+    </summary>
+    <param name='s'>A string that contains an IRI. Can be null.
+    </param>
+    <param name='offset'>A zero-based index showing where the desired portion of "s" begins.
+    </param>
+    <param name='length'>The length of the desired portion of "s" (but not more than "s" 's
+      length).
+    </param>
+    <param name='parseMode'>Parse mode that specifies whether certain characters are allowed when
+      parsing IRIs and URIs.
+    </param>
+    <returns>If the string is a valid IRI, returns an array of 10 integers. Each of the
+      five pairs corresponds to the start and end index of the IRI's scheme,
+      authority, path, query, or fragment component, respectively. The scheme,
+      authority, query, and fragment components, if present, will each be given
+      without the ending colon, the starting "//", the starting "?", and the
+      starting "#", respectively. If a component is absent, both indices in that
+      pair will be -1 (an index won't be less than 0 in any other case). If the
+      string is null or is not a valid IRI, returns null.
+    </returns>
+    <exception cref='ArgumentException'>Either
+      <paramref name='offset'/>
+       or
+      <paramref name='length'/>
+       is less than 0 or greater than
+      <paramref name='s'/>
+       's length, or
+      <paramref name='s'/>
+       ' s length minus
+      <paramref name='offset'/>
+       is less than
+      <paramref name='length'/>
+       .
+    </exception>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='s'/>
+       is null.
+    </exception>
+</doc>
+<doc name="T:PeterO.DataIO">
+<summary>Convenience class that contains static methods for
+            wrapping byte arrays and streams into byte readers and byte
+            writers.</summary>
+</doc>
+<doc name="M:PeterO.DataIO.ByteArrayTransform.Read(System.Byte[],System.Int32,System.Int32)">
+<summary>This is an internal method.</summary>
+            <param name='bytes'>The parameter <paramref name='bytes'/> is an
+            internal parameter.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='bytes'/> begins.</param>
+            <param name='length'>The length, in bytes, of the desired portion
+            of <paramref name='bytes'/> (but not more than <paramref name='bytes'/> 's length).</param>
+            <returns>A 32-bit signed integer.</returns>
+            <exception cref=' T:System.ArgumentException'>Either or is less
+            than 0 or greater than 's length, or ' s length minus is less
+            than.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name='bytes'/> 's length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ByteArrayTransform.ReadByte">
+<summary>This is an internal method.</summary>
+            <returns>A 32-bit signed integer.</returns>
+</doc>
+<doc name="M:PeterO.DataIO.ToByteReader(System.Byte[])">
+<summary>Wraps a byte array into a byte reader.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing byte[] and can be
+            called as follows: <c>bytes.ToByteReader()</c>. If the object's
+            class already has a ToByteReader method with the same parameters,
+            that method takes precedence over this extension
+            method.</para></summary>
+            <param name='bytes'>The byte array to wrap into a byte
+            reader.</param>
+            <returns>An IByteReader object.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToByteReader(System.Byte[],System.Int32,System.Int32)">
+<summary>Wraps a portion of a byte array into a byte reader.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing byte[] and can be
+            called as follows: <c>bytes.ToByteReader(offset, length)</c>. If
+            the object's class already has a ToByteReader method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='bytes'>The byte array to wrap into a byte
+            reader.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='bytes'/> begins.</param>
+            <param name='length'>The length, in bytes, of the desired portion
+            of <paramref name='bytes'/> (but not more than <paramref name='bytes'/> 's length).</param>
+            <returns>An IByteReader object.</returns>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name=' bytes'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToByteReader(System.IO.Stream)">
+<summary>Wraps a data stream into a byte reader.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing Stream and can be
+            called as follows: <c>input.ToByteReader()</c>. If the object's
+            class already has a ToByteReader method with the same parameters,
+            that method takes precedence over this extension
+            method.</para></summary>
+            <param name='input'>The data stream to wrap into a byte
+            reader.</param>
+            <returns>An IByteReader object.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToReader(System.Byte[])">
+<summary>Wraps a byte array into a byte reader. The reader will
+            start at the beginning of the byte array.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any byte array object and can be called as
+            follows: <c>bytes.ToByteReader()</c>. If the object's class
+            already has a ToByteReader method with the same parameters, that
+            method takes precedence over this extension
+            method.</para></summary>
+            <param name='bytes'>The byte array to wrap.</param>
+            <returns>A byte reader wrapping the byte array.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToReader(System.Byte[],System.Int32,System.Int32)">
+<summary>Wraps a portion of a byte array into a byte reader object.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any byte array object and can be called as
+            follows: <c>bytes.ToByteReader(offset, length)</c>. If the
+            object's class already has a ToByteReader method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='bytes'>The byte array to wrap.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of "bytes" begins.</param>
+            <param name='length'>The length, in bytes, of the desired portion
+            of "bytes" (but not more than "bytes" 's length).</param>
+            <returns>A byte reader wrapping the byte array.</returns>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name=' bytes'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToReader(System.IO.Stream)">
+<summary>Wraps an input stream into a reader object. If an
+            IOException is thrown by the input stream, the reader object throws
+            InvalidOperationException instead.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing Stream and can be
+            called as follows: <c>input.ToByteReader()</c>. If the object's
+            class already has a ToByteReader method with the same parameters,
+            that method takes precedence over this extension
+            method.</para></summary>
+            <param name='input'>The input stream to wrap.</param>
+            <returns>A byte reader wrapping the input stream.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToWriter(PeterO.IByteWriter)">
+<summary>Wraps a byte writer (one that only implements a ReadByte
+            method) to a writer (one that also implements a three-parameter
+            Read method.)
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing IByteWriter and can be
+            called as follows: <c>output.ToWriter()</c>. If the object's class
+            already has a ToWriter method with the same parameters, that method
+            takes precedence over this extension method.</para></summary>
+            <param name='output'>A byte stream.</param>
+            <returns>A writer that wraps the given stream.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='output'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.ToWriter(System.IO.Stream)">
+<summary>Wraps an output stream into a writer object. If an
+            IOException is thrown by the input stream, the writer object throws
+            InvalidOperationException instead.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing Stream and can be
+            called as follows: <c>output.ToWriter()</c>. If the object's class
+            already has a ToWriter method with the same parameters, that method
+            takes precedence over this extension method.</para></summary>
+            <param name='output'>Output stream to wrap.</param>
+            <returns>A byte writer that wraps the given output
+            stream.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='output'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.WrappedOutputStream.Write(System.Byte[],System.Int32,System.Int32)">
+<summary>This is an internal method.</summary>
+            <param name='bytes'>A byte array.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of "bytes" begins.</param>
+            <param name='length'>The length, in bytes, of the desired portion
+            of "bytes" (but not more than "bytes" 's length).</param>
+            <exception cref=' T:System.ArgumentException'>Either <paramref name=' offset'/> or <paramref name=' length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name=' bytes'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name='bytes'/> 's length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.WrappedOutputStream.WriteByte(System.Int32)">
+<summary>This is an internal method.</summary>
+            <param name='byteValue'>The parameter <paramref name='byteValue'/>
+            is a 32-bit signed integer.</param>
+</doc>
+<doc name="M:PeterO.DataIO.WrappedOutputStreamFromByteWriter.Write(System.Byte[],System.Int32,System.Int32)">
+<summary>This is an internal method.</summary>
+            <param name='bytes'>A byte array.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of "bytes" begins.</param>
+            <param name='length'>The length, in bytes, of the desired portion
+            of "bytes" (but not more than "bytes" 's length).</param>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name=' bytes'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.DataIO.WrappedOutputStreamFromByteWriter.WriteByte(System.Int32)">
+<summary>This is an internal method.</summary>
+            <param name='byteValue'>The parameter <paramref name='byteValue'/>
+            is a 32-bit signed integer.</param>
+</doc>
+<doc name="M:PeterO.DataIO.WrappedStream.ReadByte">
+<summary>This is an internal method.</summary>
+            <returns>A 32-bit signed integer.</returns>
+</doc>
+<doc name="T:PeterO.DataUtilities">
+<summary>Contains methods useful for reading and writing strings. It is designed to
+      have no dependencies other than the basic runtime class library.
+      <para>Many of these methods work with text encoded in UTF-8, an encoding form
+        of the Unicode Standard which uses one byte to encode the most basic
+        characters and two to four bytes to encode other characters. For
+        example, the
+        <c>GetUtf8</c> method converts a text string to an array of bytes in UTF-8.
+      </para>
+      <para>In C# and Java, text strings are represented as sequences of 16-bit
+        values called
+        <c>char</c> s. These sequences are well-formed under UTF-16, a 16-bit encoding form
+        of Unicode, except if they contain unpaired surrogate code points. (A
+        surrogate code point is used to encode supplementary characters, those
+        with code points U+10000 or higher, in UTF-16. A surrogate pair is a
+        high surrogate [U+D800 to U+DBFF] followed by a low surrogate [U+DC00 to
+        U+DFFF]. An unpaired surrogate code point is a surrogate not appearing
+        in a surrogate pair.) Many of the methods in this class allow setting
+        the behavior to follow when unpaired surrogate code points are found in
+        text strings, such as throwing an error or treating the unpaired
+        surrogate as a replacement character (U+FFFD).
+      </para>
+    </summary>
+</doc>
+<doc name="M:PeterO.DataUtilities.CodePointAt(System.String,System.Int32)">
+<summary>Gets the Unicode code point at the given index of the string.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='index'>Index of the current position into the string.
+    </param>
+    <returns>The Unicode code point at the given position. Returns -1 if
+      <paramref name='index'/>
+       is less than 0, or is the string's length or greater. Returns the
+      replacement character (U+FFFD) if the current character is an unpaired
+      surrogate code point.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.CodePointAt(System.String,System.Int32,System.Int32)">
+<summary>Gets the Unicode code point at the given index of the string.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='index'>Index of the current position into the string.
+    </param>
+    <param name='surrogateBehavior'>Specifies what kind of value to return if the previous character is an
+      unpaired surrogate code point: if 0, return the replacement character
+      (U+FFFD); if 1, return the value of the surrogate code point; if neither 0
+      nor 1, return -1.
+    </param>
+    <returns>The Unicode code point at the current position. Returns -1 if
+      <paramref name='index'/>
+       is less than 0, or is the string's length or greater. Returns a value as
+      specified under
+      <paramref name='surrogateBehavior'/>
+       if the previous character is an unpaired surrogate code point.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.CodePointBefore(System.String,System.Int32)">
+<summary>Gets the Unicode code point just before the given index of the string.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='index'>Index of the current position into the string.
+    </param>
+    <returns>The Unicode code point at the previous position. Returns -1 if
+      <paramref name='index'/>
+       is 0 or less, or is greater than the string's length. Returns the
+      replacement character (U+FFFD) if the previous character is an unpaired
+      surrogate code point.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.CodePointBefore(System.String,System.Int32,System.Int32)">
+<summary>Gets the Unicode code point just before the given index of the string.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='index'>Index of the current position into the string.
+    </param>
+    <param name='surrogateBehavior'>Specifies what kind of value to return if the previous character is an
+      unpaired surrogate code point: if 0, return the replacement character
+      (U+FFFD); if 1, return the value of the surrogate code point; if neither 0
+      nor 1, return -1.
+    </param>
+    <returns>The Unicode code point at the previous position. Returns -1 if
+      <paramref name='index'/>
+       is 0 or less, or is greater than the string's length. Returns a value as
+      specified under
+      <paramref name='surrogateBehavior'/>
+       if the previous character is an unpaired surrogate code point.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.CodePointCompare(System.String,System.String)">
+<summary>Compares two strings in Unicode code point order. Unpaired surrogate code
+      points are treated as individual code points.
+    </summary>
+    <param name='strA'>The first string. Can be null.
+    </param>
+    <param name='strB'>The second string. Can be null.
+    </param>
+    <returns>A value indicating which string is " less" or " greater" . 0: Both strings
+      are equal or null. Less than 0: a is null and b isn't; or the first code
+      point that's different is less in A than in B; or b starts with a and is
+      longer than a. Greater than 0: b is null and a isn't; or the first code
+      point that's different is greater in A than in B; or a starts with b and
+      is longer than b.
+    </returns>
+</doc>
+<doc name="M:PeterO.DataUtilities.GetUtf8Bytes(System.String,System.Boolean)">
+<summary>Encodes a string in UTF-8 as a byte array.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='replace'>If true, replaces unpaired surrogate code points with the replacement
+      character (U+FFFD). If false, stops processing when an unpaired surrogate
+      code point is seen.
+    </param>
+    <returns>The string encoded in UTF-8.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The string contains an unpaired surrogate code point and
+      <paramref name='replace'/>
+       is false, or an internal error occurred.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.GetUtf8Bytes(System.String,System.Boolean,System.Boolean)">
+<summary>Encodes a string in UTF-8 as a byte array.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='replace'>If true, replaces unpaired surrogate code points with the replacement
+      character (U+FFFD). If false, stops processing when an unpaired surrogate
+      code point is seen.
+    </param>
+    <param name='lenientLineBreaks'>If true, replaces carriage return (CR) not followed by line feed (LF) and
+      LF not preceded by CR with CR-LF pairs.
+    </param>
+    <returns>The string encoded in UTF-8.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The string contains an unpaired surrogate code point and
+      <paramref name='replace'/>
+       is false, or an internal error occurred.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.GetUtf8Length(System.String,System.Boolean)">
+<summary>Calculates the number of bytes needed to encode a string in UTF-8.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <param name='replace'>If true, treats unpaired surrogate code points as having 3 UTF-8 bytes
+      (the UTF-8 length of the replacement character U+FFFD).
+    </param>
+    <returns>The number of bytes needed to encode the given string in UTF-8, or -1 if
+      the string contains an unpaired surrogate code point and
+      <paramref name='replace'/>
+       is false.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.GetUtf8String(System.Byte[],System.Boolean)">
+<summary>Generates a text string from a UTF-8 byte array.
+    </summary>
+    <param name='bytes'>A byte array containing text encoded in UTF-8.
+    </param>
+    <param name='replace'>If true, replaces invalid encoding with the replacement character
+      (U+FFFD). If false, stops processing when invalid UTF-8 is seen.
+    </param>
+    <returns>A string represented by the UTF-8 byte array.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='bytes'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The string is not valid UTF-8 and
+      <paramref name='replace'/>
+       is false.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.GetUtf8String(System.Byte[],System.Int32,System.Int32,System.Boolean)">
+<summary>Generates a text string from a portion of a UTF-8 byte array.
+    </summary>
+    <param name='bytes'>A byte array containing text encoded in UTF-8.
+    </param>
+    <param name='offset'>Offset into the byte array to start reading.
+    </param>
+    <param name='bytesCount'>Length, in bytes, of the UTF-8 string.
+    </param>
+    <param name='replace'>If true, replaces invalid encoding with the replacement character
+      (U+FFFD). If false, stops processing when invalid UTF-8 is seen.
+    </param>
+    <returns>A string represented by the UTF-8 byte array.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='bytes'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The portion of the byte array is not valid UTF-8 and
+      <paramref name='replace'/>
+       is false.
+    </exception>
+    <exception cref='ArgumentException'>The parameter
+      <paramref name='offset'/>
+       is less than 0,
+      <paramref name='bytesCount'/>
+       is less than 0, or offset plus bytesCount is greater than the length of
+      "data" .
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.ReadUtf8(System.IO.Stream,System.Int32,System.Text.StringBuilder,System.Boolean)">
+<summary>Reads a string in UTF-8 encoding from a data stream.
+    </summary>
+    <param name='stream'>A readable data stream.
+    </param>
+    <param name='bytesCount'>The length, in bytes, of the string. If this is less than 0, this function
+      will read until the end of the stream.
+    </param>
+    <param name='builder'>A string builder object where the resulting string will be stored.
+    </param>
+    <param name='replace'>If true, replaces invalid encoding with the replacement character
+      (U+FFFD). If false, stops processing when an unpaired surrogate code point
+      is seen.
+    </param>
+    <returns>0 if the entire string was read without errors, -1 if the string is not
+      valid UTF-8 and
+      <paramref name='replace'/>
+       is false, or -2 if the end of the stream was reached before the last
+      character was read completely (which is only the case if
+      <paramref name='bytesCount'/>
+       is 0 or greater).
+    </returns>
+    <exception cref='System.IO.IOException'>An I/O error occurred.
+    </exception>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='stream'/>
+       is null or
+      <paramref name='builder'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.ReadUtf8FromBytes(System.Byte[],System.Int32,System.Int32,System.Text.StringBuilder,System.Boolean)">
+<summary>Reads a string in UTF-8 encoding from a byte array.
+    </summary>
+    <param name='data'>A byte array containing a UTF-8 string.
+    </param>
+    <param name='offset'>Offset into the byte array to start reading.
+    </param>
+    <param name='bytesCount'>Length, in bytes, of the UTF-8 string.
+    </param>
+    <param name='builder'>A string builder object where the resulting string will be stored.
+    </param>
+    <param name='replace'>If true, replaces invalid encoding with the replacement character
+      (U+FFFD). If false, stops processing when invalid UTF-8 is seen.
+    </param>
+    <returns>0 if the entire string was read without errors, or -1 if the string is not
+      valid UTF-8 and
+      <paramref name='replace'/>
+       is false.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='data'/>
+       is null or
+      <paramref name='builder'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The parameter
+      <paramref name='offset'/>
+       is less than 0,
+      <paramref name='bytesCount'/>
+       is less than 0, or offset plus bytesCount is greater than the length of
+      <paramref name='data'/>
+       .
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.ReadUtf8ToString(System.IO.Stream)">
+<summary>Reads a string in UTF-8 encoding from a data stream in full and returns
+      that string. Replaces invalid encoding with the replacement character
+      (U+FFFD).
+    </summary>
+    <param name='stream'>A readable data stream.
+    </param>
+    <returns>The string read.
+    </returns>
+    <exception cref='System.IO.IOException'>An I/O error occurred.
+    </exception>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='stream'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.ReadUtf8ToString(System.IO.Stream,System.Int32,System.Boolean)">
+<summary>Reads a string in UTF-8 encoding from a data stream and returns that
+      string.
+    </summary>
+    <param name='stream'>A readable data stream.
+    </param>
+    <param name='bytesCount'>The length, in bytes, of the string. If this is less than 0, this function
+      will read until the end of the stream.
+    </param>
+    <param name='replace'>If true, replaces invalid encoding with the replacement character
+      (U+FFFD). If false, throws an error if an unpaired surrogate code point is
+      seen.
+    </param>
+    <returns>The string read.
+    </returns>
+    <exception cref='System.IO.IOException'>An I/O error occurred; or, the string is not valid UTF-8 and
+      <paramref name='replace'/>
+       is false.
+    </exception>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='stream'/>
+       is null.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.ToLowerCaseAscii(System.String)">
+<summary>Returns a string with the basic upper-case letters A to Z (U+0041 to
+      U+005A) converted to lower-case. Other characters remain unchanged.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <returns>The converted string, or null if
+      <paramref name='str'/>
+       is null.
+    </returns>
+</doc>
+<doc name="M:PeterO.DataUtilities.ToUpperCaseAscii(System.String)">
+<summary>Returns a string with the basic lower-case letters A to Z (U+0061 to
+      U+007A) converted to upper-case. Other characters remain unchanged.
+    </summary>
+    <param name='str'>The parameter
+      <paramref name='str'/>
+       is a text string.
+    </param>
+    <returns>The converted string, or null if
+      <paramref name='str'/>
+       is null.
+    </returns>
+</doc>
+<doc name="M:PeterO.DataUtilities.WriteUtf8(System.String,System.IO.Stream,System.Boolean)">
+<summary>Writes a string in UTF-8 encoding to a data stream.
+    </summary>
+    <param name='str'>A string to write.
+    </param>
+    <param name='stream'>A writable data stream.
+    </param>
+    <param name='replace'>If true, replaces unpaired surrogate code points with the replacement
+      character (U+FFFD). If false, stops processing when an unpaired surrogate
+      code point is seen.
+    </param>
+    <returns>0 if the entire string was written; or -1 if the string contains an
+      unpaired surrogate code point and
+      <paramref name='replace'/>
+       is false.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null or
+      <paramref name='stream'/>
+       is null.
+    </exception>
+    <exception cref='System.IO.IOException'>An I/O error occurred.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.WriteUtf8(System.String,System.Int32,System.Int32,System.IO.Stream,System.Boolean)">
+<summary>Writes a portion of a string in UTF-8 encoding to a data stream.
+    </summary>
+    <param name='str'>A string to write.
+    </param>
+    <param name='offset'>The zero-based index where the string portion to write begins.
+    </param>
+    <param name='length'>The length of the string portion to write.
+    </param>
+    <param name='stream'>A writable data stream.
+    </param>
+    <param name='replace'>If true, replaces unpaired surrogate code points with the replacement
+      character (U+FFFD). If false, stops processing when an unpaired surrogate
+      code point is seen.
+    </param>
+    <returns>0 if the entire string portion was written; or -1 if the string portion
+      contains an unpaired surrogate code point and
+      <paramref name='replace'/>
+       is false.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null or
+      <paramref name='stream'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The parameter
+      <paramref name='offset'/>
+       is less than 0,
+      <paramref name='length'/>
+       is less than 0, or
+      <paramref name='offset'/>
+       plus
+      <paramref name='length'/>
+       is greater than the string's length.
+    </exception>
+    <exception cref='System.IO.IOException'>An I/O error occurred.
+    </exception>
+</doc>
+<doc name="M:PeterO.DataUtilities.WriteUtf8(System.String,System.Int32,System.Int32,System.IO.Stream,System.Boolean,System.Boolean)">
+<summary>Writes a portion of a string in UTF-8 encoding to a data stream.
+    </summary>
+    <param name='str'>A string to write.
+    </param>
+    <param name='offset'>The zero-based index where the string portion to write begins.
+    </param>
+    <param name='length'>The length of the string portion to write.
+    </param>
+    <param name='stream'>A writable data stream.
+    </param>
+    <param name='replace'>If true, replaces unpaired surrogate code points with the replacement
+      character (U+FFFD). If false, stops processing when an unpaired surrogate
+      code point is seen.
+    </param>
+    <param name='lenientLineBreaks'>If true, replaces carriage return (CR) not followed by line feed (LF) and
+      LF not preceded by CR with CR-LF pairs.
+    </param>
+    <returns>0 if the entire string portion was written; or -1 if the string portion
+      contains an unpaired surrogate code point and
+      <paramref name='replace'/>
+       is false.
+    </returns>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='str'/>
+       is null or
+      <paramref name='stream'/>
+       is null.
+    </exception>
+    <exception cref='ArgumentException'>The parameter
+      <paramref name='offset'/>
+       is less than 0,
+      <paramref name='length'/>
+       is less than 0, or
+      <paramref name='offset'/>
+       plus
+      <paramref name='length'/>
+       is greater than the string's length.
+    </exception>
+    <exception cref='System.IO.IOException'>An I/O error occurred.
+    </exception>
+</doc>
+<doc name="T:PeterO.IByteReader">
+<summary>A generic interface for reading data one byte at a
+            time.</summary>
+</doc>
+<doc name="M:PeterO.IByteReader.ReadByte">
+<summary>Reads a byte from the data source.</summary>
+            <returns>The byte read (from 0 through 255), or -1 if the end of
+            the source is reached.</returns>
+</doc>
+<doc name="T:PeterO.IByteWriter">
+<summary>A generic interface for writing bytes of data.</summary>
+</doc>
+<doc name="M:PeterO.IByteWriter.WriteByte(System.Int32)">
+<summary>Writes an 8-bit byte to a data source.</summary>
+            <param name='b'>Byte to write to the data source. Only the lower 8
+            bits of this value are used.</param>
+</doc>
+<doc name="T:PeterO.IReader">
+<summary>A generic interface for reading bytes of data from a data
+            source.</summary>
+</doc>
+<doc name="M:PeterO.IReader.Read(System.Byte[],System.Int32,System.Int32)">
+<summary>Reads a portion of a byte array from the data
+            source.</summary>
+            <param name='bytes'>A byte array which will contain the data that
+            was read from the data source.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='bytes'/> begins.</param>
+            <param name='length'>The number of elements in the desired portion
+            of <paramref name='bytes'/> (but not more than <paramref name='bytes'/> 's length).</param>
+            <returns>The number of bytes read from the data source. Can be less
+            than <paramref name='length'/> if the end of the stream was
+            reached.</returns>
+            <exception cref='ArgumentNullException'>Should be thrown if the
+            parameter <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Should be thrown if either
+            <paramref name='offset'/> or <paramref name='length'/> is less than
+            0 or greater than <paramref name='bytes'/> 's length, or <paramref name='bytes'/> 's length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+</doc>
+<doc name="T:PeterO.IWriter">
+<summary>A generic interface for writing bytes of data.</summary>
+</doc>
+<doc name="M:PeterO.IWriter.Write(System.Byte[],System.Int32,System.Int32)">
+<summary>Writes a portion of a byte array to the data
+            source.</summary>
+            <param name='bytes'>A byte array containing the data to
+            write.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='bytes'/> begins.</param>
+            <param name='length'>The number of elements in the desired portion
+            of <paramref name='bytes'/> (but not more than <paramref name='bytes'/> 's length).</param>
+            <exception cref='ArgumentNullException'>Should be thrown if the
+            parameter <paramref name='bytes'/> is null.</exception>
+            <exception cref='ArgumentException'>Should be thrown if either
+            <paramref name='offset'/> or <paramref name='length'/> is less than
+            0 or greater than <paramref name='bytes'/> 's length, or <paramref name='bytes'/> 's length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+</doc>
+<doc name="T:PeterO.Rdf.URIUtility">
+<summary>Contains utility methods for processing Uniform Resource Identifiers
+      (URIs) and Internationalized Resource Identifiers (IRIs) under RFC3986 and
+      RFC3987, respectively. In the following documentation, URIs and IRIs
+      include URI references and IRI references, for convenience.
+    </summary>
+</doc>
+<doc name="T:PeterO.Rdf.URIUtility.ParseMode">
+<summary>Specifies whether certain characters are allowed when parsing IRIs and
+      URIs.
+    </summary>
+</doc>
+<doc name="F:PeterO.Rdf.URIUtility.ParseMode.IRILenient">
+<summary>The rules only check for the appropriate delimiters when splitting the
+      path, without checking if all the characters in each component are valid.
+      Even with this mode, strings with unpaired surrogate code points are
+      considered invalid.
+    </summary>
+</doc>
+<doc name="F:PeterO.Rdf.URIUtility.ParseMode.IRIStrict">
+<summary>The rules follow the syntax for parsing IRIs. In particular, many code
+      points outside the Basic Latin range (U+0000 to U+007F) are allowed.
+      Strings with unpaired surrogate code points are considered invalid.
+    </summary>
+</doc>
+<doc name="F:PeterO.Rdf.URIUtility.ParseMode.IRISurrogateLenient">
+<summary>The rules only check for the appropriate delimiters when splitting the
+      path, without checking if all the characters in each component are valid.
+      Unpaired surrogate code points are treated as though they were replacement
+      characters instead for the purposes of these rules, so that strings with
+      those code points are not considered invalid strings.
+    </summary>
+</doc>
+<doc name="F:PeterO.Rdf.URIUtility.ParseMode.URILenient">
+<summary>The rules only check for the appropriate delimiters when splitting the
+      path, without checking if all the characters in each component are valid.
+      Code points outside the Basic Latin range (U+0000 to U+007F) are not
+      allowed.
+    </summary>
+</doc>
+<doc name="F:PeterO.Rdf.URIUtility.ParseMode.URIStrict">
+<summary>The rules follow the syntax for parsing IRIs, except that code points
+      outside the Basic Latin range (U+0000 to U+007F) are not allowed.
+    </summary>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.escapeURI(System.String,System.Int32)">
+<returns>A string possibly containing escaped characters, or null if s is null.
+    </returns>
+    <summary>Escapes characters that cannot appear in URIs or IRIs. The function is
+      idempotent; that is, calling the function again on the result with the
+      same mode doesn't change the result.
+    </summary>
+    <param name='s'>A string to escape.
+    </param>
+    <param name='mode'>The parameter
+      <paramref name='mode'/>
+       is a 32-bit signed integer.
+    </param>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.hasScheme(System.String)">
+<summary>Determines whether the string is a valid IRI with a scheme component. This
+      can be used to check for relative IRI references.
+      <para>The following cases return true:
+      </para>
+      <code>xx-x:mm example:/ww</code> The following cases return false:
+      <code>x@y:/z /x/y/z example.xyz</code> .
+    </summary>
+    <param name='refValue'>A string representing an IRI to check.
+    </param>
+    <returns><c>true</c> if the string is a valid IRI with a scheme component; otherwise, <c>false</c> .
+    </returns>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.hasSchemeForURI(System.String)">
+<summary>Determines whether the string is a valid URI with a scheme component. This
+      can be used to check for relative URI references. The following cases
+      return true:
+      <code>http://example/z xx-x:mm example:/ww</code> The following cases return false:
+      <code>x@y:/z /x/y/z example.xyz</code> .
+    </summary>
+    <param name='refValue'>A string representing an IRI to check.
+    </param>
+    <returns><c>true</c> if the string is a valid URI with a scheme component; otherwise, <c>false</c> .
+    </returns>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.isValidCurieReference(System.String,System.Int32,System.Int32)">
+<summary>Determines whether the substring is a valid CURIE reference under RDFA
+      1.1. (The CURIE reference is the part after the colon.).
+    </summary>
+    <param name='s'>A string containing a CURIE reference. Can be null.
+    </param>
+    <param name='offset'>A zero-based index showing where the desired portion of "s" begins.
+    </param>
+    <param name='length'>The number of elements in the desired portion of "s" (but not more than
+      "s" 's length).
+    </param>
+    <returns><c>true</c> if the substring is a valid CURIE reference under RDFA 1; otherwise, <c>false</c> . Returns false if
+      <paramref name='s'/>
+       is null.
+    </returns>
+    <exception cref='ArgumentException'>Either
+      <paramref name='offset'/>
+       or
+      <paramref name='length'/>
+       is less than 0 or greater than
+      <paramref name='s'/>
+       's length, or
+      <paramref name='s'/>
+       's length minus
+      <paramref name='offset'/>
+       is less than
+      <paramref name='length'/>
+       .
+    </exception>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.relativeResolve(System.String,System.String)">
+<summary>Resolves a URI or IRI relative to another URI or IRI.
+    </summary>
+    <param name='refValue'>A string representing a URI or IRI reference. Example:
+      <c>dir/file.txt</c> .
+    </param>
+    <param name='baseURI'>A string representing an absolute URI reference. Example:
+      <c>http://example.com/my/path/</c> .
+    </param>
+    <returns>The resolved IRI, or null if
+      <paramref name='refValue'/>
+       is null or is not a valid IRI. If base is null or is not a valid IRI,
+      returns refValue. Example: http://example.com/my/path/dir/file.txt.
+    </returns>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.relativeResolve(System.String,System.String,PeterO.Rdf.URIUtility.ParseMode)">
+<summary>Resolves a URI or IRI relative to another URI or IRI.
+    </summary>
+    <param name='refValue'>A string representing a URI or IRI reference. Example:
+      <c>dir/file.txt</c> .
+    </param>
+    <param name='baseURI'>A string representing an absolute URI reference. Example:
+      <c>http://example.com/my/path/</c> .
+    </param>
+    <param name='parseMode'>Parse mode that specifies whether certain characters are allowed when
+      parsing IRIs and URIs.
+    </param>
+    <returns>The resolved IRI, or null if
+      <paramref name='refValue'/>
+       is null or is not a valid IRI. If base is null or is not a valid IRI,
+      returns refValue.
+    </returns>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.splitIRI(System.String)">
+<summary>Parses an Internationalized Resource Identifier (IRI) reference under
+      RFC3987. If the IRI reference is syntactically valid, splits the string
+      into its components and returns an array containing the indices into the
+      components.
+      <returns>If the string is a valid IRI reference, returns an array of 10 integers.
+        Each of the five pairs corresponds to the start and end index of the
+        IRI's scheme, authority, path, query, or fragment component,
+        respectively. If a component is absent, both indices in that pair will
+        be -1. If the string is null or is not a valid IRI, returns null.
+      </returns>
+    </summary>
+    <param name='s'>A string that contains an IRI.
+    </param>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.splitIRI(System.String,PeterO.Rdf.URIUtility.ParseMode)">
+<summary>Parses an Internationalized Resource Identifier (IRI) reference under
+      RFC3987. If the IRI is syntactically valid, splits the string into its
+      components and returns an array containing the indices into the
+      components.
+    </summary>
+    <param name='s'>A string representing an IRI. Can be null.
+    </param>
+    <param name='parseMode'>The parameter
+      <paramref name='parseMode'/>
+       is a ParseMode object.
+    </param>
+    <returns>If the string is a valid IRI reference, returns an array of 10 integers.
+      Each of the five pairs corresponds to the start and end index of the IRI's
+      scheme, authority, path, query, or fragment component, respectively. If a
+      component is absent, both indices in that pair will be -1. If the string
+      is null or is not a valid IRI, returns null.
+    </returns>
+</doc>
+<doc name="M:PeterO.Rdf.URIUtility.splitIRI(System.String,System.Int32,System.Int32,PeterO.Rdf.URIUtility.ParseMode)">
+<summary>Parses a substring that represents an Internationalized Resource
+      Identifier (IRI) under RFC3987. If the IRI is syntactically valid, splits
+      the string into its components and returns an array containing the indices
+      into the components.
+    </summary>
+    <param name='s'>A string that contains an IRI.
+    </param>
+    <param name='offset'>A zero-based index showing where the desired portion of "s" begins.
+    </param>
+    <param name='length'>The length of the desired portion of "s" (but not more than "s" 's
+      length).
+    </param>
+    <param name='parseMode'>Parse mode that specifies whether certain characters are allowed when
+      parsing IRIs and URIs.
+    </param>
+    <returns>If the string is a valid IRI, returns an array of 10 integers. Each of the
+      five pairs corresponds to the start and end index of the IRI's scheme,
+      authority, path, query, or fragment component, respectively. If a
+      component is absent, both indices in that pair will be -1 (an index won't
+      be less than 0 in any other case). If the string is null or is not a valid
+      IRI, returns null.
+    </returns>
+    <exception cref='ArgumentException'>Either
+      <paramref name='offset'/>
+       or
+      <paramref name='length'/>
+       is less than 0 or greater than
+      <paramref name='s'/>
+       's length, or
+      <paramref name='s'/>
+       's length minus
+      <paramref name='offset'/>
+       is less than
+      <paramref name='length'/>
+       .
+    </exception>
+    <exception cref='ArgumentNullException'>The parameter
+      <paramref name='s'/>
+       is null.
+    </exception>
+</doc>
+<doc name="T:PeterO.Text.CharacterReader">
+<summary>A general-purpose character input for reading text from
+            byte streams and text strings. When reading byte streams, this
+            class supports the UTF-8 character encoding by default, but can be
+            configured to support UTF-16 and UTF-32 as well.</summary>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.IO.Stream)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class; will read the
+            stream as UTF-8, skip the byte-order mark (U+FEFF) if it appears
+            first in the stream, and replace invalid byte sequences with
+            replacement characters (U+FFFD).</summary>
+            <param name='stream'>A readable data stream.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='stream'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.IO.Stream,System.Int32)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class; will skip the
+            byte-order mark (U+FEFF) if it appears first in the stream and
+            replace invalid byte sequences with replacement characters
+            (U+FFFD).</summary>
+            <param name='stream'>A readable byte stream.</param>
+            <param name='mode'>The method to use when detecting encodings other
+            than UTF-8 in the byte stream. This usually involves checking
+            whether the stream begins with a byte-order mark (BOM, U+FEFF) or a
+            non-zero basic code point (U+0001 to U+007F) before reading the
+            rest of the stream. This value can be one of the following:
+            <list>
+            <item>0: UTF-8 only.</item>
+            <item>1: Detect UTF-16 using BOM or non-zero basic code point,
+            otherwise UTF-8.</item>
+            <item>2: Detect UTF-16/UTF-32 using BOM or non-zero basic code
+            point, otherwise UTF-8. (Tries to detect UTF-32 first.)</item>
+            <item>3: Detect UTF-16 using BOM, otherwise UTF-8.</item>
+            <item>4: Detect UTF-16/UTF-32 using BOM, otherwise UTF-8. (Tries to
+            detect UTF-32 first.)</item></list>.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='stream'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.IO.Stream,System.Int32,System.Boolean)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class; will skip the
+            byte-order mark (U+FEFF) if it appears first in the stream and a
+            UTF-8 stream is detected.</summary>
+            <param name='stream'>A readable data stream.</param>
+            <param name='mode'>The method to use when detecting encodings other
+            than UTF-8 in the byte stream. This usually involves checking
+            whether the stream begins with a byte-order mark (BOM, U+FEFF) or a
+            non-zero basic code point (U+0001 to U+007F) before reading the
+            rest of the stream. This value can be one of the following:
+            <list>
+            <item>0: UTF-8 only.</item>
+            <item>1: Detect UTF-16 using BOM or non-zero basic code point,
+            otherwise UTF-8.</item>
+            <item>2: Detect UTF-16/UTF-32 using BOM or non-zero basic code
+            point, otherwise UTF-8. (Tries to detect UTF-32 first.)</item>
+            <item>3: Detect UTF-16 using BOM, otherwise UTF-8.</item>
+            <item>4: Detect UTF-16/UTF-32 using BOM, otherwise UTF-8. (Tries to
+            detect UTF-32 first.)</item></list>.</param>
+            <param name='errorThrow'>When encountering invalid encoding, throw
+            an exception if this parameter is true, or replace it with U+FFFD
+            (replacement character) if this parameter is false.</param>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.IO.Stream,System.Int32,System.Boolean,System.Boolean)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class.</summary>
+            <param name='stream'>A readable byte stream.</param>
+            <param name='mode'>The method to use when detecting encodings other
+            than UTF-8 in the byte stream. This usually involves checking
+            whether the stream begins with a byte-order mark (BOM, U+FEFF) or a
+            non-zero basic code point (U+0001 to U+007F) before reading the
+            rest of the stream. This value can be one of the following:
+            <list>
+            <item>0: UTF-8 only.</item>
+            <item>1: Detect UTF-16 using BOM or non-zero basic code point,
+            otherwise UTF-8.</item>
+            <item>2: Detect UTF-16/UTF-32 using BOM or non-zero basic code
+            point, otherwise UTF-8. (Tries to detect UTF-32 first.)</item>
+            <item>3: Detect UTF-16 using BOM, otherwise UTF-8.</item>
+            <item>4: Detect UTF-16/UTF-32 using BOM, otherwise UTF-8. (Tries to
+            detect UTF-32 first.)</item></list>.</param>
+            <param name='errorThrow'>If true, will throw an exception if
+            invalid byte sequences (in the detected encoding) are found in the
+            byte stream. If false, replaces those byte sequences with
+            replacement characters (U+FFFD) as the stream is read.</param>
+            <param name='dontSkipUtf8Bom'>If the stream is detected as UTF-8
+            and this parameter is <c>true</c>, won't skip the BOM character if
+            it occurs at the start of the stream.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='stream'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.String)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class.</summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.String,System.Boolean)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class.</summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+            <param name='skipByteOrderMark'>If true and the first character in
+            the string is U+FEFF, skip that character.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.String,System.Boolean,System.Boolean)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class.</summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+            <param name='skipByteOrderMark'>If true and the first character in
+            the string is U+FEFF, skip that character.</param>
+            <param name='errorThrow'>When encountering invalid encoding, throw
+            an exception if this parameter is true, or replace it with U+FFFD
+            (replacement character) if this parameter is false.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.String,System.Int32,System.Int32)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class.</summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+            <param name='offset'>An index, starting at 0, showing where the
+            desired portion of <paramref name='str'/> begins.</param>
+            <param name='length'>The length, in code units, of the desired
+            portion of <paramref name='str'/> (but not more than <paramref name='str'/> 's length).</param>
+            <exception cref='ArgumentException'>Either &#x22;offset&#x22; or
+            &#x22;length&#x22; is less than 0 or greater than
+            &#x22;str&#x22;&#x27;s length, or &#x22;str&#x22;&#x27;s length
+            minus &#x22;offset&#x22; is less than
+            &#x22;length&#x22;.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.#ctor(System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+<summary>Initializes a new instance of the
+            <see cref='PeterO.Text.CharacterReader'/> class.</summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+            <param name='offset'>The parameter <paramref name='offset'/> is a
+            32-bit signed integer.</param>
+            <param name='length'>The parameter <paramref name='length'/> is a
+            32-bit signed integer.</param>
+            <param name='skipByteOrderMark'>If true and the first character in
+            the string portion is U+FEFF, skip that character.</param>
+            <param name='errorThrow'>When encountering invalid encoding, throw
+            an exception if this parameter is true, or replace it with U+FFFD
+            (replacement character) if this parameter is false.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.Read(System.Int32[],System.Int32,System.Int32)">
+<summary>Reads a series of code points from a Unicode stream or a
+            string.</summary>
+            <param name='chars'>An array where the code points that were read
+            will be stored.</param>
+            <param name='index'>An index starting at 0 showing where the
+            desired portion of <paramref name='chars'/> begins.</param>
+            <param name='length'>The number of elements in the desired portion
+            of <paramref name='chars'/> (but not more than <paramref name='chars'/> 's length).</param>
+            <returns>The number of code points read from the stream. This can
+            be less than the <paramref name='length'/> parameter if the end of
+            the stream is reached.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='chars'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='index'/>
+            or <paramref name='length'/> is less than 0 or greater than
+            <paramref name='chars'/> 's length, or <paramref name='chars'/> 's
+            length minus <paramref name='index'/> is less than <paramref name='length'/>.</exception>
+</doc>
+<doc name="M:PeterO.Text.CharacterReader.ReadChar">
+<summary>Reads the next character from a Unicode stream or a
+            string.</summary>
+            <returns>The next character, or -1 if the end of the string or
+            stream was reached.</returns>
+</doc>
+<doc name="T:PeterO.Text.Encodings">
+<summary>Contains methods for converting text from one character
+            encoding to another. This class also contains convenience methods
+            for converting strings and other character inputs to sequences of
+            bytes and vice versa.
+            <para>The Encoding Standard, which is a Candidate Recommendation as
+            of early November 2015, defines algorithms for the most common
+            character encodings used on Web pages and recommends the UTF-8
+            encoding for new specifications and Web pages. Calling the
+            <c>GetEncoding(name)</c> method returns one of the character
+            encodings with the given name under the Encoding Standard.</para>
+            <para>Now let's define some terms.</para>
+            <para><b>Encoding Terms</b></para>
+            <list>
+            <item>A <b>code point</b> is a number that identifies a single text
+            character, such as a letter, digit, or symbol. (A collection of
+            such characters is also called an
+            <i>abstract character repertoire</i>.)</item>
+            <item>A <b>coded character set</b> is a set of code points which
+            are each assigned to a single text character. As used here, coded
+            character sets don't define how code points are laid out in
+            memory.</item>
+            <item>A <b>character encoding</b> is a mapping from a sequence of
+            code points, in one or more specific coded character sets, to a
+            sequence of bytes and vice versa. (For brevity, the rest of this
+            documentation may use the term
+            <i>encoding</i> instead. RFC 6365 uses the analogous term
+            <i>charset</i> instead; in this documentation, however,
+            <i>charset</i> is used only to refer to the names that identify a
+            character encoding.)</item>
+            <item><b>ASCII</b> is a 128-code-point coded character set that
+            includes the English letters and digits, common punctuation and
+            symbols, and control characters. As used here, its code points
+            match the code points within the Basic Latin block (0-127 or U+0000
+            to U+007F) of the Unicode Standard.</item></list>
+            <para>There are several kinds of character encodings:</para>
+            <list>
+            <item><b>Single-byte encodings</b> define a coded character set
+            that assigns one code point to one byte. Thus, they can have a
+            maximum of 256 code points. For example:</item>
+            <item>(a) ISO 8859 encodings and <c>windows-1252</c>.</item>
+            <item>(b) ASCII is usually used as a single-byte encoding where
+            each code point fits in the lower 7 bits of an eight-bit byte (in
+            that case, the encoding is often called <c>US-ASCII</c> ). In the
+            Encoding Standard, all single-byte encodings use the ASCII
+            characters as the first 128 code points of their coded character
+            sets.</item>
+            <item><b>Multi-byte encodings</b> include code points from one or
+            more coded character sets and assign some or all code points to
+            several bytes. For example:</item>
+            <item>(a) <c>UTF-16LE</c> and <c>UTF-16BE</c> are two encodings
+            defined in the Unicode Standard. They use 2 bytes for the most
+            common code points, and 4 bytes for supplementary code
+            points.</item>
+            <item>(b) <c>UTF-8</c> is another encoding defined in the Unicode
+            Standard. It uses 1 byte for ASCII and 2 to 4 bytes for the other
+            Unicode code points.</item>
+            <item>(c) Most legacy East Asian encodings, such as
+            <c>Shift_JIS</c>, <c>GBK</c>, and <c>Big5</c> use 1 byte for
+            ASCII (or a slightly modified version) and, usually, 2 or more
+            bytes for national standard coded character sets. In many of these
+            encodings, notably <c>Shift_JIS</c>, characters whose code points
+            use one byte traditionally take half the space of characters whose
+            code points use two bytes.</item>
+            <item><b>Escape-based encodings</b> are combinations of single-
+            and/or multi-byte encodings, and use escape sequences and/or shift
+            codes to change which encoding to use for the bytes that follow.
+            For example:</item>
+            <item>(a) <c>ISO-2022-JP</c> supports several escape sequences that
+            shift into different encodings, including a Katakana, a Kanji, and
+            an ASCII encoding (with ASCII as the default).</item>
+            <item>(b) UTF-7 (not included in the Encoding Standard) is an
+            encoding that uses the Unicode Standard's coded character set,
+            which is encoded using a limited subset of ASCII. The plus symbol
+            (U+002B) is used to shift into a UTF-16BE multi-byte encoding
+            (converted to a modified version of base-64) to encode other
+            Unicode code points.</item>
+            <item>The Encoding Standard also defines a <b>replacement
+            encoding</b>, which causes a decoding error and is used to alias a
+            few problematic or unsupported encoding names, such as
+            <c>hz-gb-2312</c>.</item></list>
+            <para><b>Getting an Encoding</b></para>
+            <para>The Encoding Standard includes UTF-8, UTF-16, and many legacy
+            encodings, and gives each one of them a name. The
+            <c>GetEncoding(name)</c> method takes a name string and returns an
+            ICharacterEncoding object that implements that encoding, or
+            <c>null</c> if the name is unrecognized.</para>
+            <para>However, the Encoding Standard is designed to include only
+            encodings commonly used on Web pages, not in other protocols such
+            as email. For email, the Encoding class includes an alternate
+            function <c>GetEncoding(name, forEmail)</c>. Setting
+            <c>forEmail</c> to <c>true</c> will use rules modified from the
+            Encoding Standard to better suit encoding and decoding text from
+            email messages.</para>
+            <para><b>Classes for Character Encodings</b></para>
+            <para>This Encodings class provides access to common character
+            encodings through classes as described below:</para>
+            <list type=''>
+            <item>An <b>encoder class</b> is a class that converts a sequence
+            of bytes to a sequence of code points in the universal character
+            set (otherwise known under the name Unicode). An encoder class
+            implements the <c>ICharacterEncoder</c> interface.</item>
+            <item>A <b>decoder class</b> is a class that converts a sequence of
+            Unicode code points to a sequence of bytes. A decoder class
+            implements the <c>ICharacterDecoder</c> interface.</item>
+            <item>An <b>encoding class</b> allows access to both an encoder
+            class and a decoder class and implements the
+            <c>ICharacterEncoding</c> interface. The encoder and decoder
+            classes should implement the same character encoding.</item></list>
+            <para><b>Custom Encodings</b></para>
+            <para>Classes that implement the ICharacterEncoding interface can
+            provide additional character encodings not included in the Encoding
+            Standard. Some examples of these include the following:</para>
+            <list>
+            <item>A modified version of UTF-8 used in Java's serialization
+            formats.</item>
+            <item>A modified version of UTF-7 used in the IMAP email
+            protocol.</item></list>
+            <para>(Note that this library doesn't implement either
+            encoding.)</para></summary>
+</doc>
+<doc name="M:PeterO.Text.Encodings.DecodeToString(PeterO.Text.ICharacterEncoding,PeterO.IByteReader)">
+<summary>Reads bytes from a data source and converts the bytes from
+            a given encoding to a text string.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: "encoding.DecodeString(input)". If the
+            object's class already has a DecodeToString method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='encoding'>An object that implements a given character
+            encoding. Any bytes that can't be decoded are converted to the
+            replacement character (U+FFFD).</param>
+            <param name='input'>An object that implements a byte
+            stream.</param>
+            <returns>The converted string.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> or <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.DecodeToString(PeterO.Text.ICharacterEncoding,System.Byte[])">
+<summary>Reads a byte array from a data source and converts the
+            bytes from a given encoding to a text string. Errors in decoding
+            are handled by replacing erroneous bytes with the replacement
+            character (U+FFFD).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>enc.DecodeToString(bytes)</c>. If the
+            object's class already has a DecodeToString method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>enc.DecodeToString(bytes)</c>. If the
+            object's class already has a <c>DecodeToString</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <param name='bytes'>A byte array.</param>
+            <returns>A string consisting of the decoded text.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='enc'/> or <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.DecodeToString(PeterO.Text.ICharacterEncoding,System.Byte[],System.Int32,System.Int32)">
+<summary>Reads a portion of a byte array from a data source and
+            converts the bytes from a given encoding to a text string. Errors
+            in decoding are handled by replacing erroneous bytes with the
+            replacement character (U+FFFD).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>enc.DecodeToString(bytes, offset,
+            length)</c>. If the object's class already has a DecodeToString
+            method with the same parameters, that method takes precedence over
+            this extension method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>enc.DecodeToString(bytes, offset,
+            length)</c>. If the object's class already has a
+            <c>DecodeToString</c> method with the same parameters, that method
+            takes precedence over this extension method.</para></summary>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <param name='bytes'>A byte array containing the desired portion to
+            read.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='bytes'/> begins.</param>
+            <param name='length'>The length, in bytes, of the desired portion
+            of <paramref name='bytes'/> (but not more than <paramref name='bytes'/> 's length).</param>
+            <returns>A string consisting of the decoded text.</returns>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name='enc'/> or <paramref name='bytes'/> is
+            null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='bytes'/> 's length, or <paramref name=' bytes'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='enc'/> or <paramref name='bytes'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.DecodeToString(PeterO.Text.ICharacterEncoding,System.IO.Stream)">
+<summary>Decodes data read from a data stream into a text string in
+            the given character encoding.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>encoding.DecodeToString(input)</c>.
+            If the object's class already has a DecodeToString method with the
+            same parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>enc.DecodeToString(input)</c>. If the
+            object's class already has a <c>DecodeToString</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <param name='input'>A readable byte stream.</param>
+            <returns>A string consisting of the decoded text.</returns>
+            <exception cref='ArgumentNullException'>The parameter "encoding" or
+            <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.DecoderToInputClass.Read(System.Int32[],System.Int32,System.Int32)">
+<summary>This is an internal method.</summary>
+            <param name='buffer'>An array of 32-bit unsigned integers.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='buffer'/> begins.</param>
+            <param name='length'>The number of elements in the desired portion
+            of <paramref name='buffer'/> (but not more than <paramref name='buffer'/> 's length).</param>
+            <returns>A 32-bit signed integer.</returns>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name='buffer'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='buffer'/> 's length, or <paramref name=' buffer'/> ' s length minus <paramref name='offset'/> is less
+            than <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='buffer'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.DecoderToInputClass.ReadChar">
+<summary>This is an internal method.</summary>
+            <returns>A 32-bit signed integer.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToBytes(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoder)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded using a given character encoding. When
+            writing to the byte array, any characters that can't be encoded are
+            replaced with the byte 0x3f (the question mark character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoder)</c>. If the
+            object's class already has a EncodeToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoder)</c>. If the
+            object's class already has a <c>EncodeToBytes</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoder'>An object that implements a character
+            encoder.</param>
+            <returns>A byte array.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoder'/> or <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToBytes(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoder,System.Boolean)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded using the given character encoder and
+            fallback strategy.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoder,
+            htmlFallback)</c>. If the object's class already has a
+            <c>EncodeToBytes</c> method with the same parameters, that method
+            takes precedence over this extension method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoder'>A character encoder that takes Unicode
+            characters and writes them into bytes.</param>
+            <param name='htmlFallback'>If true, when the encoder encounters
+            invalid characters that can't be mapped into bytes, writes the HTML
+            decimal escape for the invalid characters instead. If false, writes
+            a question mark byte (0x3f) upon encountering invalid
+            characters.</param>
+            <returns>A byte array containing the encoded characters.</returns>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name=' encoder'/> or <paramref name=' input'/> is
+            null.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoder'/> or <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToBytes(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoding)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded using the given character encoder.
+            When writing to the byte array, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoding)</c>. If the
+            object's class already has a <c>EncodeToBytes</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoding'>An object that implements a given character
+            encoding.</param>
+            <returns>A byte array containing the encoded text.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToBytes(System.String,PeterO.Text.ICharacterEncoding)">
+<summary>Reads Unicode characters from a text string and writes
+            them to a byte array encoded in a given character encoding. When
+            reading the string, any unpaired surrogate characters are replaced
+            with the replacement character (U+FFFD), and when writing to the
+            byte array, any characters that can't be encoded are replaced with
+            the byte 0x3f (the question mark character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any String object and can be called as follows:
+            <c>str.EncodeToBytes(enc)</c>. If the object's class already has a
+            EncodeToBytes method with the same parameters, that method takes
+            precedence over this extension method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing string and can be
+            called as follows: <c>str.EncodeToBytes(enc)</c>. If the object's
+            class already has a <c>EncodeToBytes</c> method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='str'>A text string to encode to a byte array.</param>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <returns>A byte array containing the encoded text string.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> or <paramref name='enc'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToBytes(System.String,PeterO.Text.ICharacterEncoding,System.Boolean)">
+<summary>Reads Unicode characters from a text string and writes
+            them to a byte array encoded in a given character encoding and
+            using the given encoder fallback strategy. When reading the string,
+            any unpaired surrogate characters are replaced with the replacement
+            character (U+FFFD).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing string and can be
+            called as follows: <c>str.EncodeToBytes(enc, htmlFallback)</c>. If
+            the object's class already has a <c>EncodeToBytes</c> method with
+            the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='str'>A text string to encode to a byte array.</param>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <param name='htmlFallback'>If true, when the encoder encounters
+            invalid characters that can't be mapped into bytes, writes the HTML
+            decimal escape for the invalid characters instead. If false, writes
+            a question mark byte (0x3f) upon encountering invalid
+            characters.</param>
+            <returns>A byte array containing the encoded text string.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> or <paramref name='enc'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToWriter(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoder,PeterO.IWriter)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded in a given character encoding. When
+            writing to the byte array, any characters that can't be encoded are
+            replaced with the byte 0x3f (the question mark character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoder)</c>. If the
+            object's class already has a EncodeToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToWriter(encoder, writer)</c>. If the object's class already has a <c>EncodeToWriter</c> method
+            with the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoder'>An object that implements a character
+            encoder.</param>
+            <param name='writer'>A byte writer to write the encoded bytes
+            to.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoder'/> or <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToWriter(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoder,System.IO.Stream)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded in a given character encoding. When
+            writing to the byte array, any characters that can't be encoded are
+            replaced with the byte 0x3f (the question mark character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoder)</c>. If the
+            object's class already has a EncodeToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToWriter(encoder, output)</c>. If the object's class already has a <c>EncodeToWriter</c> method
+            with the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoder'>An object that implements a character
+            encoder.</param>
+            <param name='output'>A writable data stream.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoder'/> or <paramref name='input'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToWriter(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoding,PeterO.IWriter)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded using the given character encoder.
+            When writing to the byte array, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoding)</c>. If the
+            object's class already has a EncodeToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToWriter(encoding, writer)</c>. If the object's class already has a <c>EncodeToWriter</c> method
+            with the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoding'>An object that implements a character
+            encoding.</param>
+            <param name='writer'>A byte writer to write the encoded bytes
+            to.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToWriter(PeterO.Text.ICharacterInput,PeterO.Text.ICharacterEncoding,System.IO.Stream)">
+<summary>Reads Unicode characters from a character input and writes
+            them to a byte array encoded using the given character encoder.
+            When writing to the byte array, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToBytes(encoding)</c>. If the
+            object's class already has a EncodeToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>input.EncodeToWriter(encoding, output)</c>. If the object's class already has a <c>EncodeToWriter</c> method
+            with the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='input'>An object that implements a stream of universal
+            code points.</param>
+            <param name='encoding'>An object that implements a character
+            encoding.</param>
+            <param name='output'>A writable data stream.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToWriter(System.String,PeterO.Text.ICharacterEncoding,PeterO.IWriter)">
+<summary>Converts a text string to bytes and writes the bytes to an
+            output byte writer. When reading the string, any unpaired surrogate
+            characters are replaced with the replacement character (U+FFFD),
+            and when writing to the byte stream, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any String object and can be called as follows:
+            <c>str.EncodeToBytes(enc, writer)</c>. If the object's class
+            already has a EncodeToBytes method with the same parameters, that
+            method takes precedence over this extension method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing string and can be
+            called as follows: <c>str.EncodeToWriter(enc, writer)</c>. If the
+            object's class already has a <c>EncodeToWriter</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='str'>A text string to encode.</param>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <param name='writer'>A byte writer where the encoded bytes will be
+            written to.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> or <paramref name='enc'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.EncodeToWriter(System.String,PeterO.Text.ICharacterEncoding,System.IO.Stream)">
+<summary>Converts a text string to bytes and writes the bytes to an
+            output data stream. When reading the string, any unpaired surrogate
+            characters are replaced with the replacement character (U+FFFD),
+            and when writing to the byte stream, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any String object and can be called as follows:
+            <c>str.EncodeToBytes(enc, writer)</c>. If the object's class
+            already has a EncodeToBytes method with the same parameters, that
+            method takes precedence over this extension method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing string and can be
+            called as follows: <c>str.EncodeToWriter(enc, output)</c>. If the
+            object's class already has a <c>EncodeToWriter</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='str'>A text string to encode.</param>
+            <param name='enc'>An object implementing a character encoding
+            (gives access to an encoder and a decoder).</param>
+            <param name='output'>A writable data stream.</param>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> or <paramref name='enc'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetDecoderInput(PeterO.Text.ICharacterEncoding,PeterO.IByteReader)">
+<summary>Converts a character encoding into a character input
+            stream, given a streamable source of bytes. The input stream
+            doesn't check the first few bytes for a byte-order mark indicating
+            a Unicode encoding such as UTF-8 before using the character
+            encoding's decoder.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: "encoding.GetDecoderInput(input)". If the
+            object's class already has a GetDecoderInput method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='encoding'>Encoding that exposes a decoder to be
+            converted into a character input stream. If the decoder returns -2
+            (indicating a decode error), the character input stream handles the
+            error by returning a replacement character in its place.</param>
+            <param name='stream'>Byte stream to convert into Unicode
+            characters.</param>
+            <returns>An ICharacterInput object.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetDecoderInput(PeterO.Text.ICharacterEncoding,System.IO.Stream)">
+<summary>Converts a character encoding into a character input
+            stream, given a data stream. The input stream doesn't check the
+            first few bytes for a byte-order mark indicating a Unicode encoding
+            such as UTF-8 before using the character encoding's decoder.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>encoding.GetDecoderInput(input)</c>.
+            If the object's class already has a GetDecoderInput method with the
+            same parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>encoding.GetDecoderInput(input)</c>.
+            If the object's class already has a <c>GetDecoderInput</c> method
+            with the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='encoding'>Encoding object that exposes a decoder to be
+            converted into a character input stream. If the decoder returns -2
+            (indicating a decode error), the character input stream handles the
+            error by returning a replacement character in its place.</param>
+            <param name='input'>Byte stream to convert into Unicode
+            characters.</param>
+            <returns>An ICharacterInput object.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetDecoderInputSkipBom(PeterO.Text.ICharacterEncoding,PeterO.IByteReader)">
+<summary>Converts a character encoding into a character input
+            stream, given a streamable source of bytes. But if the input stream
+            starts with a UTF-8 or UTF-16 byte order mark, the input is decoded
+            as UTF-8 or UTF-16, as the case may be, rather than the given
+            character encoding.
+            <para>This method implements the "decode" algorithm specified in
+            the Encoding standard.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows:
+            <c>encoding.GetDecoderInputSkipBom(input)</c>. If the object's
+            class already has a <c>GetDecoderInputSkipBom</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='encoding'>Encoding object that exposes a decoder to be
+            converted into a character input stream. If the decoder returns -2
+            (indicating a decode error), the character input stream handles the
+            error by returning a replacement character in its place.</param>
+            <param name='stream'>Byte stream to convert into Unicode
+            characters.</param>
+            <returns>An ICharacterInput object.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetDecoderInputSkipBom(PeterO.Text.ICharacterEncoding,System.IO.Stream)">
+<summary>Converts a character encoding into a character input
+            stream, given a readable data stream. But if the input stream
+            starts with a UTF-8 or UTF-16 byte order mark, the input is decoded
+            as UTF-8 or UTF-16, as the case may be, rather than the given
+            character encoding.This method implements the "decode" algorithm
+            specified in the Encoding standard.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows:
+            <c>encoding.GetDecoderInputSkipBom(input)</c>. If the object's
+            class already has a <c>GetDecoderInputSkipBom</c> method with the
+            same parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='encoding'>Encoding object that exposes a decoder to be
+            converted into a character input stream. If the decoder returns -2
+            (indicating a decode error), the character input stream handles the
+            error by returning a replacement character in its place.</param>
+            <param name='input'>Byte stream to convert into Unicode
+            characters.</param>
+            <returns>An ICharacterInput object.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetEncoding(System.String)">
+<summary>Returns a character encoding from the given
+            name.</summary>
+            <param name='name'>A string naming a character encoding. See the
+            ResolveAlias method. Can be null.</param>
+            <returns>An object implementing a character encoding (gives access
+            to an encoder and a decoder).</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetEncoding(System.String,System.Boolean)">
+<summary>Returns a character encoding from the given
+            name.</summary>
+            <param name='name'>A string naming a character encoding. See the
+            ResolveAlias method. Can be null.</param>
+            <param name='forEmail'>If false, uses the encoding resolution rules
+            in the Encoding Standard. If true, uses modified rules as described
+            in the ResolveAliasForEmail method.</param>
+            <returns>An object that enables encoding and decoding text in the
+            given character encoding. Returns null if the name is null or
+            empty, or if it names an unrecognized or unsupported
+            encoding.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.GetEncoding(System.String,System.Boolean,System.Boolean)">
+<summary>Returns a character encoding from the given
+            name.</summary>
+            <param name='name'>A string naming a character encoding. See the
+            ResolveAlias method. Can be null.</param>
+            <param name='forEmail'>If false, uses the encoding resolution rules
+            in the Encoding Standard. If true, uses modified rules as described
+            in the ResolveAliasForEmail method.</param>
+            <param name='allowReplacement'>Has no effect.</param>
+            <returns>An object that enables encoding and decoding text in the
+            given character encoding. Returns null if the name is null or
+            empty, or if it names an unrecognized or unsupported
+            encoding.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.InputToString(PeterO.Text.ICharacterInput)">
+<summary>Reads Unicode characters from a character input and
+            converts them to a text string.
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterInput and can
+            be called as follows: <c>reader.InputToString()</c>. If the
+            object's class already has a InputToString method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='reader'>A character input whose characters will be
+            converted to a text string.</param>
+            <returns>A text string containing the characters read.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='reader'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.ResolveAlias(System.String)">
+<summary>Resolves a character encoding's name to a standard form.
+            This involves changing aliases of a character encoding to a
+            standardized name.
+            <para>In several Internet specifications, this name is known as a
+            "charset" parameter. In HTML and HTTP, for example, the "charset"
+            parameter indicates the encoding used to represent text in the HTML
+            page, text file, etc.</para></summary>
+            <param name='name'>A string that names a given character encoding.
+            Can be null. Any leading and trailing whitespace (U+0009, U+000c,
+            U+000D, U+000A, U+0010) is removed before resolving the encoding's
+            name, and encoding names are matched using a basic case-insensitive
+            comparison. (Two strings are equal in such a comparison, if they
+            match after converting the basic upper-case letters A to Z (U+0041
+            to U+005A) in both strings to basic lower-case letters.) The
+            Encoding Standard supports only the following encodings (and
+            defines aliases for most of them).
+            <list type='bullet'>
+            <item><c>UTF-8</c> - UTF-8 (8-bit encoding of the universal coded
+            character set, the encoding recommended by the Encoding Standard
+            for new data formats)</item>
+            <item><c>UTF-16LE</c> - UTF-16 little-endian (16-bit UCS)</item>
+            <item><c>UTF-16BE</c> - UTF-16 big-endian (16-bit UCS)</item>
+            <item>The special-purpose encoding <c>x-user-defined</c></item>
+            <item>The special-purpose encoding <c>replacement</c>.</item>
+            <item>28 legacy single-byte encodings:
+            <list type='bullet'>
+            <item><c>windows-1252</c> : Western Europe (Note: The Encoding
+            Standard aliases the names <c>US-ASCII</c> and <c>ISO-8859-1</c> to
+            <c>windows-1252</c>, which uses a different coded character set
+            from either; it differs from <c>ISO-8859-1</c> by assigning
+            different characters to some bytes from 0x80 to 0x9F. The Encoding
+            Standard does this for compatibility with existing Web
+            pages.)</item>
+            <item><c>ISO-8859-2</c>, <c>windows-1250</c> : Central
+            Europe</item>
+            <item><c>ISO-8859-10</c> : Northern Europe</item>
+            <item><c>ISO-8859-4</c>, <c>windows-1257</c> : Baltic</item>
+            <item><c>ISO-8859-13</c> : Estonian</item>
+            <item><c>ISO-8859-14</c> : Celtic</item>
+            <item><c>ISO-8859-16</c> : Romanian</item>
+            <item><c>ISO-8859-5</c>, <c>IBM-866</c>, <c>KOI8-R</c>,
+            <c>windows-1251</c>, <c>x-mac-cyrillic</c> : Cyrillic</item>
+            <item><c>KOI8-U</c> : Ukrainian</item>
+            <item><c>ISO-8859-7</c>, <c>windows-1253</c> : Greek</item>
+            <item><c>ISO-8859-6</c>, <c>windows-1256</c> : Arabic</item>
+            <item><c>ISO-8859-8</c>, <c>ISO-8859-8-I</c>, <c>windows-1255</c> : Hebrew</item>
+            <item><c>ISO-8859-3</c> : Latin 3</item>
+            <item><c>ISO-8859-15</c>, <c>windows-1254</c> : Turkish</item>
+            <item><c>windows-874</c> : Thai</item>
+            <item><c>windows-1258</c> : Vietnamese</item>
+            <item><c>macintosh</c> : Mac Roman</item></list></item>
+            <item>Three legacy Japanese encodings: <c>Shift_JIS</c>,
+            <c>EUC-JP</c>, <c>ISO-2022-JP</c></item>
+            <item>Two legacy simplified Chinese encodings: <c>GBK</c> and
+            <c>gb18030</c></item>
+            <item><c>Big5</c> : legacy traditional Chinese encoding</item>
+            <item><c>EUC-KR</c> : legacy Korean encoding</item></list>
+            <para>The <c>UTF-8</c>, <c>UTF-16LE</c>, and <c>UTF-16BE</c> encodings don't encode a byte-order mark at the start of the text
+            (doing so is not recommended for <c>UTF-8</c>, while in
+            <c>UTF-16LE</c> and <c>UTF-16BE</c>, the byte-order mark character
+            U+FEFF is treated as an ordinary character, unlike in the UTF-16
+            encoding form). The Encoding Standard aliases <c>UTF-16</c> to
+            <c>UTF-16LE</c> "to deal with deployed content".</para>.</param>
+            <returns>A standardized name for the encoding. Returns the empty
+            string if <paramref name='name'/> is null or empty, or if the
+            encoding name is unsupported.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.ResolveAliasForEmail(System.String)">
+<summary>Resolves a character encoding's name to a canonical form,
+            using rules more suitable for email.</summary>
+            <param name='name'>A string naming a character encoding. Can be
+            null. Any leading and trailing whitespace (U+0009, U+000c, U+000D, U+000A, U+0010) is removed before resolving the encoding's
+            name, and encoding names are matched using a basic case-insensitive
+            comparison. (Two strings are equal in such a comparison, if they
+            match after converting the basic upper-case letters A to Z (U+0041 to U+005A) in both strings to basic lower-case letters.) Uses
+            a modified version of the rules in the Encoding Standard to better
+            conform, in some cases, to email standards like MIME. Encoding
+            names and aliases not registered with the Internet Assigned Numbers
+            Authority (IANA) are not supported, with the exception of
+            <c>ascii</c>, <c>utf8</c>, <c>cp1252</c>, and names 10
+            characters or longer starting with <c>iso-8859-</c>. Also, the
+            following additional encodings are supported. Note that the case
+            combination <c>GB18030</c>, the combination registered with IANA,
+            rather than <c>gb18030</c> can be retured by this method.
+            <list type='bullet'>
+            <item><c>US-ASCII</c> - ASCII single-byte encoding, rather than an
+            alias to <c>windows-1252</c> as specified in the Encoding Standard.
+            The coded character set's code points match those in the Unicode
+            Standard's Basic Latin block (0-127 or U+0000 to U+007F). This
+            method name <c>ascii</c> is treated as an alias to <c>US-ASCII</c> even though it is not registered with IANA as a charset name and
+            RFC 2046 (part of MIME) reserves the name "ASCII". A future version
+            of this method may stop supporting the alias <c>ascii</c>.</item>
+            <item><c>ISO-8859-1</c> - Latin-1 single-byte encoding, rather than
+            an alias to <c>windows-1252</c> as specified in the Encoding
+            Standard. The coded character set's code points match those in the
+            Unicode Standard's Basic Latin and Latin-1 Supplement blocks (0-255
+            or U+0000 to U+00FF).</item>
+            <item><c>UTF-16</c> - UTF-16 without a fixed byte order, rather
+            than an alias to <c>UTF-16LE</c> as specified in the Encoding
+            Standard. The byte order is little endian if the byte stream starts
+            with 0xff 0xfe; otherwise, big endian. A leading 0xff 0xfe or 0xfe
+            0xff in the byte stream is skipped.</item>
+            <item><c>UTF-7</c> - UTF-7 (7-bit universal coded character set).
+            The name <c>unicode-1-1-utf-7</c> is not supported and is not
+            treated as an alias to <c>UTF-7</c>, even though it uses the same
+            character encoding scheme as UTF-7, because RFC 1642, which defined
+            the former UTF-7, is linked to a different Unicode version with an
+            incompatible character repertoire (notably, the Hangul syllables
+            have different code point assignments in Unicode 1.1 and earlier
+            than in Unicode 2.0 and later).</item>
+            <item><c>ISO-2022-JP-2</c> - similar to "ISO-2022-JP", except that
+            the decoder supports additional character sets.</item></list>
+            .</param>
+            <returns>A standardized name for the encoding. Returns the empty
+            string if <paramref name='name'/> is null or empty, or if the
+            encoding name is unsupported.</returns>
+</doc>
+<doc name="M:PeterO.Text.Encodings.StringToBytes(PeterO.Text.ICharacterEncoder,System.String)">
+<summary>Converts a text string to a byte array using the given
+            character encoder. When reading the string, any unpaired surrogate
+            characters are replaced with the replacement character (U+FFFD),
+            and when writing to the byte array, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoder and
+            can be called as follows: <c>encoder.StringToBytes(str)</c>. If
+            the object's class already has a StringToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoder and
+            can be called as follows: <c>encoder.StringToBytes(str)</c>. If
+            the object's class already has a <c>StringToBytes</c> method with
+            the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='encoder'>An object that implements a character
+            encoder.</param>
+            <param name='str'>A text string to encode into a byte
+            array.</param>
+            <returns>A byte array.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoder'/> or <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.StringToBytes(PeterO.Text.ICharacterEncoding,System.String)">
+<summary>Converts a text string to a byte array encoded in a given
+            character encoding. When reading the string, any unpaired surrogate
+            characters are replaced with the replacement character (U+FFFD),
+            and when writing to the byte array, any characters that can't be
+            encoded are replaced with the byte 0x3f (the question mark
+            character).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing ICharacterEncoding and
+            can be called as follows: <c>encoding.StringToBytes(str)</c>. If
+            the object's class already has a StringToBytes method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='encoding'>An object that implements a character
+            encoding.</param>
+            <param name='str'>A string to be encoded into a byte array.</param>
+            <returns>A byte array containing the string encoded in the given
+            text encoding.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='encoding'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.StringToInput(System.String)">
+<summary>Converts a text string to a character input. The resulting
+            input can then be used to encode the text to bytes, or to read the
+            string code point by code point, among other things. When reading
+            the string, any unpaired surrogate characters are replaced with the
+            replacement character (U+FFFD).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any String object and can be called as follows:
+            <c>str.StringToInput(offset, length)</c>. If the object's class
+            already has a StringToInput method with the same parameters, that
+            method takes precedence over this extension method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing string and can be
+            called as follows: <c>str.StringToInput()</c>. If the object's
+            class already has a <c>StringToInput</c> method with the same
+            parameters, that method takes precedence over this extension
+            method.</para></summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+            <returns>An ICharacterInput object.</returns>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="M:PeterO.Text.Encodings.StringToInput(System.String,System.Int32,System.Int32)">
+<summary>Converts a portion of a text string to a character input.
+            The resulting input can then be used to encode the text to bytes,
+            or to read the string code point by code point, among other things.
+            When reading the string, any unpaired surrogate characters are
+            replaced with the replacement character (U+FFFD).
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any String object and can be called as follows:
+            <c>str.StringToInput(offset, length)</c>. If the object's class
+            already has a StringToInput method with the same parameters, that
+            method takes precedence over this extension method.</para>
+            <para>In the.NET implementation, this method is implemented as an
+            extension method to any object implementing string and can be
+            called as follows: <c>str.StringToInput(offset, length)</c>. If
+            the object's class already has a <c>StringToInput</c> method with
+            the same parameters, that method takes precedence over this
+            extension method.</para></summary>
+            <param name='str'>The parameter <paramref name='str'/> is a text
+            string.</param>
+            <param name='offset'>An index starting at 0 showing where the
+            desired portion of <paramref name='str'/> begins.</param>
+            <param name='length'>The length, in code units, of the desired
+            portion of <paramref name='str'/> (but not more than <paramref name='str'/> 's length).</param>
+            <returns>An ICharacterInput object.</returns>
+            <exception cref=' T:System.ArgumentNullException'>The parameter
+            <paramref name='str'/> is null.</exception>
+            <exception cref='ArgumentException'>Either <paramref name='offset'/> or <paramref name='length'/> is less than 0 or
+            greater than <paramref name='str'/> 's length, or <paramref name='
+            str'/> ' s length minus <paramref name='offset'/> is less than
+            <paramref name='length'/>.</exception>
+            <exception cref='ArgumentNullException'>The parameter <paramref name='str'/> is null.</exception>
+</doc>
+<doc name="F:PeterO.Text.Encodings.UTF8">
+<summary>Character encoding object for the UTF-8 character
+            encoding, which represents each code point in the universal coded
+            character set using 1 to 4 bytes.</summary>
+</doc>
+<doc name="T:PeterO.Text.ICharacterDecoder">
+<summary>Defines a method that can be implemented by classes that
+            convert a stream of bytes to Unicode code points.</summary>
+</doc>
+<doc name="M:PeterO.Text.ICharacterDecoder.ReadChar(PeterO.IByteReader)">
+<summary>Reads bytes from an input transform until a Unicode code
+            point is decoded or until the end of the stream is reached.
+            <para>If this method returns -2, indicating an error, the caller of
+            this method can take one of a variety of actions to handle the
+            error. For example, it can output one or more replacement code
+            points instead (such as the Replacement Character 0xfffd), or it
+            can throw an exception. In some cases, where the error won't cause
+            data loss or a security problem, the caller can also ignore the
+            decoder error.</para></summary>
+            <param name='input'>Source of bytes to decode into code points. The
+            decoder can maintain internal state, including data on bytes
+            already read, so this parameter should not change when using the
+            same character decoder object. It's also possible for the decoder
+            to read no bytes but still return a code point, depending on the
+            encoding it supports and its internal state.</param>
+            <returns>The Unicode code point decoded, from 0-0xd7ff or from
+            0xe000 to 0x10ffff. Returns -1 if the end of the source is reached
+            or -2 if a decoder error occurs.</returns>
+</doc>
+<doc name="T:PeterO.Text.ICharacterEncoder">
+<summary>Defines a method that can be implemented by classes that
+            convert Unicode code points to bytes.</summary>
+</doc>
+<doc name="M:PeterO.Text.ICharacterEncoder.Encode(System.Int32,PeterO.IWriter)">
+<summary>Converts a Unicode code point to bytes and writes the
+            bytes to an output stream.
+            <para>If this method returns -2, indicating an error, the caller of
+            this method can take one of a variety of actions to handle the
+            error. For example, it can write an escape sequence using the code
+            point (such as the HTML error mode in the Encoding Standard), it
+            can replace the code point with a "best fit" to that code point
+            (which can consist of one or more bytes) and write the "best fit"
+            instead, it can replace the code point with an arbitrary byte or
+            sequence of bytes, or it can throw an exception. In some cases,
+            where the error won't cause data loss or a security problem, the
+            caller can also ignore the encoding error.</para></summary>
+            <param name='c'>Either a Unicode code point (from 0-0xd7ff or from
+            0xe000 to 0x10ffff), or the value -1 indicating the end of the
+            stream.</param>
+            <param name='output'>Output stream where the converted bytes will
+            be written. The decoder can maintain internal state, including data
+            on code points already passed as input, so this parameter should
+            not change when using the same character encoder object.</param>
+            <returns>The number of bytes written to the stream; -1 if no
+            further code points remain (for example, if _c_ is -1 indicating
+            the end of the stream), or -2 if an encoding error occurs. (Note
+            that it's possible for this method to return 0 if, for example, it
+            can't generate new bytes yet based on the current input.). If this
+            method returns -2, it should not write any bytes to the output
+            stream.</returns>
+</doc>
+<doc name="T:PeterO.Text.ICharacterEncoding">
+<summary>Defines methods that can be implemented by classes
+            that convert to and from bytes and character code points.
+            </summary>
+</doc>
+<doc name="M:PeterO.Text.ICharacterEncoding.GetDecoder">
+<summary>Creates a decoder for this character encoding with initial
+            state. If the decoder is stateless, multiple calls of this method
+            can return the same decoder.</summary>
+            <returns>A character decoder object.</returns>
+</doc>
+<doc name="M:PeterO.Text.ICharacterEncoding.GetEncoder">
+<summary>Creates an encoder for this character encoding with
+            initial state. If the encoder is stateless, multiple calls of this
+            method can return the same encoder.</summary>
+            <returns>A character encoder object.</returns>
+</doc>
+<doc name="T:PeterO.Text.ICharacterInput">
+<summary>An interface for reading Unicode code points from a data
+            source.</summary>
+</doc>
+<doc name="M:PeterO.Text.ICharacterInput.Read(System.Int32[],System.Int32,System.Int32)">
+<summary>Reads a sequence of Unicode code points from a data
+            source.</summary>
+            <param name='chars'>Output buffer.</param>
+            <param name='index'>An index starting at 0 showing where the
+            desired portion of <paramref name='chars'/> begins.</param>
+            <param name='length'>The number of elements in the desired portion
+            of <paramref name='chars'/> (but not more than <paramref name='chars'/> 's length).</param>
+            <returns>Either a Unicode code point (from 0-0xd7ff or from 0xe000
+            to 0x10ffff), or the value -1 indicating the end of the
+            source.</returns>
+            <exception cref='ArgumentNullException'>Should be thrown if
+            <paramref name='chars'/> is null.</exception>
+            <exception cref='ArgumentException'>Either &#x22;index&#x22; or
+            &#x22;length&#x22; is less than 0 or greater than
+            &#x22;chars&#x22;&#x27;s length, or &#x22;chars&#x22;&#x27;s length
+            minus &#x22;index&#x22; is less than
+            &#x22;length&#x22;.</exception>
+</doc>
+<doc name="M:PeterO.Text.ICharacterInput.ReadChar">
+<summary>Reads a Unicode code point from a data source.</summary>
+            <returns>Either a Unicode code point (from 0-0xd7ff or from 0xe000
+            to 0x10ffff), or the value -1 indicating the end of the
+            source.</returns>
+</doc>
+</docs>
