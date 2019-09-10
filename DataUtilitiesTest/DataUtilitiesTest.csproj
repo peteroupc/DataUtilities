@@ -45,6 +45,7 @@
     <Compile Include='Program.cs'/>
     <Compile Include='TestCommon.cs'/>
     <Compile Include='DataUtilitiesTest.cs'/>
+    <Compile Include='Properties/AssemblyInfo.cs'/>
   </ItemGroup>
   <ItemGroup>
 
