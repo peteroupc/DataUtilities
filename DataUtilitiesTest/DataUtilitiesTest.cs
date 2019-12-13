@@ -10,7 +10,7 @@ namespace Test {
   public class DataUtilitiesTest {
     public static IList<byte[]> GenerateIllegalUtf8Sequences() {
       List<byte[]> list = new List<byte[]>();
-     // Generate illegal single bytes
+      // Generate illegal single bytes
       for (int i = 0x80; i <= 0xff; ++i) {
         if (i < 0xc2 || i > 0xf4) {
           list.Add(new byte[] { (byte)i, 0x80 });
@@ -28,7 +28,7 @@ namespace Test {
       list.Add(new byte[] { 0xf1, 0x80, 0x80 });
       list.Add(new byte[] { 0xf3, 0x80, 0x80 });
       list.Add(new byte[] { 0xf4, 0x80, 0x80 });
-     // Generate illegal multibyte sequences
+      // Generate illegal multibyte sequences
       for (int i = 0x00; i <= 0xff; ++i) {
         if (i < 0x80 || i > 0xbf) {
           list.Add(new byte[] { 0xc2, (byte)i });
@@ -68,7 +68,7 @@ namespace Test {
         DataUtilities.CodePointAt(null, 0);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -84,42 +84,98 @@ namespace Test {
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\ud800\ud800", 0));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\udc00\ud800", 0));
       Assert.AreEqual(
-     0xfffd,
-     DataUtilities.CodePointAt("\ud800\ud800\udc00", 0));
+        0xfffd,
+        DataUtilities.CodePointAt("\ud800\ud800\udc00", 0));
       Assert.AreEqual(
-     0xfffd,
-     DataUtilities.CodePointAt("\udc00\ud800\udc00", 0));
+        0xfffd,
+        DataUtilities.CodePointAt("\udc00\ud800\udc00", 0));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\udc00\udc00", 0));
       Assert.AreEqual(0x10000, DataUtilities.CodePointAt("\ud800\udc00", 0));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\ud800", 0, 0));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\udc00", 0, 0));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\ud800X", 0, 0));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\udc00X", 0, 0));
-      Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\ud800\ud800", 0, 0));
-      Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\udc00\ud800", 0, 0));
+      {
+        object objectTemp = 0xfffd;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\ud800\ud800",
+            0,
+            0);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
+      {
+        object objectTemp = 0xfffd;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\udc00\ud800",
+            0,
+            0);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
       Assert.AreEqual(
         0xfffd,
         DataUtilities.CodePointAt("\ud800\ud800\udc00", 0, 0));
       Assert.AreEqual(
         0xfffd,
         DataUtilities.CodePointAt("\udc00\ud800\udc00", 0, 0));
-      Assert.AreEqual(0xfffd, DataUtilities.CodePointAt("\udc00\udc00", 0, 0));
-      Assert.AreEqual(0x10000, DataUtilities.CodePointAt("\ud800\udc00", 0, 0));
+      {
+        object objectTemp = 0xfffd;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\udc00\udc00",
+            0,
+            0);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
+      {
+        object objectTemp = 0x10000;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\ud800\udc00",
+            0,
+            0);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
 
       Assert.AreEqual(0xd800, DataUtilities.CodePointAt("\ud800", 0, 1));
       Assert.AreEqual(0xdc00, DataUtilities.CodePointAt("\udc00", 0, 1));
       Assert.AreEqual(0xd800, DataUtilities.CodePointAt("\ud800X", 0, 1));
       Assert.AreEqual(0xdc00, DataUtilities.CodePointAt("\udc00X", 0, 1));
-      Assert.AreEqual(0xd800, DataUtilities.CodePointAt("\ud800\ud800", 0, 1));
+      {
+        object objectTemp = 0xd800;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\ud800\ud800",
+            0,
+            1);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
       Assert.AreEqual(
         0xd800,
         DataUtilities.CodePointAt("\ud800\ud800\udc00", 0, 1));
-      Assert.AreEqual(0xdc00, DataUtilities.CodePointAt("\udc00\ud800", 0, 1));
+      {
+        object objectTemp = 0xdc00;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\udc00\ud800",
+            0,
+            1);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
       Assert.AreEqual(
         0xdc00,
         DataUtilities.CodePointAt("\udc00\ud800\udc00", 0, 1));
-      Assert.AreEqual(0xdc00, DataUtilities.CodePointAt("\udc00\udc00", 0, 1));
-      Assert.AreEqual(0x10000, DataUtilities.CodePointAt("\ud800\udc00", 0, 1));
+      {
+        object objectTemp = 0xdc00;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\udc00\udc00",
+            0,
+            1);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
+      {
+        object objectTemp = 0x10000;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\ud800\udc00",
+            0,
+            1);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
 
       Assert.AreEqual(-1, DataUtilities.CodePointAt("\ud800", 0, 2));
       Assert.AreEqual(-1, DataUtilities.CodePointAt("\udc00", 0, 2));
@@ -127,16 +183,29 @@ namespace Test {
       Assert.AreEqual(-1, DataUtilities.CodePointAt("\udc00X", 0, 2));
       Assert.AreEqual(-1, DataUtilities.CodePointAt("\ud800\ud800", 0, 2));
       {
-        long numberTemp = DataUtilities.CodePointAt("\ud800\ud800\udc00", 0, 2);
+        long numberTemp = DataUtilities.CodePointAt(
+            "\ud800\ud800\udc00",
+            0,
+            2);
         Assert.AreEqual(-1, numberTemp);
       }
       Assert.AreEqual(-1, DataUtilities.CodePointAt("\udc00\ud800", 0, 2));
       {
-        long numberTemp = DataUtilities.CodePointAt("\udc00\ud800\udc00", 0, 2);
+        long numberTemp = DataUtilities.CodePointAt(
+            "\udc00\ud800\udc00",
+            0,
+            2);
         Assert.AreEqual(-1, numberTemp);
       }
       Assert.AreEqual(-1, DataUtilities.CodePointAt("\udc00\udc00", 0, 2));
-      Assert.AreEqual(0x10000, DataUtilities.CodePointAt("\ud800\udc00", 0, 2));
+      {
+        object objectTemp = 0x10000;
+        object objectTemp2 = DataUtilities.CodePointAt(
+            "\ud800\udc00",
+            0,
+            2);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
     }
     [Test]
     public void TestCodePointBefore() {
@@ -144,7 +213,7 @@ namespace Test {
         DataUtilities.CodePointBefore(null, 0);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -154,67 +223,84 @@ namespace Test {
       Assert.AreEqual((int)'A', DataUtilities.CodePointBefore("A", 1));
       Assert.AreEqual(-1, DataUtilities.CodePointBefore("A", 2));
       Assert.AreEqual(
-       (int)'A',
-       DataUtilities.CodePointBefore("A\ud800\udc00B", 1));
+        (int)'A',
+        DataUtilities.CodePointBefore("A\ud800\udc00B", 1));
       Assert.AreEqual(
-      0x10000,
-      DataUtilities.CodePointBefore("A\ud800\udc00B", 3));
+        0x10000,
+        DataUtilities.CodePointBefore("A\ud800\udc00B", 3));
       Assert.AreEqual(
-     0xfffd,
-     DataUtilities.CodePointBefore("A\ud800\udc00B", 2));
+        0xfffd,
+        DataUtilities.CodePointBefore("A\ud800\udc00B", 2));
       Assert.AreEqual(
-       0xd800,
-       DataUtilities.CodePointBefore("A\ud800\udc00B", 2, 1));
+        0xd800,
+        DataUtilities.CodePointBefore("A\ud800\udc00B", 2, 1));
       {
         long numberTemp = DataUtilities.CodePointBefore(
-          "A\ud800\udc00B",
-          2,
-          2);
+            "A\ud800\udc00B",
+            2,
+            2);
         Assert.AreEqual(-1, numberTemp);
       }
       Assert.AreEqual(0xfffd, DataUtilities.CodePointBefore("\udc00B", 1));
       Assert.AreEqual(0xdc00, DataUtilities.CodePointBefore("\udc00B", 1, 1));
       Assert.AreEqual(-1, DataUtilities.CodePointBefore("\udc00B", 1, 2));
       Assert.AreEqual(0xfffd, DataUtilities.CodePointBefore("A\udc00B", 2));
-      Assert.AreEqual(0xdc00, DataUtilities.CodePointBefore("A\udc00B", 2, 1));
+      {
+        object objectTemp = 0xdc00;
+        object objectTemp2 = DataUtilities.CodePointBefore(
+            "A\udc00B",
+            2,
+            1);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
       Assert.AreEqual(-1, DataUtilities.CodePointBefore("A\udc00B", 2, 2));
     }
     [Test]
     public void TestCodePointCompare() {
-      Assert.AreEqual(-1, Math.Sign(DataUtilities.CodePointCompare(null, "A")));
-      Assert.AreEqual(1, Math.Sign(DataUtilities.CodePointCompare("A", null)));
-      Assert.AreEqual(0, Math.Sign(DataUtilities.CodePointCompare(null, null)));
+      int integerTemp3;
+      {
+        object objectTemp = -1;
+        object objectTemp2 = Math.Sign(DataUtilities.CodePointCompare(null,
+              "A"));
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
+      integerTemp3 = Math.Sign(
+          DataUtilities.CodePointCompare("A", null));
+      Assert.AreEqual(1, integerTemp3);
+      integerTemp3 = Math.Sign(
+          DataUtilities.CodePointCompare(null, null));
+      Assert.AreEqual(0, integerTemp3);
       {
         long numberTemp = Math.Sign(
-          DataUtilities.CodePointCompare("abc", "abc"));
+            DataUtilities.CodePointCompare("abc", "abc"));
         Assert.AreEqual(0, numberTemp);
       }
       {
         long numberTemp = Math.Sign(
-          DataUtilities.CodePointCompare(
-            "\ud800\udc00",
-            "\ud800\udc00"));
+            DataUtilities.CodePointCompare(
+              "\ud800\udc00",
+              "\ud800\udc00"));
         Assert.AreEqual(0, numberTemp);
       }
       {
         long numberTemp = Math.Sign(
-          DataUtilities.CodePointCompare(
-            "abc",
-            "\ud800\udc00"));
+            DataUtilities.CodePointCompare(
+              "abc",
+              "\ud800\udc00"));
         Assert.AreEqual(-1, numberTemp);
       }
       {
         long numberTemp = Math.Sign(
-          DataUtilities.CodePointCompare(
-            "\uf000",
-            "\ud800\udc00"));
+            DataUtilities.CodePointCompare(
+              "\uf000",
+              "\ud800\udc00"));
         Assert.AreEqual(-1, numberTemp);
       }
       {
         long numberTemp = Math.Sign(
-  DataUtilities.CodePointCompare(
-    "\uf000",
-    "\ud800"));
+            DataUtilities.CodePointCompare(
+              "\uf000",
+              "\ud800"));
         Assert.AreEqual(1, numberTemp);
       }
       Assert.IsTrue(DataUtilities.CodePointCompare("abc", "def") < 0);
@@ -226,8 +312,10 @@ namespace Test {
         DataUtilities.CodePointCompare(
           "a\ud800\udc00",
           "a\ud800\udc00") == 0);
-      Assert.IsTrue(DataUtilities.CodePointCompare("a\ud800", "a\ud800") == 0);
-      Assert.IsTrue(DataUtilities.CodePointCompare("a\udc00", "a\udc00") == 0);
+      Assert.IsTrue(DataUtilities.CodePointCompare("a\ud800", "a\ud800")
+        == 0);
+      Assert.IsTrue(DataUtilities.CodePointCompare("a\udc00", "a\udc00")
+        == 0);
       Assert.IsTrue(
         DataUtilities.CodePointCompare(
           "a\ud800\udc00",
@@ -259,9 +347,13 @@ namespace Test {
     }
 
     private void TestUtf8RoundTrip(string str) {
-      Assert.AreEqual(
-  str,
-  DataUtilities.GetUtf8String(DataUtilities.GetUtf8Bytes(str, true), true));
+      {
+        object objectTemp = str;
+        object objectTemp2 = DataUtilities.GetUtf8String(
+            DataUtilities.GetUtf8Bytes(str, true),
+            true);
+        Assert.AreEqual(objectTemp, objectTemp2);
+      }
     }
 
     [Test]
@@ -270,7 +362,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\ud800", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -279,7 +371,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -288,7 +380,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\ud800\ud800", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -297,7 +389,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00\udc00", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -306,7 +398,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00\ud800", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -315,7 +407,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes(null, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -324,7 +416,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\ud800", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -333,7 +425,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -342,7 +434,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\ud800X", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -351,7 +443,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00X", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -360,7 +452,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\ud800\ud800", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -369,7 +461,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00\ud800", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -378,7 +470,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00\ud800\udc00", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -387,7 +479,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\ud800\ud800\udc00", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -396,7 +488,7 @@ namespace Test {
         DataUtilities.GetUtf8Bytes("\udc00\udc00", false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -441,7 +533,7 @@ namespace Test {
         DataUtilities.GetUtf8Length(null, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -451,7 +543,7 @@ namespace Test {
       try {
         DataUtilities.GetUtf8Length(null, true);
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -459,7 +551,7 @@ namespace Test {
       try {
         DataUtilities.GetUtf8Length(null, false);
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -570,7 +662,7 @@ namespace Test {
         DataUtilities.GetUtf8String(null, 0, 1, false);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -579,7 +671,7 @@ namespace Test {
         DataUtilities.GetUtf8String(null, false);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -588,7 +680,7 @@ namespace Test {
         DataUtilities.GetUtf8String(null, 0, 1, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -597,7 +689,7 @@ namespace Test {
         DataUtilities.GetUtf8String(new byte[] { 0 }, -1, 1, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -606,7 +698,7 @@ namespace Test {
         DataUtilities.GetUtf8String(new byte[] { 0 }, 2, 1, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -615,7 +707,7 @@ namespace Test {
         DataUtilities.GetUtf8String(new byte[] { 0 }, 0, -1, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -624,7 +716,7 @@ namespace Test {
         DataUtilities.GetUtf8String(new byte[] { 0 }, 0, 2, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -633,25 +725,25 @@ namespace Test {
         DataUtilities.GetUtf8String(new byte[] { 0 }, 1, 1, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
       }
       string strtemp = DataUtilities.GetUtf8String(
-        new byte[] { 0x41, 0x42, 0x43 },
-        0,
-        3,
-        true);
+          new byte[] { 0x41, 0x42, 0x43 },
+          0,
+          3,
+          true);
       Assert.AreEqual(
         "ABC",
         strtemp);
       {
         string stringTemp = DataUtilities.GetUtf8String(
-          new byte[] { 0x41, 0x42, 0x43, 0x80 },
-          0,
-          4,
-          true);
+            new byte[] { 0x41, 0x42, 0x43, 0x80 },
+            0,
+            4,
+            true);
         Assert.AreEqual(
           "ABC\ufffd",
           stringTemp);
@@ -664,7 +756,7 @@ namespace Test {
           false);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -675,7 +767,7 @@ namespace Test {
           DataUtilities.GetUtf8String(seq, false);
           Assert.Fail("Should have failed");
         } catch (ArgumentException) {
-         // NOTE: Intentionally empty
+          // NOTE: Intentionally empty
         } catch (Exception ex) {
           Assert.Fail(ex.ToString());
           throw new InvalidOperationException(String.Empty, ex);
@@ -687,7 +779,7 @@ namespace Test {
           DataUtilities.GetUtf8String(seq, 0, seq.Length, false);
           Assert.Fail("Should have failed");
         } catch (ArgumentException) {
-         // NOTE: Intentionally empty
+          // NOTE: Intentionally empty
         } catch (Exception ex) {
           Assert.Fail(ex.ToString());
           throw new InvalidOperationException(String.Empty, ex);
@@ -746,22 +838,22 @@ namespace Test {
         if (bytes.Length >= length) {
           builder.Remove(0, builder.Length);
           ret = DataUtilities.ReadUtf8FromBytes(
-            bytes,
-            0,
-            length,
-            builder,
-            true);
+              bytes,
+              0,
+              length,
+              builder,
+              true);
           Assert.AreEqual(expectedRet, ret);
           if (expectedRet == 0) {
             Assert.AreEqual(expectedString, builder.ToString());
           }
           builder.Remove(0, builder.Length);
           ret = DataUtilities.ReadUtf8FromBytes(
-            bytes,
-            0,
-            length,
-            builder,
-            false);
+              bytes,
+              0,
+              length,
+              builder,
+              false);
           Assert.AreEqual(noReplaceRet, ret);
           if (noReplaceRet == 0) {
             Assert.AreEqual(noReplaceString, builder.ToString());
@@ -777,7 +869,7 @@ namespace Test {
         DataUtilities.ReadUtf8(null, 1, null, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -788,7 +880,7 @@ namespace Test {
             DataUtilities.ReadUtf8(ms, 1, null, true);
             Assert.Fail("Should have failed");
           } catch (ArgumentNullException) {
-           // NOTE: Intentionally empty
+            // NOTE: Intentionally empty
           } catch (Exception ex) {
             Assert.Fail(ex.ToString());
             throw new InvalidOperationException(String.Empty, ex);
@@ -801,7 +893,7 @@ namespace Test {
             DataUtilities.ReadUtf8(ms, 1, null, false);
             Assert.Fail("Should have failed");
           } catch (ArgumentNullException) {
-           // NOTE: Intentionally empty
+            // NOTE: Intentionally empty
           } catch (Exception ex) {
             Assert.Fail(ex.ToString());
             throw new InvalidOperationException(String.Empty, ex);
@@ -809,11 +901,11 @@ namespace Test {
         }
       }
       DoTestReadUtf8(
-  new byte[] { 0x21, 0x21, 0x21 },
-  0,
-  "!!!",
-  0,
-  "!!!");
+        new byte[] { 0x21, 0x21, 0x21 },
+        0,
+        "!!!",
+        0,
+        "!!!");
       DoTestReadUtf8(
         new byte[] { 0x20, 0xc2, 0x80 },
         0,
@@ -851,7 +943,11 @@ namespace Test {
         0,
         " \u0800");
       DoTestReadUtf8(
-    new byte[] { 0x20, 0xe0, 0xa0, 0x80, 0x20 }, 0, " \u0800 ", 0, " \u0800 ");
+        new byte[] { 0x20, 0xe0, 0xa0, 0x80, 0x20 },
+        0,
+        " \u0800 ",
+        0,
+        "\u0020\u0800 ");
       DoTestReadUtf8(
         new byte[] { 0x20, 0xf0, 0x90, 0x80, 0x80 },
         0,
@@ -941,7 +1037,7 @@ namespace Test {
         DataUtilities.WriteUtf8("x", 0, 1, null, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -950,7 +1046,7 @@ namespace Test {
         DataUtilities.ReadUtf8FromBytes(null, 0, 1, new StringBuilder(), true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -964,7 +1060,7 @@ namespace Test {
           true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -978,7 +1074,7 @@ namespace Test {
           true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -992,7 +1088,7 @@ namespace Test {
           true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -1006,7 +1102,7 @@ namespace Test {
           true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -1020,7 +1116,7 @@ namespace Test {
           true);
         Assert.Fail("Should have failed");
       } catch (ArgumentException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -1029,7 +1125,7 @@ namespace Test {
         DataUtilities.ReadUtf8FromBytes(new byte[] { 0 }, 0, 1, null, false);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -1037,11 +1133,11 @@ namespace Test {
       builder = new StringBuilder();
       {
         long numberTemp = DataUtilities.ReadUtf8FromBytes(
-          new byte[] { 0xf0, 0x90, 0x80, 0x80 },
-          0,
-          4,
-          builder,
-          false);
+            new byte[] { 0xf0, 0x90, 0x80, 0x80 },
+            0,
+            4,
+            builder,
+            false);
         Assert.AreEqual(0, numberTemp);
       }
       {
@@ -1053,11 +1149,11 @@ namespace Test {
       foreach (byte[] seq in GenerateIllegalUtf8Sequences()) {
         {
           long numberTemp = DataUtilities.ReadUtf8FromBytes(
-            seq,
-            0,
-            seq.Length,
-            builder,
-            false);
+              seq,
+              0,
+              seq.Length,
+              builder,
+              false);
           Assert.AreEqual(-1, numberTemp);
         }
       }
@@ -1068,7 +1164,7 @@ namespace Test {
         DataUtilities.ReadUtf8ToString(null);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -1077,7 +1173,7 @@ namespace Test {
         DataUtilities.ReadUtf8ToString(null, 1, true);
         Assert.Fail("Should have failed");
       } catch (ArgumentNullException) {
-       // NOTE: Intentionally empty
+        // NOTE: Intentionally empty
       } catch (Exception ex) {
         Assert.Fail(ex.ToString());
         throw new InvalidOperationException(String.Empty, ex);
@@ -1089,7 +1185,7 @@ namespace Test {
             DataUtilities.ReadUtf8ToString(ms, -1, false);
             Assert.Fail("Should have failed");
           } catch (IOException) {
-           // NOTE: Intentionally empty
+            // NOTE: Intentionally empty
           } catch (Exception ex) {
             Assert.Fail(ex.ToString());
             throw new InvalidOperationException(String.Empty, ex);
@@ -1151,7 +1247,7 @@ namespace Test {
           DataUtilities.WriteUtf8(null, 0, 1, null, false);
           Assert.Fail("Should have failed");
         } catch (ArgumentNullException) {
-         // NOTE: Intentionally empty
+          // NOTE: Intentionally empty
         } catch (Exception ex) {
           Assert.Fail(ex.ToString());
           throw new InvalidOperationException(String.Empty, ex);
@@ -1160,7 +1256,7 @@ namespace Test {
           DataUtilities.WriteUtf8("xyz", 0, 1, null, false);
           Assert.Fail("Should have failed");
         } catch (ArgumentNullException) {
-         // NOTE: Intentionally empty
+          // NOTE: Intentionally empty
         } catch (Exception ex) {
           Assert.Fail(ex.ToString());
           throw new InvalidOperationException(String.Empty, ex);
@@ -1169,7 +1265,7 @@ namespace Test {
           DataUtilities.WriteUtf8(null, null, false);
           Assert.Fail("Should have failed");
         } catch (ArgumentNullException) {
-         // NOTE: Intentionally empty
+          // NOTE: Intentionally empty
         } catch (Exception ex) {
           Assert.Fail(ex.ToString());
           throw new InvalidOperationException(String.Empty, ex);
@@ -1178,7 +1274,7 @@ namespace Test {
           DataUtilities.WriteUtf8("xyz", null, false);
           Assert.Fail("Should have failed");
         } catch (ArgumentNullException) {
-         // NOTE: Intentionally empty
+          // NOTE: Intentionally empty
         } catch (Exception ex) {
           Assert.Fail(ex.ToString());
           throw new InvalidOperationException(String.Empty, ex);
@@ -1189,7 +1285,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", null, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1198,7 +1294,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 0, 1, null, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1207,7 +1303,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 0, 1, null, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1216,7 +1312,7 @@ namespace Test {
               DataUtilities.WriteUtf8(null, 0, 1, ms, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1225,7 +1321,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", -1, 1, ms, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1234,7 +1330,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 2, 1, ms, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1243,7 +1339,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 0, -1, ms, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1252,7 +1348,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 0, 2, ms, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1261,7 +1357,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 1, 1, ms, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1270,7 +1366,7 @@ namespace Test {
               DataUtilities.WriteUtf8(null, 0, 1, ms, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1279,7 +1375,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", -1, 1, ms, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1288,7 +1384,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 2, 1, ms, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1297,7 +1393,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 0, -1, ms, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1306,7 +1402,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 0, 2, ms, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1315,7 +1411,7 @@ namespace Test {
               DataUtilities.WriteUtf8("x", 1, 1, ms, true, true);
               Assert.Fail("Should have failed");
             } catch (ArgumentException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1324,7 +1420,7 @@ namespace Test {
               DataUtilities.WriteUtf8(null, null, false);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);
@@ -1333,7 +1429,7 @@ namespace Test {
               DataUtilities.WriteUtf8(null, ms, false);
               Assert.Fail("Should have failed");
             } catch (ArgumentNullException) {
-             // NOTE: Intentionally empty
+              // NOTE: Intentionally empty
             } catch (Exception ex) {
               Assert.Fail(ex.ToString());
               throw new InvalidOperationException(String.Empty, ex);

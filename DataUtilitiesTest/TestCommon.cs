@@ -122,16 +122,16 @@ namespace Test {
           throw new ArgumentNullException(nameof(o2));
         }
         if (!o2.Equals(o)) {
-          Assert.Fail(
-  String.Empty + o + " equals " + o2 + " but not vice versa");
+          Assert.Fail (
+            String.Empty + o + " equals " + o2 + " but not vice versa");
         }
         // Test for the guarantee that equal objects
         // must have equal hash codes
         if (o2.GetHashCode() != o.GetHashCode()) {
           // Don't use Assert.AreEqual directly because it has
           // quite a lot of overhead
-          Assert.Fail(
-  String.Empty + o + " and " + o2 + " don't have equal hash codes");
+          Assert.Fail (
+            String.Empty + o + " and " + o2 + " don't have equal hash codes");
         }
       } else {
         if (o2 == null) {
@@ -180,19 +180,19 @@ namespace Test {
     }
 
     public static void CompareTestEqual<T>(T o1, T o2) where T :
-        IComparable<T> {
+      IComparable<T> {
       if (CompareTestReciprocal(o1, o2) != 0) {
         Assert.Fail(ObjectMessages(
-          o1,
-          o2,
-          "Not equal: " + CompareTestReciprocal(o1, o2)));
+            o1,
+            o2,
+            "Not equal: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
     public static void CompareTestEqual<T>(T o1, T o2, string msg) where T :
-        IComparable<T> {
+      IComparable<T> {
       if (CompareTestReciprocal(o1, o2) != 0) {
-        string str = msg + "\r\n" + ObjectMessages(
+        string str = msg + "\r\n" + ObjectMessages (
           o1,
           o2,
           "Not equal: " + CompareTestReciprocal(o1, o2));
@@ -201,18 +201,17 @@ namespace Test {
     }
 
     public static void CompareTestEqualAndConsistent<T>(T o1, T o2) where T :
-    IComparable<T> {
+      IComparable<T> {
       CompareTestEqualAndConsistent(o1, o2, null);
     }
 
     public static void CompareTestEqualAndConsistent<T>(
       T o1,
       T o2,
-      string msg) where T :
-    IComparable<T> {
+      string msg) where T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) != 0) {
         msg = (msg == null ? String.Empty : (msg + "\r\n")) +
-          "Not equal: " + CompareTestReciprocal(o1, o2);
+        "Not equal: " + CompareTestReciprocal(o1, o2);
         Assert.Fail(ObjectMessages(
           o1,
           o2,
@@ -220,7 +219,7 @@ namespace Test {
       }
       if (!o1.Equals(o2)) {
         msg = (msg == null ? String.Empty : (msg + "\r\n")) +
-          "Not equal: " + CompareTestReciprocal(o1, o2);
+        "Not equal: " + CompareTestReciprocal(o1, o2);
         Assert.Fail(ObjectMessages(
           o1,
           o2,
@@ -229,21 +228,22 @@ namespace Test {
     }
 
     public static void CompareTestGreater<T>(T o1, T o2) where T :
-          IComparable<T> {
+      IComparable<T> {
       CompareTestLess(o2, o1);
     }
 
-    public static void CompareTestLess<T>(T o1, T o2) where T : IComparable<T> {
+    public static void CompareTestLess<T>(T o1,
+      T o2) where T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) >= 0) {
         Assert.Fail(ObjectMessages(
-          o1,
-          o2,
-          "Not less: " + CompareTestReciprocal(o1, o2)));
+            o1,
+            o2,
+            "Not less: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
     public static void CompareTestGreaterEqual<T>(T o1, T o2) where T :
-          IComparable<T> {
+      IComparable<T> {
       CompareTestLessEqual(o2, o1);
     }
 
@@ -251,16 +251,16 @@ namespace Test {
       IComparable<T> {
       if (CompareTestReciprocal(o1, o2) > 0) {
         Assert.Fail(ObjectMessages(
-          o1,
-          o2,
-          "Not less or equal: " + CompareTestReciprocal(o1, o2)));
+            o1,
+            o2,
+            "Not less or equal: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
     public static void CompareTestLess<T>(T o1, T o2, string msg) where T :
-        IComparable<T> {
+      IComparable<T> {
       if (CompareTestReciprocal(o1, o2) >= 0) {
-        string str = msg + "\r\n" + ObjectMessages(
+        string str = msg + "\r\n" + ObjectMessages (
           o1,
           o2,
           "Not less: " + CompareTestReciprocal(o1, o2));
@@ -268,10 +268,12 @@ namespace Test {
       }
     }
 
-    public static void CompareTestLessEqual<T>(T o1, T o2, string msg) where T :
-        IComparable<T> {
+    public static void CompareTestLessEqual<T>(
+      T o1,
+      T o2,
+      string msg) where T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) > 0) {
-        string str = msg + "\r\n" + ObjectMessages(
+        string str = msg + "\r\n" + ObjectMessages (
           o1,
           o2,
           "Not less or equal: " + CompareTestReciprocal(o1, o2));
@@ -280,9 +282,9 @@ namespace Test {
     }
 
     public static void CompareTestGreater<T>(T o1, T o2, string msg) where T :
-        IComparable<T> {
+      IComparable<T> {
       if (CompareTestReciprocal(o1, o2) <= 0) {
-        string str = msg + "\r\n" + ObjectMessages(
+        string str = msg + "\r\n" + ObjectMessages (
           o1,
           o2,
           "Not greater: " + CompareTestReciprocal(o1, o2));
@@ -291,9 +293,9 @@ namespace Test {
     }
 
     public static void CompareTestGreaterEqual<T>(T o1, T o2, string msg) where
-          T : IComparable<T> {
+    T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) < 0) {
-        string str = msg + "\r\n" + ObjectMessages(
+        string str = msg + "\r\n" + ObjectMessages (
           o1,
           o2,
           "Not greater or equal: " + CompareTestReciprocal(o1, o2));
@@ -425,13 +427,15 @@ namespace Test {
         }
         while (intlongValue > 43698) {
           int intdivValue = intlongValue / 10;
-          char digit = ValueDigits[(int)(intlongValue - (intdivValue * 10))];
+          char digit = ValueDigits[(int)(intlongValue - (intdivValue *
+10))];
           chars[count--] = digit;
           intlongValue = intdivValue;
         }
         while (intlongValue > 9) {
           int intdivValue = (intlongValue * 26215) >> 18;
-          char digit = ValueDigits[(int)(intlongValue - (intdivValue * 10))];
+          char digit = ValueDigits[(int)(intlongValue - (intdivValue *
+10))];
           chars[count--] = digit;
           intlongValue = intdivValue;
         }
