@@ -621,10 +621,22 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
         throw new IllegalArgumentException("str.length() minus offset(" +
           (str.length() - offset) + ") is less than " + length);
       }
+      if (length == 0) {
+        return 0;
+      }
       int endIndex, c;
       byte[] bytes;
       int retval = 0;
-      bytes = new byte[StreamedStringBufferLength];
+      // Take String portion's length into account when allocating
+      // stream buffer, in case it's much smaller than the usual stream
+      // String buffer length and to improve performance on small strings
+      int bufferLength = Math.min(StreamedStringBufferLength, length);
+      if (bufferLength < StreamedStringBufferLength) {
+        bufferLength = Math.min(
+          StreamedStringBufferLength,
+          bufferLength * 3);
+      }
+      bytes = new byte[bufferLength];
       int byteIndex = 0;
       endIndex = offset + length;
       for (int index = offset; index < endIndex; ++index) {
