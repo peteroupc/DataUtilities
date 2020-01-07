@@ -1029,6 +1029,103 @@ namespace Test {
         " \ufffd\ufffd",
         -1,
         null);
+      DoTestReadUtf8(
+        new byte[] { 0xe0, 0x9e },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xe0, 0x9e, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xe0, 0x9e, 0x9e },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xed, 0xa1 },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xed, 0xa1, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xed, 0xa1, 0x9e },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+
+      DoTestReadUtf8(
+        new byte[] { 0xf0, 0x8e },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf0, 0x8e, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf0, 0x8e, 0x80, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf0, 0x8e, 0x85 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf0, 0x8e, 0x85, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf4, 0x93 },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf4, 0x93, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf4, 0x93, 0x80, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf4, 0x93, 0x85 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { 0xf4, 0x93, 0x85, 0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
     }
     [Test]
     public void TestReadUtf8FromBytes() {

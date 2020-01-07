@@ -1093,6 +1093,103 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
         " \ufffd\ufffd",
         -1,
         null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xe0, (byte)0x9e },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xe0, (byte)0x9e, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xe0, (byte)0x9e, (byte)0x9e },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xed, (byte)0xa1 },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xed, (byte)0xa1, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xed, (byte)0xa1, (byte)0x9e },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf0, (byte)0x8e },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf0, (byte)0x8e, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf0, (byte)0x8e, (byte)0x80, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf0, (byte)0x8e, (byte)0x85 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf0, (byte)0x8e, (byte)0x85, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf4, (byte)0x93 },
+        0,
+        "\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf4, (byte)0x93, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf4, (byte)0x93, (byte)0x80, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf4, (byte)0x93, (byte)0x85 },
+        0,
+        "\ufffd\ufffd\ufffd",
+        -1,
+        null);
+      DoTestReadUtf8(
+        new byte[] { (byte)0xf4, (byte)0x93, (byte)0x85, (byte)0x80 },
+        0,
+        "\ufffd\ufffd\ufffd\ufffd",
+        -1,
+        null);
     }
     @Test
     public void TestReadUtf8FromBytes() {
