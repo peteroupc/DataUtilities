@@ -46,6 +46,10 @@ None at the moment.
 History
 -----------
 
+Version 1.1.0:
+
+- Avoid unnecessary memory allocation in WriteUtf8
+
 Version 1.0.0:
 
 - First release.
@@ -53,7 +57,7 @@ Version 1.0.0:
 About
 -----------
 
-Written by Peter O. in 2019.
+Written by Peter O. in 2019-2020.
 
 Any copyright is dedicated to the Public Domain.
 [http://creativecommons.org/publicdomain/zero/1.0/](http://creativecommons.org/publicdomain/zero/1.0/)
