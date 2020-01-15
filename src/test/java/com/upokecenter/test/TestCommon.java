@@ -123,7 +123,7 @@ private TestCommon() {
           throw new NullPointerException("o2");
         }
         if (!o2.equals(o)) {
-          Assert.fail (
+          Assert.fail(
             "" + o + " equals " + o2 + " but not vice versa");
         }
         // Test for the guarantee that equal objects
@@ -131,7 +131,7 @@ private TestCommon() {
         if (o2.hashCode() != o.hashCode()) {
           // Don't use Assert.assertEquals directly because it has
           // quite a lot of overhead
-          Assert.fail (
+          Assert.fail(
             "" + o + " and " + o2 + " don't have equal hash codes");
         }
       } else {
@@ -190,7 +190,7 @@ private TestCommon() {
 
     public static <T extends Comparable<T>> void CompareTestEqual(T o1, T o2, String msg) {
       if (CompareTestReciprocal(o1, o2) != 0) {
-        String str = msg + "\r\n" + ObjectMessages (
+        String str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not equal: " + CompareTestReciprocal(o1, o2));
@@ -253,7 +253,7 @@ private TestCommon() {
 
     public static <T extends Comparable<T>> void CompareTestLess(T o1, T o2, String msg) {
       if (CompareTestReciprocal(o1, o2) >= 0) {
-        String str = msg + "\r\n" + ObjectMessages (
+        String str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not less: " + CompareTestReciprocal(o1, o2));
@@ -266,7 +266,7 @@ private TestCommon() {
       T o2,
       String msg) {
       if (CompareTestReciprocal(o1, o2) > 0) {
-        String str = msg + "\r\n" + ObjectMessages (
+        String str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not less or equal: " + CompareTestReciprocal(o1, o2));
@@ -276,7 +276,7 @@ private TestCommon() {
 
     public static <T extends Comparable<T>> void CompareTestGreater(T o1, T o2, String msg) {
       if (CompareTestReciprocal(o1, o2) <= 0) {
-        String str = msg + "\r\n" + ObjectMessages (
+        String str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not greater: " + CompareTestReciprocal(o1, o2));
@@ -286,7 +286,7 @@ private TestCommon() {
 
     public static <T extends Comparable<T>> void CompareTestGreaterEqual(T o1, T o2, String msg) {
       if (CompareTestReciprocal(o1, o2) < 0) {
-        String str = msg + "\r\n" + ObjectMessages (
+        String str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not greater or equal: " + CompareTestReciprocal(o1, o2));
