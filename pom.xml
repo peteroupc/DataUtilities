@@ -4,9 +4,10 @@
   <groupId>com.github.peteroupc</groupId>
   <artifactId>datautilities</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.0-SNAPSHOT</version>
-  <name>Data Utilities</name>
-  <description>A Java library for text strings and reading and writing to them.</description>
+  <version>1.1.0</version>
+  <name>DataUtilities Library</name>
+  <description>A portable library for Java for text strings and reading and writing to them.
+    </description>
   <url>https://github.com/peteroupc/DataUtilities</url>
   <profiles>
     <profile>
