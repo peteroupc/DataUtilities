@@ -1,6 +1,6 @@
 package com.upokecenter.util;
 /*
-Written by Peter O. in 2013.
+Written by Peter O.
 Any copyright is dedicated to the Public Domain.
 http://creativecommons.org/publicdomain/zero/1.0/
 If you like this, you should donate to Peter O.
@@ -8,6 +8,9 @@ at: http://peteroupc.github.io/
  */
 
 import java.io.*;
+
+// TODO: In CodePointAt/Before, consider adding surrogate
+// mode that returns -2 or throws an exception
 
   /**
    * Contains methods useful for reading and writing text strings. It is designed
@@ -286,11 +289,11 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param str The parameter {@code str} is a text string.
      * @param index Index of the current position into the string.
      * @return The Unicode code point at the previous position. Returns -1 if
-     * {@code index} is 0 or less, or is greater than the string's length.
-     * Returns the replacement character (U+FFFD) if the code point at the
-     * previous position is an unpaired surrogate code point. If the return
-     * value is 65536 (0x10000) or greater, the code point takes up two
-     * UTF-16 code units.
+     * {@code index} is 0 or less, or is greater than or equal to the
+     * string's length. Returns the replacement character (U+FFFD) if the
+     * code point at the previous position is an unpaired surrogate code
+     * point. If the return value is 65536 (0x10000) or greater, the code
+     * point takes up two UTF-16 code units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointBefore(String str, int index) {
@@ -306,11 +309,11 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * return the replacement character (U+FFFD); if 1, return the value of
      * the surrogate code point; if neither 0 nor 1, return -1.
      * @return The Unicode code point at the previous position. Returns -1 if
-     * {@code index} is 0 or less, or is greater than the string's length.
-     * Returns a value as specified under {@code surrogateBehavior} if the
-     * code point at the previous position is an unpaired surrogate code
-     * point. If the return value is 65536 (0x10000) or greater, the code
-     * point takes up two UTF-16 code units.
+     * {@code index} is 0 or less, or is greater than or equal to the
+     * string's length. Returns a value as specified under {@code
+     * surrogateBehavior} if the code point at the previous position is an
+     * unpaired surrogate code point. If the return value is 65536
+     * (0x10000) or greater, the code point takes up two UTF-16 code units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointBefore(
@@ -345,11 +348,11 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param str The parameter {@code str} is a text string.
      * @param index Index of the current position into the string.
      * @return The Unicode code point at the given position. Returns -1 if {@code
-     * index} is 0 or less, or is greater than the string's length. Returns
-     * the replacement character (U+FFFD) if the code point at that
-     * position is an unpaired surrogate code point. If the return value is
-     * 65536 (0x10000) or greater, the code point takes up two UTF-16 code
-     * units.
+     * index} is 0 or less, or is greater than or equal to the string's
+     * length. Returns the replacement character (U+FFFD) if the code point
+     * at that position is an unpaired surrogate code point. If the return
+     * value is 65536 (0x10000) or greater, the code point takes up two
+     * UTF-16 code units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointAt(String str, int index) {
@@ -368,11 +371,11 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * return the replacement character (U+FFFD); if 1, return the value of
      * the surrogate code point; if neither 0 nor 1, return -1.
      * @return The Unicode code point at the given position. Returns -1 if {@code
-     * index} is 0 or less, or is greater than the string's length. Returns
-     * a value as specified under {@code surrogateBehavior} if the code
-     * point at that position is an unpaired surrogate code point. If the
-     * return value is 65536 (0x10000) or greater, the code point takes up
-     * two UTF-16 code units.
+     * index} is 0 or less, or is greater than or equal to the string's
+     * length. Returns a value as specified under {@code surrogateBehavior}
+     * if the code point at that position is an unpaired surrogate code
+     * point. If the return value is 65536 (0x10000) or greater, the code
+     * point takes up two UTF-16 code units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointAt(

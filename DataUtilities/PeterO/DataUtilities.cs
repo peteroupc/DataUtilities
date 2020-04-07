@@ -1,5 +1,5 @@
 /*
-Written by Peter O. in 2013.
+Written by Peter O.
 Any copyright is dedicated to the Public Domain.
 http://creativecommons.org/publicdomain/zero/1.0/
 If you like this, you should donate to Peter O.
@@ -9,6 +9,8 @@ using System;
 using System.IO;
 using System.Text;
 
+// TODO: In CodePointAt/Before, consider adding surrogate
+// mode that returns -2 or throws an exception
 namespace PeterO {
   /// <summary>Contains methods useful for reading and writing text
   /// strings. It is designed to have no dependencies other than the
@@ -296,11 +298,11 @@ namespace PeterO {
     /// <param name='index'>Index of the current position into the
     /// string.</param>
     /// <returns>The Unicode code point at the previous position. Returns
-    /// -1 if <paramref name='index'/> is 0 or less, or is greater than the
-    /// string's length. Returns the replacement character (U+FFFD) if the
-    /// code point at the previous position is an unpaired surrogate code
-    /// point. If the return value is 65536 (0x10000) or greater, the code
-    /// point takes up two UTF-16 code units.</returns>
+    /// -1 if <paramref name='index'/> is 0 or less, or is greater than or
+    /// equal to the string's length. Returns the replacement character
+    /// (U+FFFD) if the code point at the previous position is an unpaired
+    /// surrogate code point. If the return value is 65536 (0x10000) or
+    /// greater, the code point takes up two UTF-16 code units.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='str'/> is null.</exception>
     public static int CodePointBefore(string str, int index) {
@@ -319,12 +321,12 @@ namespace PeterO {
     /// return the value of the surrogate code point; if neither 0 nor 1,
     /// return -1.</param>
     /// <returns>The Unicode code point at the previous position. Returns
-    /// -1 if <paramref name='index'/> is 0 or less, or is greater than the
-    /// string's length. Returns a value as specified under <paramref
-    /// name='surrogateBehavior'/> if the code point at the previous
-    /// position is an unpaired surrogate code point. If the return value
-    /// is 65536 (0x10000) or greater, the code point takes up two UTF-16
-    /// code units.</returns>
+    /// -1 if <paramref name='index'/> is 0 or less, or is greater than or
+    /// equal to the string's length. Returns a value as specified under
+    /// <paramref name='surrogateBehavior'/> if the code point at the
+    /// previous position is an unpaired surrogate code point. If the
+    /// return value is 65536 (0x10000) or greater, the code point takes up
+    /// two UTF-16 code units.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='str'/> is null.</exception>
     public static int CodePointBefore(
@@ -361,11 +363,11 @@ namespace PeterO {
     /// <param name='index'>Index of the current position into the
     /// string.</param>
     /// <returns>The Unicode code point at the given position. Returns -1
-    /// if <paramref name='index'/> is 0 or less, or is greater than the
-    /// string's length. Returns the replacement character (U+FFFD) if the
-    /// code point at that position is an unpaired surrogate code point. If
-    /// the return value is 65536 (0x10000) or greater, the code point
-    /// takes up two UTF-16 code units.</returns>
+    /// if <paramref name='index'/> is 0 or less, or is greater than or
+    /// equal to the string's length. Returns the replacement character
+    /// (U+FFFD) if the code point at that position is an unpaired
+    /// surrogate code point. If the return value is 65536 (0x10000) or
+    /// greater, the code point takes up two UTF-16 code units.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='str'/> is null.</exception>
     public static int CodePointAt(string str, int index) {
@@ -384,12 +386,12 @@ namespace PeterO {
     /// FFFD); if 1, return the value of the surrogate code point; if
     /// neither 0 nor 1, return -1.</param>
     /// <returns>The Unicode code point at the given position. Returns -1
-    /// if <paramref name='index'/> is 0 or less, or is greater than the
-    /// string's length. Returns a value as specified under <paramref
-    /// name='surrogateBehavior'/> if the code point at that position is an
-    /// unpaired surrogate code point. If the return value is 65536
-    /// (0x10000) or greater, the code point takes up two UTF-16 code
-    /// units.</returns>
+    /// if <paramref name='index'/> is 0 or less, or is greater than or
+    /// equal to the string's length. Returns a value as specified under
+    /// <paramref name='surrogateBehavior'/> if the code point at that
+    /// position is an unpaired surrogate code point. If the return value
+    /// is 65536 (0x10000) or greater, the code point takes up two UTF-16
+    /// code units.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='str'/> is null.</exception>
     /// <example>
