@@ -9,7 +9,8 @@ using System;
 using System.IO;
 using System.Text;
 
-// TODO: In CodePointAt/Before, consider adding surrogate
+// TODO: In next major version, in CodePointAt/Before,
+  // consider adding surrogate
 // mode that returns -2 or throws an exception
 namespace PeterO {
   /// <summary>Contains methods useful for reading and writing text

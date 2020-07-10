@@ -9,7 +9,8 @@ at: http://peteroupc.github.io/
 
 import java.io.*;
 
-// TODO: In CodePointAt/Before, consider adding surrogate
+// TODO: In next major version, in CodePointAt/Before,
+  // consider adding surrogate
 // mode that returns -2 or throws an exception
 
   /**
@@ -136,7 +137,7 @@ private DataUtilities() {
      * <p>Encodes a string in UTF-8 as a byte array. This method does not insert a
      * byte-order mark (U+FEFF) at the beginning of the encoded byte
      * array.</p> <p>REMARK: It is not recommended to use
-     * <code>Encoding.UTF8.GetBytes</code> in.getNET(), or the <code>getBytes()</code>
+     * <code>Encoding.UTF8.GetBytes</code> in.NET, or the <code>getBytes()</code>
      * method in Java to do this. For instance, <code>getBytes()</code> encodes
      * text strings in a default (so not fixed) character encoding, which
      * can be undesirable.</p>
@@ -157,7 +158,7 @@ private DataUtilities() {
      * <p>Encodes a string in UTF-8 as a byte array. This method does not insert a
      * byte-order mark (U+FEFF) at the beginning of the encoded byte
      * array.</p> <p>REMARK: It is not recommended to use
-     * <code>Encoding.UTF8.GetBytes</code> in.getNET(), or the <code>getBytes()</code>
+     * <code>Encoding.UTF8.GetBytes</code> in.NET, or the <code>getBytes()</code>
      * method in Java to do this. For instance, <code>getBytes()</code> encodes
      * text strings in a default (so not fixed) character encoding, which
      * can be undesirable.</p>

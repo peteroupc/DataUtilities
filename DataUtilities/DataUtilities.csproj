@@ -25,13 +25,13 @@ Version 1.1.0:
     <AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
 
-  <PropertyGroup Condition=' &apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos; '>
+  <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Debug&apos; '>
     <DocumentationFile>bin\Debug\netstandard1.0\DataUtilities.xml</DocumentationFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
-  <PropertyGroup Condition=' &apos;$(Configuration)|$(Platform)&apos; == &apos;Release|AnyCPU&apos; '>
+  <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Release&apos; '>
     <DebugType/>
     <DocumentationFile>bin\Release\netstandard1.0\DataUtilities.xml</DocumentationFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
-  <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.164'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='Microsoft.CodeAnalysis.FxCopAnalyzers' PrivateAssets='All' Version='3.0.0-beta3.final'/></ItemGroup>
+  <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.164'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='Microsoft.CodeAnalysis.FxCopAnalyzers' PrivateAssets='All' Version='3.0.0'/></ItemGroup>
 </Project>
