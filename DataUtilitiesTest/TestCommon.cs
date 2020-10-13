@@ -122,7 +122,7 @@ namespace Test {
           throw new ArgumentNullException(nameof(o2));
         }
         if (!o2.Equals(o)) {
-          Assert.Fail (
+          Assert.Fail(
             String.Empty + o + " equals " + o2 + " but not vice versa");
         }
         // Test for the guarantee that equal objects
@@ -130,7 +130,7 @@ namespace Test {
         if (o2.GetHashCode() != o.GetHashCode()) {
           // Don't use Assert.AreEqual directly because it has
           // quite a lot of overhead
-          Assert.Fail (
+          Assert.Fail(
             String.Empty + o + " and " + o2 + " don't have equal hash codes");
         }
       } else {
@@ -192,7 +192,7 @@ namespace Test {
     public static void CompareTestEqual<T>(T o1, T o2, string msg) where T :
       IComparable<T> {
       if (CompareTestReciprocal(o1, o2) != 0) {
-        string str = msg + "\r\n" + ObjectMessages (
+        string str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not equal: " + CompareTestReciprocal(o1, o2));
@@ -260,7 +260,7 @@ namespace Test {
     public static void CompareTestLess<T>(T o1, T o2, string msg) where T :
       IComparable<T> {
       if (CompareTestReciprocal(o1, o2) >= 0) {
-        string str = msg + "\r\n" + ObjectMessages (
+        string str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not less: " + CompareTestReciprocal(o1, o2));
@@ -273,7 +273,7 @@ namespace Test {
       T o2,
       string msg) where T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) > 0) {
-        string str = msg + "\r\n" + ObjectMessages (
+        string str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not less or equal: " + CompareTestReciprocal(o1, o2));
@@ -284,7 +284,7 @@ namespace Test {
     public static void CompareTestGreater<T>(T o1, T o2, string msg) where T :
       IComparable<T> {
       if (CompareTestReciprocal(o1, o2) <= 0) {
-        string str = msg + "\r\n" + ObjectMessages (
+        string str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not greater: " + CompareTestReciprocal(o1, o2));
@@ -295,7 +295,7 @@ namespace Test {
     public static void CompareTestGreaterEqual<T>(T o1, T o2, string msg) where
     T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) < 0) {
-        string str = msg + "\r\n" + ObjectMessages (
+        string str = msg + "\r\n" + ObjectMessages(
           o1,
           o2,
           "Not greater or equal: " + CompareTestReciprocal(o1, o2));
