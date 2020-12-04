@@ -16,7 +16,7 @@ Version 1.1.0:
 
 - Avoid unnecessary memory allocation in WriteUtf8
     </PackageReleaseNotes>
-    <Copyright>Written by Peter O.  Any copyright is released to the Public Domain.</Copyright>
+    <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.</Copyright>
     <PackOnBuild>true</PackOnBuild>
     <Version>1.1.0</Version>
     <Summary>A library with functions for text strings and reading and writing them.</Summary>
