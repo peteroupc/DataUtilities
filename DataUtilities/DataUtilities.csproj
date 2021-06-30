@@ -16,7 +16,8 @@ Version 1.1.0:
 
 - Avoid unnecessary memory allocation in WriteUtf8
     </PackageReleaseNotes>
-    <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.</Copyright>
+    <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also
+licensed under Creative Commons Zero (CC0): https://creativecommons.org/publicdomain/zero/1.0/</Copyright>
     <PackOnBuild>true</PackOnBuild>
     <Version>1.1.0</Version>
     <Summary>A library with functions for text strings and reading and writing them.</Summary>
@@ -33,5 +34,5 @@ Version 1.1.0:
     <DocumentationFile>bin\Release\netstandard1.0\DataUtilities.xml</DocumentationFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
-  <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.333'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='5.0.3'/></ItemGroup>
+  <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.354'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='5.0.3'/></ItemGroup>
 </Project>
