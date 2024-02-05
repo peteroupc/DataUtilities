@@ -19,7 +19,7 @@ Version 1.1.0:
     <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also
 licensed under Creative Commons Zero (CC0): https://creativecommons.org/publicdomain/zero/1.0/</Copyright>
     <PackOnBuild>true</PackOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Summary>A library with functions for text strings and reading and writing them.</Summary>
     <PackageTags>text strings</PackageTags>
     <SignAssembly>true</SignAssembly>
