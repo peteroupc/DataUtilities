@@ -16,15 +16,15 @@ jobs:
       with:
         submodules: 'recursive'
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '3.1.301'
+        dotnet-version: '7.0'
     - name: Test
       run: |
         dotnet add DataUtilitiesTest package Microsoft.NET.Test.Sdk # Update is required for GitHubActionsTestLogger to print anything
         dotnet add DataUtilitiesTest package GitHubActionsTestLogger
         dotnet add DataUtilitiesTest package NUnit3TestAdapter
-        dotnet test DataUtilitiesTest -c Release -l GitHubActions
+        dotnet test DataUtilitiesTest -c Release
 
 permissions:
   contents: read
