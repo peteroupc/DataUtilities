@@ -15,24 +15,23 @@ import java.io.*;
 // mode that returns -2 or throws an exception
 
   /**
-   * Contains methods useful for reading and writing text strings. It is designed
-   * to have no dependencies other than the basic runtime class library.
-   * <p>Many of these methods work with text encoded in UTF-8, an encoding
-   * form of the Unicode Standard which uses one byte to encode the most
-   * basic characters and two to four bytes to encode other characters. For
-   * example, the <code>GetUtf8</code> method converts a text string to an array
-   * of bytes in UTF-8.</p> <p>In C# and Java, text strings are represented
-   * as sequences of 16-bit values called <code>char</code> s. These sequences
-   * are well-formed under UTF-16, a 16-bit encoding form of Unicode,
-   * except if they contain unpaired surrogate code points. (A surrogate
-   * code point is used to encode supplementary characters, those with code
-   * points U+10000 or higher, in UTF-16. A surrogate pair is a high
-   * surrogate, U+D800 to U+DBFF, followed by a low surrogate, U+DC00 to
-   * U+DFFF. An unpaired surrogate code point is a surrogate not appearing
-   * in a surrogate pair.) Many of the methods in this class allow setting
-   * the behavior to follow when unpaired surrogate code points are found
-   * in text strings, such as throwing an error or treating the unpaired
-   * surrogate as a replacement character (U+FFFD).</p>
+   * <p>Contains methods useful for reading and writing text strings. It is
+   * designed to have no dependencies other than the basic runtime class library.
+   * </p><p>Many of these methods work with text encoded in UTF-8, an encoding
+   * form of the Unicode Standard which uses one byte to encode the most basic
+   * characters and two to four bytes to encode other characters. For example,
+   * the {@code GetUtf8} method converts a text string to an array of bytes in
+   * UTF-8.</p> <p>In C# and Java, text strings are represented as sequences of
+   * 16-bit values called {@code char} s. These sequences are well-formed under
+   * UTF-16, a 16-bit encoding form of Unicode, except if they contain unpaired
+   * surrogate code points. (A surrogate code point is used to encode
+   * supplementary characters, those with code points U+10000 or higher, in
+   * UTF-16. A surrogate pair is a high surrogate, U+D800 to U+DBFF, followed by
+   * a low surrogate, U+DC00 to U+DFFF. An unpaired surrogate code point is a
+   * surrogate not appearing in a surrogate pair.) Many of the methods in this
+   * class allow setting the behavior to follow when unpaired surrogate code
+   * points are found in text strings, such as throwing an error or treating the
+   * unpaired surrogate as a replacement character (U+FFFD).</p>
    */
   public final class DataUtilities {
 private DataUtilities() {
@@ -43,8 +42,7 @@ private DataUtilities() {
      * Generates a text string from a UTF-8 byte array.
      * @param bytes A byte array containing text encoded in UTF-8.
      * @param replace If true, replaces invalid encoding with the replacement
-     * character (U+FFFD). If false, stops processing when invalid UTF-8 is
-     * seen.
+     * character (U+FFFD). If false, stops processing when invalid UTF-8 is seen.
      * @return A string represented by the UTF-8 byte array.
      * @throws NullPointerException The parameter {@code bytes} is null.
      * @throws IllegalArgumentException The string is not valid UTF-8 and {@code replace}
@@ -63,8 +61,8 @@ private DataUtilities() {
 
     /**
      * Finds the number of Unicode code points in the given text string. Unpaired
-     * surrogate code points increase this number by 1. This is not
-     *  necessarily the length of the string in "char" s.
+     * surrogate code points increase this number by 1. This is not necessarily the
+     * length of the string in "char" s.
      * @param str The parameter {@code str} is a text string.
      * @return The number of Unicode code points in the given string.
      * @throws NullPointerException The parameter {@code str} is null.
@@ -89,15 +87,14 @@ private DataUtilities() {
      * @param offset Offset into the byte array to start reading.
      * @param bytesCount Length, in bytes, of the UTF-8 text string.
      * @param replace If true, replaces invalid encoding with the replacement
-     * character (U+FFFD). If false, stops processing when invalid UTF-8 is
-     * seen.
+     * character (U+FFFD). If false, stops processing when invalid UTF-8 is seen.
      * @return A string represented by the UTF-8 byte array.
      * @throws NullPointerException The parameter {@code bytes} is null.
      * @throws IllegalArgumentException The portion of the byte array is not valid UTF-8
      * and {@code replace} is false.
      * @throws IllegalArgumentException The parameter {@code offset} is less than 0,
-     * {@code bytesCount} is less than 0, or offset plus bytesCount is
-     *  greater than the length of "data" .
+     * {@code bytesCount} is less than 0, or offset plus bytesCount is greater than
+     * the length of "data" .
      */
     public static String GetUtf8String(
       byte[] bytes,
@@ -136,16 +133,15 @@ private DataUtilities() {
 
     /**
      * <p>Encodes a string in UTF-8 as a byte array. This method does not insert a
-     * byte-order mark (U+FEFF) at the beginning of the encoded byte
-     * array.</p> <p>REMARK: It is not recommended to use
-     * <code>Encoding.UTF8.GetBytes</code> in.NET, or the <code>getBytes()</code>
-     * method in Java to do this. For instance, <code>getBytes()</code> encodes
-     * text strings in a default (so not fixed) character encoding, which
-     * can be undesirable.</p>
+     * byte-order mark (U+FEFF) at the beginning of the encoded byte array.</p>
+     * <p>REMARK: It is not recommended to use {@code Encoding.UTF8.GetBytes}
+     * in.NET, or the {@code getBytes()} method in Java to do this. For instance,
+     * {@code getBytes()} encodes text strings in a default (so not fixed)
+     * character encoding, which can be undesirable.</p>
      * @param str The parameter {@code str} is a text string.
      * @param replace If true, replaces unpaired surrogate code points with the
-     * replacement character (U+FFFD). If false, stops processing when an
-     * unpaired surrogate code point is seen.
+     * replacement character (U+FFFD). If false, stops processing when an unpaired
+     * surrogate code point is seen.
      * @return The string encoded in UTF-8.
      * @throws NullPointerException The parameter {@code str} is null.
      * @throws IllegalArgumentException The string contains an unpaired surrogate code
@@ -157,16 +153,15 @@ private DataUtilities() {
 
     /**
      * <p>Encodes a string in UTF-8 as a byte array. This method does not insert a
-     * byte-order mark (U+FEFF) at the beginning of the encoded byte
-     * array.</p> <p>REMARK: It is not recommended to use
-     * <code>Encoding.UTF8.GetBytes</code> in.NET, or the <code>getBytes()</code>
-     * method in Java to do this. For instance, <code>getBytes()</code> encodes
-     * text strings in a default (so not fixed) character encoding, which
-     * can be undesirable.</p>
+     * byte-order mark (U+FEFF) at the beginning of the encoded byte array.</p>
+     * <p>REMARK: It is not recommended to use {@code Encoding.UTF8.GetBytes}
+     * in.NET, or the {@code getBytes()} method in Java to do this. For instance,
+     * {@code getBytes()} encodes text strings in a default (so not fixed)
+     * character encoding, which can be undesirable.</p>
      * @param str The parameter {@code str} is a text string.
      * @param replace If true, replaces unpaired surrogate code points with the
-     * replacement character (U+FFFD). If false, stops processing when an
-     * unpaired surrogate code point is seen.
+     * replacement character (U+FFFD). If false, stops processing when an unpaired
+     * surrogate code point is seen.
      * @param lenientLineBreaks If true, replaces carriage return (CR) not followed
      * by line feed (LF) and LF not preceded by CR with CR-LF pairs.
      * @return The string encoded in UTF-8.
@@ -246,8 +241,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param replace If true, treats unpaired surrogate code points as having 3
      * UTF-8 bytes (the UTF-8 length of the replacement character U+FFFD).
      * @return The number of bytes needed to encode the given string in UTF-8, or
-     * -1 if the string contains an unpaired surrogate code point and
-     * {@code replace} is false.
+     * -1 if the string contains an unpaired surrogate code point and {@code
+     * replace} is false.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static long GetUtf8Length(String str, boolean replace) {
@@ -291,11 +286,11 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param str The parameter {@code str} is a text string.
      * @param index Index of the current position into the string.
      * @return The Unicode code point at the previous position. Returns -1 if
-     * {@code index} is 0 or less, or is greater than or equal to the
-     * string's length. Returns the replacement character (U+FFFD) if the
-     * code point at the previous position is an unpaired surrogate code
-     * point. If the return value is 65536 (0x10000) or greater, the code
-     * point takes up two UTF-16 code units.
+     * {@code index} is 0 or less, or is greater than or equal to the string's
+     * length. Returns the replacement character (U+FFFD) if the code point at the
+     * previous position is an unpaired surrogate code point. If the return value
+     * is 65536 (0x10000) or greater, the code point takes up two UTF-16 code
+     * units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointBefore(String str, int index) {
@@ -307,15 +302,15 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param str The parameter {@code str} is a text string.
      * @param index Index of the current position into the string.
      * @param surrogateBehavior Specifies what kind of value to return if the
-     * previous code point is an unpaired surrogate code point: if 0,
-     * return the replacement character (U+FFFD); if 1, return the value of
-     * the surrogate code point; if neither 0 nor 1, return -1.
+     * previous code point is an unpaired surrogate code point: if 0, return the
+     * replacement character (U+FFFD); if 1, return the value of the surrogate code
+     * point; if neither 0 nor 1, return -1.
      * @return The Unicode code point at the previous position. Returns -1 if
-     * {@code index} is 0 or less, or is greater than or equal to the
-     * string's length. Returns a value as specified under {@code
-     * surrogateBehavior} if the code point at the previous position is an
-     * unpaired surrogate code point. If the return value is 65536
-     * (0x10000) or greater, the code point takes up two UTF-16 code units.
+     * {@code index} is 0 or less, or is greater than or equal to the string's
+     * length. Returns a value as specified under {@code surrogateBehavior} if the
+     * code point at the previous position is an unpaired surrogate code point. If
+     * the return value is 65536 (0x10000) or greater, the code point takes up two
+     * UTF-16 code units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointBefore(
@@ -350,11 +345,10 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param str The parameter {@code str} is a text string.
      * @param index Index of the current position into the string.
      * @return The Unicode code point at the given position. Returns -1 if {@code
-     * index} is 0 or less, or is greater than or equal to the string's
-     * length. Returns the replacement character (U+FFFD) if the code point
-     * at that position is an unpaired surrogate code point. If the return
-     * value is 65536 (0x10000) or greater, the code point takes up two
-     * UTF-16 code units.
+     * index} is 0 or less, or is greater than or equal to the string's length.
+     * Returns the replacement character (U+FFFD) if the code point at that
+     * position is an unpaired surrogate code point. If the return value is 65536
+     * (0x10000) or greater, the code point takes up two UTF-16 code units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointAt(String str, int index) {
@@ -362,22 +356,25 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
     }
 
     /**
-     * Gets the Unicode code point at the given index of the string.<p> <p>The
-     * following example shows how to iterate a text string code point by
-     * code point, terminating the loop when an unpaired surrogate is
-     *  found.</p> <pre>for (int i = 0;i&lt;str.length(); ++i) { int codePoint = DataUtilities.CodePointAt(str, i, 2); if (codePoint &lt; 0) { break; /* Unpaired surrogate &#x2a;&#x2f; } System.out.println("codePoint:"+codePoint); if (codePoint &gt;= 0x10000) { i++; /* Supplementary code point &#x2a;&#x2f; } }</pre> . </p>
+     * <p>Gets the Unicode code point at the given index of the string.</p><p>The
+     * following example shows how to iterate a text string code point by code
+     * point, terminating the loop when an unpaired surrogate is found.</p>
+     * <pre>for (int i = 0;i&lt;str.length(); ++i) { int codePoint =
+     * com.upokecenter.util.DataUtilities.CodePointAt(str, i, 2); if (codePoint &lt; 0) { break; /*
+     * Unpaired surrogate &#x2a;&#x2f; } System.out.println("codePoint:"+codePoint); if
+     * (codePoint &gt;= 0x10000) { i++; /* Supplementary code point &#x2a;&#x2f; } }</pre> .
      * @param str The parameter {@code str} is a text string.
      * @param index Index of the current position into the string.
      * @param surrogateBehavior Specifies what kind of value to return if the code
-     * point at the given index is an unpaired surrogate code point: if 0,
-     * return the replacement character (U+FFFD); if 1, return the value of
-     * the surrogate code point; if neither 0 nor 1, return -1.
+     * point at the given index is an unpaired surrogate code point: if 0, return
+     * the replacement character (U+FFFD); if 1, return the value of the surrogate
+     * code point; if neither 0 nor 1, return -1.
      * @return The Unicode code point at the given position. Returns -1 if {@code
-     * index} is 0 or less, or is greater than or equal to the string's
-     * length. Returns a value as specified under {@code surrogateBehavior}
-     * if the code point at that position is an unpaired surrogate code
-     * point. If the return value is 65536 (0x10000) or greater, the code
-     * point takes up two UTF-16 code units.
+     * index} is 0 or less, or is greater than or equal to the string's length.
+     * Returns a value as specified under {@code surrogateBehavior} if the code
+     * point at that position is an unpaired surrogate code point. If the return
+     * value is 65536 (0x10000) or greater, the code point takes up two UTF-16 code
+     * units.
      * @throws NullPointerException The parameter {@code str} is null.
      */
     public static int CodePointAt(
@@ -408,8 +405,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
 
     /**
      * Returns a string with the basic upper-case letters A to Z (U+0041 to U+005A)
-     * converted to the corresponding basic lower-case letters. Other
-     * characters remain unchanged.
+     * converted to the corresponding basic lower-case letters. Other characters
+     * remain unchanged.
      * @param str The parameter {@code str} is a text string.
      * @return The converted string, or null if {@code str} is null.
      */
@@ -444,8 +441,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
 
     /**
      * Returns a string with the basic lower-case letters A to Z (U+0061 to U+007A)
-     * converted to the corresponding basic upper-case letters. Other
-     * characters remain unchanged.
+     * converted to the corresponding basic upper-case letters. Other characters
+     * remain unchanged.
      * @param str The parameter {@code str} is a text string.
      * @return The converted string, or null if {@code str} is null.
      */
@@ -484,11 +481,11 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param strA The first string. Can be null.
      * @param strB The second string. Can be null.
      * @return A value indicating which string is " less" or " greater" . 0: Both
-     * strings are equal or null. Less than 0: a is null and b isn't; or
-     * the first code point that's different is less in A than in B; or b
-     * starts with a and is longer than a. Greater than 0: b is null and a
-     * isn't; or the first code point that's different is greater in A than
-     * in B; or a starts with b and is longer than b.
+     * strings are equal or null. Less than 0: a is null and b isn't; or the first
+     * code point that's different is less in A than in B; or b starts with a and
+     * is longer than a. Greater than 0: b is null and a isn't; or the first code
+     * point that's different is greater in A than in B; or a starts with b and is
+     * longer than b.
      */
     public static int CodePointCompare(String strA, String strB) {
       if (strA == null) {
@@ -550,17 +547,17 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param length The length of the string portion to write.
      * @param stream A writable data stream.
      * @param replace If true, replaces unpaired surrogate code points with the
-     * replacement character (U+FFFD). If false, stops processing when an
-     * unpaired surrogate code point is seen.
+     * replacement character (U+FFFD). If false, stops processing when an unpaired
+     * surrogate code point is seen.
      * @return 0 if the entire string portion was written; or -1 if the string
-     * portion contains an unpaired surrogate code point and {@code
-     * replace} is false.
+     * portion contains an unpaired surrogate code point and {@code replace} is
+     * false.
      * @throws NullPointerException The parameter {@code str} is null or {@code
      * stream} is null.
      * @throws java.io.IOException An I/O error occurred.
      * @throws IllegalArgumentException Either {@code offset} or {@code length} is less
-     * than 0 or greater than {@code str} 's length, or {@code str} 's
-     * length minus {@code offset} is less than {@code length}.
+     * than 0 or greater than {@code str} 's length, or {@code str} 's length minus
+     * {@code offset} is less than {@code length}.
      */
     public static int WriteUtf8(
       String str,
@@ -579,18 +576,18 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param length The length of the string portion to write.
      * @param stream A writable data stream.
      * @param replace If true, replaces unpaired surrogate code points with the
-     * replacement character (U+FFFD). If false, stops processing when an
-     * unpaired surrogate code point is seen.
+     * replacement character (U+FFFD). If false, stops processing when an unpaired
+     * surrogate code point is seen.
      * @param lenientLineBreaks If true, replaces carriage return (CR) not followed
      * by line feed (LF) and LF not preceded by CR with CR-LF pairs.
      * @return 0 if the entire string portion was written; or -1 if the string
-     * portion contains an unpaired surrogate code point and {@code
-     * replace} is false.
+     * portion contains an unpaired surrogate code point and {@code replace} is
+     * false.
      * @throws NullPointerException The parameter {@code str} is null or {@code
      * stream} is null.
      * @throws IllegalArgumentException The parameter {@code offset} is less than 0,
-     * {@code length} is less than 0, or {@code offset} plus {@code length}
-     * is greater than the string's length.
+     * {@code length} is less than 0, or {@code offset} plus {@code length} is
+     * greater than the string's length.
      * @throws java.io.IOException An I/O error occurred.
      */
     public static int WriteUtf8(
@@ -656,8 +653,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
                 stream.write(bytes, 0, byteIndex);
                 byteIndex = 0;
               }
-              bytes[byteIndex++] = 0x0d;
-              bytes[byteIndex++] = 0x0a;
+              bytes[byteIndex++] = (byte)0x0d;
+              bytes[byteIndex++] = (byte)0x0a;
               continue;
             } else if (c == 0x0d) {
               // CR-LF pair
@@ -666,8 +663,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
                 stream.write(bytes, 0, byteIndex);
                 byteIndex = 0;
               }
-              bytes[byteIndex++] = 0x0d;
-              bytes[byteIndex++] = 0x0a;
+              bytes[byteIndex++] = (byte)0x0d;
+              bytes[byteIndex++] = (byte)0x0a;
               ++index;
               continue;
             }
@@ -678,8 +675,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
                 stream.write(bytes, 0, byteIndex);
                 byteIndex = 0;
               }
-              bytes[byteIndex++] = 0x0d;
-              bytes[byteIndex++] = 0x0a;
+              bytes[byteIndex++] = (byte)0x0d;
+              bytes[byteIndex++] = (byte)0x0a;
               continue;
             }
           }
@@ -742,8 +739,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param str A string to write.
      * @param stream A writable data stream.
      * @param replace If true, replaces unpaired surrogate code points with the
-     * replacement character (U+FFFD). If false, stops processing when an
-     * unpaired surrogate code point is seen.
+     * replacement character (U+FFFD). If false, stops processing when an unpaired
+     * surrogate code point is seen.
      * @return 0 if the entire string was written; or -1 if the string contains an
      * unpaired surrogate code point and {@code replace} is false.
      * @throws NullPointerException The parameter {@code str} is null or {@code
@@ -765,15 +762,14 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param builder A string builder object where the resulting string will be
      * stored.
      * @param replace If true, replaces invalid encoding with the replacement
-     * character (U+FFFD). If false, stops processing when invalid UTF-8 is
-     * seen.
+     * character (U+FFFD). If false, stops processing when invalid UTF-8 is seen.
      * @return 0 if the entire string was read without errors, or -1 if the string
      * is not valid UTF-8 and {@code replace} is false.
      * @throws NullPointerException The parameter {@code data} is null or {@code
      * builder} is null.
      * @throws IllegalArgumentException The parameter {@code offset} is less than 0,
-     * {@code bytesCount} is less than 0, or offset plus bytesCount is
-     * greater than the length of {@code data}.
+     * {@code bytesCount} is less than 0, or offset plus bytesCount is greater than
+     * the length of {@code data}.
      */
     public static int ReadUtf8FromBytes(
       byte[] data,
@@ -889,8 +885,7 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
 
     /**
      * Reads a string in UTF-8 encoding from a data stream in full and returns that
-     * string. Replaces invalid encoding with the replacement character
-     * (U+FFFD).
+     * string. Replaces invalid encoding with the replacement character (U+FFFD).
      * @param stream A readable data stream.
      * @return The string read.
      * @throws java.io.IOException An I/O error occurred.
@@ -906,8 +901,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param bytesCount The length, in bytes, of the string. If this is less than
      * 0, this function will read until the end of the stream.
      * @param replace If true, replaces invalid encoding with the replacement
-     * character (U+FFFD). If false, throws an error if an unpaired
-     * surrogate code point is seen.
+     * character (U+FFFD). If false, throws an error if an unpaired surrogate code
+     * point is seen.
      * @return The string read.
      * @throws java.io.IOException An I/O error occurred; or, the string is not
      * valid UTF-8 and {@code replace} is false.
@@ -918,7 +913,7 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
       int bytesCount,
       boolean replace) throws java.io.IOException {
       StringBuilder builder = new StringBuilder();
-      if (DataUtilities.ReadUtf8(stream, bytesCount, builder, replace) == -1) {
+      if (com.upokecenter.util.DataUtilities.ReadUtf8(stream, bytesCount, builder, replace) == -1) {
         throw new IOException(
           "Unpaired surrogate code point found.",
           new IllegalArgumentException("Unpaired surrogate code point found."));
@@ -934,12 +929,12 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
      * @param builder A string builder object where the resulting string will be
      * stored.
      * @param replace If true, replaces invalid encoding with the replacement
-     * character (U+FFFD). If false, stops processing when an unpaired
-     * surrogate code point is seen.
+     * character (U+FFFD). If false, stops processing when an unpaired surrogate
+     * code point is seen.
      * @return 0 if the entire string was read without errors, -1 if the string is
-     * not valid UTF-8 and {@code replace} is false, or -2 if the end of
-     * the stream was reached before the last character was read completely
-     * (which is only the case if {@code bytesCount} is 0 or greater).
+     * not valid UTF-8 and {@code replace} is false, or -2 if the end of the stream
+     * was reached before the last character was read completely (which is only the
+     * case if {@code bytesCount} is 0 or greater).
      * @throws java.io.IOException An I/O error occurred.
      * @throws NullPointerException The parameter {@code stream} is null or {@code
      * builder} is null.
