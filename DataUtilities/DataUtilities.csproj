@@ -24,7 +24,12 @@ licensed under Creative Commons Zero (CC0): https://creativecommons.org/publicdo
     <PackageTags>text strings</PackageTags>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet><IsTrimmable Condition='$([MSBuild]::IsTargetFrameworkCompatible(&apos;$(TargetFramework)&apos;, &apos;net6.0&apos;))'>true</IsTrimmable><TargetFrameworks>netstandard1.0;net7.0</TargetFrameworks></PropertyGroup>
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet>
+  <IsTrimmable>true</IsTrimmable>
+  <LangVersion>11.0</LangVersion>
+      <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+      <DefineConstants>MULTI_TARGETING_SUPPORT_ATTRIBUTES</DefineConstants>
+   <TargetFrameworks>netstandard1.0;net7.0</TargetFrameworks></PropertyGroup>
 
   <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Debug&apos; '>
     <DocumentationFile>bin\Debug\netstandard1.0\DataUtilities.xml</DocumentationFile>
@@ -34,5 +39,10 @@ licensed under Creative Commons Zero (CC0): https://creativecommons.org/publicdo
     <DocumentationFile>bin\Release\netstandard1.0\DataUtilities.xml</DocumentationFile>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
+  <None Include="..\README.md" Pack="true" PackagePath="\"/>
+  <PackageReference Include="PolySharp" Version="1.13.2">
+    <PrivateAssets>all</PrivateAssets>
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  </PackageReference>
   <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.354'/><AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='7.0.3'/></ItemGroup>
 </Project>
