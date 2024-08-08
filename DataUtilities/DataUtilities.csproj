@@ -10,7 +10,7 @@
     </Description>
     <Summary>A library with functions for text strings and reading and writing them.</Summary>
     <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also
-licensed under Creative Commons Zero (CC0): https://creativecommons.org/publicdomain/zero/1.0/</Copyright>
+licensed under the Unlicense: https://unlicense.org/</Copyright>
 
     <Authors>Peter Occil</Authors>
     <PackageId>PeterO.DataUtilities</PackageId>
