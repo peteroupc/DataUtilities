@@ -93,12 +93,12 @@
  Reads a string in UTF-8 encoding from a data stream and returns that string.
 
 * `static String ToLowerCaseAscii(String str)`<br>
- Returns a string with the basic upper-case letters A to Z (U+0041 to U+005A)
- converted to the corresponding basic lower-case letters.
+ Returns a string with the basic uppercase letters A to Z (U+0041 to U+005A)
+ converted to the corresponding basic lowercase letters.
 
 * `static String ToUpperCaseAscii(String str)`<br>
- Returns a string with the basic lower-case letters A to Z (U+0061 to U+007A)
- converted to the corresponding basic upper-case letters.
+ Returns a string with the basic lowercase letters A to Z (U+0061 to U+007A)
+ converted to the corresponding basic uppercase letters.
 
 * `static int WriteUtf8(String str,
  int offset,
@@ -381,8 +381,8 @@ Gets the Unicode code point at the given index of the string.
 
 ### ToLowerCaseAscii
     public static String ToLowerCaseAscii(String str)
-Returns a string with the basic upper-case letters A to Z (U+0041 to U+005A)
- converted to the corresponding basic lower-case letters. Other characters
+Returns a string with the basic uppercase letters A to Z (U+0041 to U+005A)
+ converted to the corresponding basic lowercase letters. Other characters
  remain unchanged.
 
 **Parameters:**
@@ -395,8 +395,8 @@ Returns a string with the basic upper-case letters A to Z (U+0041 to U+005A)
 
 ### ToUpperCaseAscii
     public static String ToUpperCaseAscii(String str)
-Returns a string with the basic lower-case letters A to Z (U+0061 to U+007A)
- converted to the corresponding basic upper-case letters. Other characters
+Returns a string with the basic lowercase letters A to Z (U+0061 to U+007A)
+ converted to the corresponding basic uppercase letters. Other characters
  remain unchanged.
 
 **Parameters:**

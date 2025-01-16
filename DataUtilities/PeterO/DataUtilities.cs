@@ -431,8 +431,8 @@ namespace PeterO {
       return c;
     }
 
-    /// <summary>Returns a string with the basic upper-case letters A to Z
-    /// (U+0041 to U+005A) converted to the corresponding basic lower-case
+    /// <summary>Returns a string with the basic uppercase letters A to Z
+    /// (U+0041 to U+005A) converted to the corresponding basic lowercase
     /// letters. Other characters remain unchanged.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
@@ -467,8 +467,8 @@ namespace PeterO {
       return builder.ToString();
     }
 
-    /// <summary>Returns a string with the basic lower-case letters A to Z
-    /// (U+0061 to U+007A) converted to the corresponding basic upper-case
+    /// <summary>Returns a string with the basic lowercase letters A to Z
+    /// (U+0061 to U+007A) converted to the corresponding basic uppercase
     /// letters. Other characters remain unchanged.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
