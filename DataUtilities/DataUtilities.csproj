@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0; net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0; net9.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>1.2.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -23,13 +23,12 @@ Version 1.1.0:
 
 </PackageReleaseNotes>
     <PackageTags>text strings</PackageTags>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
     <Title>DataUtilities Library</Title>
     <PackOnBuild>true</PackOnBuild>
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet><PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
 
-  <IsTrimmable>true</IsTrimmable>
+  <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
+
   <LangVersion>11.0</LangVersion>
       <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
       <DefineConstants>MULTI_TARGETING_SUPPORT_ATTRIBUTES</DefineConstants>
@@ -41,6 +40,8 @@ Version 1.1.0:
 
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
     <DebugType>none</DebugType>
     <DocumentationFile>bin\Release\netstandard2.0\DataUtilities.xml</DocumentationFile>
 
