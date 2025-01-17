@@ -123,7 +123,9 @@
 ## Method Details
 
 ### GetUtf8String
+
     public static String GetUtf8String(byte[] bytes, boolean replace)
+
 Generates a text string from a UTF-8 byte array.
 
 **Parameters:**
@@ -145,7 +147,9 @@ Generates a text string from a UTF-8 byte array.
  is false.
 
 ### CodePointLength
+
     public static int CodePointLength(String str)
+
 Finds the number of Unicode code points in the given text string. Unpaired
  surrogate code points increase this number by 1. This is not necessarily the
  length of the string in "char" s.
@@ -163,7 +167,9 @@ Finds the number of Unicode code points in the given text string. Unpaired
 * <code>NullPointerException</code> - The parameter <code>str</code> is null.
 
 ### GetUtf8String
+
     public static String GetUtf8String(byte[] bytes, int offset, int bytesCount, boolean replace)
+
 Generates a text string from a portion of a UTF-8 byte array.
 
 **Parameters:**
@@ -193,7 +199,9 @@ Generates a text string from a portion of a UTF-8 byte array.
  the length of "data" .
 
 ### GetUtf8Bytes
+
     public static byte[] GetUtf8Bytes(String str, boolean replace)
+
 <p>Encodes a string in UTF-8 as a byte array. This method does not insert a
  byte-order mark (U+FEFF) at the beginning of the encoded byte array.</p>
  <p>REMARK: It is not recommended to use <code>Encoding.UTF8.GetBytes</code>
@@ -221,7 +229,9 @@ Generates a text string from a portion of a UTF-8 byte array.
  point and <code>replace</code> is false, or an internal error occurred.
 
 ### GetUtf8Bytes
+
     public static byte[] GetUtf8Bytes(String str, boolean replace, boolean lenientLineBreaks)
+
 <p>Encodes a string in UTF-8 as a byte array. This method does not insert a
  byte-order mark (U+FEFF) at the beginning of the encoded byte array.</p>
  <p>REMARK: It is not recommended to use <code>Encoding.UTF8.GetBytes</code>
@@ -252,7 +262,9 @@ Generates a text string from a portion of a UTF-8 byte array.
  point and <code>replace</code> is false, or an internal error occurred.
 
 ### GetUtf8Length
+
     public static long GetUtf8Length(String str, boolean replace)
+
 Calculates the number of bytes needed to encode a string in UTF-8.
 
 **Parameters:**
@@ -273,7 +285,9 @@ Calculates the number of bytes needed to encode a string in UTF-8.
 * <code>NullPointerException</code> - The parameter <code>str</code> is null.
 
 ### CodePointBefore
+
     public static int CodePointBefore(String str, int index)
+
 Gets the Unicode code point just before the given index of the string.
 
 **Parameters:**
@@ -296,7 +310,9 @@ Gets the Unicode code point just before the given index of the string.
 * <code>NullPointerException</code> - The parameter <code>str</code> is null.
 
 ### CodePointBefore
+
     public static int CodePointBefore(String str, int index, int surrogateBehavior)
+
 Gets the Unicode code point just before the given index of the string.
 
 **Parameters:**
@@ -324,7 +340,9 @@ Gets the Unicode code point just before the given index of the string.
 * <code>NullPointerException</code> - The parameter <code>str</code> is null.
 
 ### CodePointAt
+
     public static int CodePointAt(String str, int index)
+
 Gets the Unicode code point at the given index of the string.
 
 **Parameters:**
@@ -346,7 +364,9 @@ Gets the Unicode code point at the given index of the string.
 * <code>NullPointerException</code> - The parameter <code>str</code> is null.
 
 ### CodePointAt
+
     public static int CodePointAt(String str, int index, int surrogateBehavior)
+
 <p>Gets the Unicode code point at the given index of the string.</p><p>The
  following example shows how to iterate a text string code point by code
  point, terminating the loop when an unpaired surrogate is found.</p>
@@ -380,7 +400,9 @@ Gets the Unicode code point at the given index of the string.
 * <code>NullPointerException</code> - The parameter <code>str</code> is null.
 
 ### ToLowerCaseAscii
+
     public static String ToLowerCaseAscii(String str)
+
 Returns a string with the basic uppercase letters A to Z (U+0041 to U+005A)
  converted to the corresponding basic lowercase letters. Other characters
  remain unchanged.
@@ -394,7 +416,9 @@ Returns a string with the basic uppercase letters A to Z (U+0041 to U+005A)
 * The converted string, or null if <code>str</code> is null.
 
 ### ToUpperCaseAscii
+
     public static String ToUpperCaseAscii(String str)
+
 Returns a string with the basic lowercase letters A to Z (U+0061 to U+007A)
  converted to the corresponding basic uppercase letters. Other characters
  remain unchanged.
@@ -408,7 +432,9 @@ Returns a string with the basic lowercase letters A to Z (U+0061 to U+007A)
 * The converted string, or null if <code>str</code> is null.
 
 ### CodePointCompare
+
     public static int CodePointCompare(String strA, String strB)
+
 Compares two strings in Unicode code point order. Unpaired surrogate code
  points are treated as individual code points.
 
@@ -428,7 +454,9 @@ Compares two strings in Unicode code point order. Unpaired surrogate code
  longer than b.
 
 ### WriteUtf8
+
     public static int WriteUtf8(String str, int offset, int length, OutputStream stream, boolean replace) throws IOException
+
 Writes a portion of a string in UTF-8 encoding to a data stream.
 
 **Parameters:**
@@ -464,7 +492,9 @@ Writes a portion of a string in UTF-8 encoding to a data stream.
  <code>offset</code> is less than <code>length</code>.
 
 ### WriteUtf8
+
     public static int WriteUtf8(String str, int offset, int length, OutputStream stream, boolean replace, boolean lenientLineBreaks) throws IOException
+
 Writes a portion of a string in UTF-8 encoding to a data stream.
 
 **Parameters:**
@@ -503,7 +533,9 @@ Writes a portion of a string in UTF-8 encoding to a data stream.
 * <code>IOException</code> - An I/O error occurred.
 
 ### WriteUtf8
+
     public static int WriteUtf8(String str, OutputStream stream, boolean replace) throws IOException
+
 Writes a string in UTF-8 encoding to a data stream.
 
 **Parameters:**
@@ -529,7 +561,9 @@ Writes a string in UTF-8 encoding to a data stream.
 * <code>IOException</code> - An I/O error occurred.
 
 ### ReadUtf8FromBytes
+
     public static int ReadUtf8FromBytes(byte[] data, int offset, int bytesCount, StringBuilder builder, boolean replace)
+
 Reads a string in UTF-8 encoding from a byte array.
 
 **Parameters:**
@@ -561,7 +595,9 @@ Reads a string in UTF-8 encoding from a byte array.
  the length of <code>data</code>.
 
 ### ReadUtf8ToString
+
     public static String ReadUtf8ToString(InputStream stream) throws IOException
+
 Reads a string in UTF-8 encoding from a data stream in full and returns that
  string. Replaces invalid encoding with the replacement character (U+FFFD).
 
@@ -580,7 +616,9 @@ Reads a string in UTF-8 encoding from a data stream in full and returns that
 * <code>NullPointerException</code> - The parameter <code>stream</code> is null.
 
 ### ReadUtf8ToString
+
     public static String ReadUtf8ToString(InputStream stream, int bytesCount, boolean replace) throws IOException
+
 Reads a string in UTF-8 encoding from a data stream and returns that string.
 
 **Parameters:**
@@ -606,7 +644,9 @@ Reads a string in UTF-8 encoding from a data stream and returns that string.
 * <code>NullPointerException</code> - The parameter <code>stream</code> is null.
 
 ### ReadUtf8
+
     public static int ReadUtf8(InputStream stream, int bytesCount, StringBuilder builder, boolean replace) throws IOException
+
 Reads a string in UTF-8 encoding from a data stream.
 
 **Parameters:**
