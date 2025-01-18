@@ -10,14 +10,14 @@ DataUtilities
 
 How to Install
 ---------
-The C# implementation is expected to be available in the
+The C# implementation is available in the
 NuGet Package Gallery under the name
-[PeterO.DataUtilities](https://www.nuget.org/packages/PeterO.DataUtilities). To install
+[PeterO.DataUtilities](https://www.nuget.org/packages/PeterO.DataUtilities), or is expected to be. To install
 this library as a NuGet package, enter `Install-Package PeterO.DataUtilities` in the
 NuGet Package Manager Console.
 
-The Java implementation is expected to available
-as an [artifact](https://search.maven.org/#search|ga|1|g%3A%22com.github.peteroupc%22%20AND%20a%3A%22datautilities%22) in the Central Repository. To add this library to a Maven
+The Java implementation is available
+as an [artifact](https://search.maven.org/#search|ga|1|g%3A%22com.github.peteroupc%22%20AND%20a%3A%22datautilities%22) in the Central Repository, or is expected to be. To add this library to a Maven
 project, add the following to the `dependencies` section in your `pom.xml` file:
 
     <dependency>
