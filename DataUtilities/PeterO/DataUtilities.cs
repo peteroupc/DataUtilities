@@ -59,13 +59,13 @@ namespace PeterO {
       return b.ToString();
     }
 
-    /// <summary>Finds the number of Unicode code points in the given text
-    /// string. Unpaired surrogate code points increase this number by 1.
-    /// This is not necessarily the length of the string in "char"
+    /// <summary>Finds the number of Unicode code points in the specified
+    /// text string. Unpaired surrogate code points increase this number by
+    /// 1. This is not necessarily the length of the string in "char"
     /// s.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
-    /// <returns>The number of Unicode code points in the given
+    /// <returns>The number of Unicode code points in the specified
     /// string.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='str'/> is null.</exception>
@@ -251,8 +251,8 @@ namespace PeterO {
     /// <param name='replace'>If true, treats unpaired surrogate code
     /// points as having 3 UTF-8 bytes (the UTF-8 length of the replacement
     /// character U+FFFD).</param>
-    /// <returns>The number of bytes needed to encode the given string in
-    /// UTF-8, or -1 if the string contains an unpaired surrogate code
+    /// <returns>The number of bytes needed to encode the specified string
+    /// in UTF-8, or -1 if the string contains an unpaired surrogate code
     /// point and <paramref name='replace'/> is false.</returns>
     /// <exception cref='ArgumentNullException'>The parameter <paramref
     /// name='str'/> is null.</exception>
@@ -292,8 +292,8 @@ namespace PeterO {
       return size;
     }
 
-    /// <summary>Gets the Unicode code point just before the given index of
-    /// the string.</summary>
+    /// <summary>Gets the Unicode code point just before the specified
+    /// index of the string.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
     /// <param name='index'>Index of the current position into the
@@ -310,8 +310,8 @@ namespace PeterO {
       return CodePointBefore(str, index, 0);
     }
 
-    /// <summary>Gets the Unicode code point just before the given index of
-    /// the string.</summary>
+    /// <summary>Gets the Unicode code point just before the specified
+    /// index of the string.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
     /// <param name='index'>Index of the current position into the
@@ -357,14 +357,14 @@ namespace PeterO {
       return c;
     }
 
-    /// <summary>Gets the Unicode code point at the given index of the
+    /// <summary>Gets the Unicode code point at the specified index of the
     /// string.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
     /// <param name='index'>Index of the current position into the
     /// string.</param>
-    /// <returns>The Unicode code point at the given position. Returns -1
-    /// if <paramref name='index'/> is 0 or less, or is greater than or
+    /// <returns>The Unicode code point at the specified position. Returns
+    /// -1 if <paramref name='index'/> is 0 or less, or is greater than or
     /// equal to the string's length. Returns the replacement character
     /// (U+FFFD) if the code point at that position is an unpaired
     /// surrogate code point. If the return value is 65536 (0x10000) or
@@ -375,19 +375,19 @@ namespace PeterO {
       return CodePointAt(str, index, 0);
     }
 
-    /// <summary>Gets the Unicode code point at the given index of the
+    /// <summary>Gets the Unicode code point at the specified index of the
     /// string.</summary>
     /// <param name='str'>The parameter <paramref name='str'/> is a text
     /// string.</param>
     /// <param name='index'>Index of the current position into the
     /// string.</param>
     /// <param name='surrogateBehavior'>Specifies what kind of value to
-    /// return if the code point at the given index is an unpaired
+    /// return if the code point at the specified index is an unpaired
     /// surrogate code point: if 0, return the replacement character (U +
     /// FFFD); if 1, return the value of the surrogate code point; if
     /// neither 0 nor 1, return -1.</param>
-    /// <returns>The Unicode code point at the given position. Returns -1
-    /// if <paramref name='index'/> is 0 or less, or is greater than or
+    /// <returns>The Unicode code point at the specified position. Returns
+    /// -1 if <paramref name='index'/> is 0 or less, or is greater than or
     /// equal to the string's length. Returns a value as specified under
     /// <paramref name='surrogateBehavior'/> if the code point at that
     /// position is an unpaired surrogate code point. If the return value

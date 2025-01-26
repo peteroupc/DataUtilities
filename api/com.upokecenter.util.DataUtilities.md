@@ -24,28 +24,29 @@
 
 * `static int CodePointAt(String str,
  int index)`<br>
- Gets the Unicode code point at the given index of the string.
+ Gets the Unicode code point at the specified index of the string.
 
 * `static int CodePointAt(String str,
  int index,
  int surrogateBehavior)`<br>
- Gets the Unicode code point at the given index of the string.
+ Gets the Unicode code point at the specified index of the
+ string.
 
 * `static int CodePointBefore(String str,
  int index)`<br>
- Gets the Unicode code point just before the given index of the string.
+ Gets the Unicode code point just before the specified index of the string.
 
 * `static int CodePointBefore(String str,
  int index,
  int surrogateBehavior)`<br>
- Gets the Unicode code point just before the given index of the string.
+ Gets the Unicode code point just before the specified index of the string.
 
 * `static int CodePointCompare(String strA,
  String strB)`<br>
  Compares two strings in Unicode code point order.
 
 * `static int CodePointLength(String str)`<br>
- Finds the number of Unicode code points in the given text string.
+ Finds the number of Unicode code points in the specified text string.
 
 * `static byte[] GetUtf8Bytes(String str,
  boolean replace)`<br>
@@ -150,9 +151,9 @@ Generates a text string from a UTF-8 byte array.
 
     public static int CodePointLength(String str)
 
-Finds the number of Unicode code points in the given text string. Unpaired
- surrogate code points increase this number by 1. This is not necessarily the
- length of the string in "char" s.
+Finds the number of Unicode code points in the specified text string.
+ Unpaired surrogate code points increase this number by 1. This is not
+ necessarily the length of the string in "char" s.
 
 **Parameters:**
 
@@ -160,7 +161,7 @@ Finds the number of Unicode code points in the given text string. Unpaired
 
 **Returns:**
 
-* The number of Unicode code points in the given string.
+* The number of Unicode code points in the specified string.
 
 **Throws:**
 
@@ -276,8 +277,8 @@ Calculates the number of bytes needed to encode a string in UTF-8.
 
 **Returns:**
 
-* The number of bytes needed to encode the given string in UTF-8, or
- -1 if the string contains an unpaired surrogate code point and <code>
+* The number of bytes needed to encode the specified string in UTF-8,
+ or -1 if the string contains an unpaired surrogate code point and <code>
  replace</code> is false.
 
 **Throws:**
@@ -288,7 +289,7 @@ Calculates the number of bytes needed to encode a string in UTF-8.
 
     public static int CodePointBefore(String str, int index)
 
-Gets the Unicode code point just before the given index of the string.
+Gets the Unicode code point just before the specified index of the string.
 
 **Parameters:**
 
@@ -313,7 +314,7 @@ Gets the Unicode code point just before the given index of the string.
 
     public static int CodePointBefore(String str, int index, int surrogateBehavior)
 
-Gets the Unicode code point just before the given index of the string.
+Gets the Unicode code point just before the specified index of the string.
 
 **Parameters:**
 
@@ -343,7 +344,7 @@ Gets the Unicode code point just before the given index of the string.
 
     public static int CodePointAt(String str, int index)
 
-Gets the Unicode code point at the given index of the string.
+Gets the Unicode code point at the specified index of the string.
 
 **Parameters:**
 
@@ -353,9 +354,9 @@ Gets the Unicode code point at the given index of the string.
 
 **Returns:**
 
-* The Unicode code point at the given position. Returns -1 if <code>
- index</code> is 0 or less, or is greater than or equal to the string's length.
- Returns the replacement character (U+FFFD) if the code point at that
+* The Unicode code point at the specified position. Returns -1 if
+ <code>index</code> is 0 or less, or is greater than or equal to the string's
+ length. Returns the replacement character (U+FFFD) if the code point at that
  position is an unpaired surrogate code point. If the return value is 65536
  (0x10000) or greater, the code point takes up two UTF-16 code units.
 
@@ -367,10 +368,10 @@ Gets the Unicode code point at the given index of the string.
 
     public static int CodePointAt(String str, int index, int surrogateBehavior)
 
-<p>Gets the Unicode code point at the given index of the string.</p><p>The
- following example shows how to iterate a text string code point by code
- point, terminating the loop when an unpaired surrogate is found.</p>
- <pre>for (int i = 0;i&lt;str.length(); ++i) { int codePoint =
+<p>Gets the Unicode code point at the specified index of the
+ string.</p><p>The following example shows how to iterate a text string code
+ point by code point, terminating the loop when an unpaired surrogate is
+ found.</p> <pre>for (int i = 0;i&lt;str.length(); ++i) { int codePoint =
  com.upokecenter.util.DataUtilities.CodePointAt(str, i, 2); if (codePoint &lt; 0) { break; /*
  Unpaired surrogate */ } System.out.println("codePoint:"+codePoint); if
  (codePoint &gt;= 0x10000) { i++; /* Supplementary code point */ } }</pre> .
@@ -382,18 +383,18 @@ Gets the Unicode code point at the given index of the string.
 * <code>index</code> - Index of the current position into the string.
 
 * <code>surrogateBehavior</code> - Specifies what kind of value to return if the code
- point at the given index is an unpaired surrogate code point: if 0, return
- the replacement character (U+FFFD); if 1, return the value of the surrogate
- code point; if neither 0 nor 1, return -1.
+ point at the specified index is an unpaired surrogate code point: if 0,
+ return the replacement character (U+FFFD); if 1, return the value of the
+ surrogate code point; if neither 0 nor 1, return -1.
 
 **Returns:**
 
-* The Unicode code point at the given position. Returns -1 if <code>
- index</code> is 0 or less, or is greater than or equal to the string's length.
- Returns a value as specified under <code>surrogateBehavior</code> if the code
- point at that position is an unpaired surrogate code point. If the return
- value is 65536 (0x10000) or greater, the code point takes up two UTF-16 code
- units.
+* The Unicode code point at the specified position. Returns -1 if
+ <code>index</code> is 0 or less, or is greater than or equal to the string's
+ length. Returns a value as specified under <code>surrogateBehavior</code> if the
+ code point at that position is an unpaired surrogate code point. If the
+ return value is 65536 (0x10000) or greater, the code point takes up two
+ UTF-16 code units.
 
 **Throws:**
 
