@@ -334,7 +334,7 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
       // unpaired surrogate
       if ((c & 0xf800) == 0xd800) {
         return (surrogateBehavior == 0) ? 0xfffd : ((surrogateBehavior == 1) ?
-            c : -1);
+          c : -1);
       }
       return c;
     }
@@ -397,7 +397,7 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
       } else if ((c & 0xf800) == 0xd800) {
         // unpaired surrogate
         return (surrogateBehavior == 0) ? 0xfffd : ((surrogateBehavior == 1) ?
-            c : (-1));
+          c : (-1));
       }
       return c;
     }
@@ -535,7 +535,7 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
         }
       }
       return (strA.length() == strB.length()) ? 0 : ((strA.length() < strB.length()) ?
-          -1 : 1);
+        -1 : 1);
     }
 
     /**
@@ -634,8 +634,8 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
       int bufferLength = Math.min(StreamedStringBufferLength, length);
       if (bufferLength < StreamedStringBufferLength) {
         bufferLength = Math.min(
-          StreamedStringBufferLength,
-          bufferLength * 3);
+            StreamedStringBufferLength,
+            bufferLength * 3);
       }
       bytes = new byte[bufferLength];
       int byteIndex = 0;
@@ -645,7 +645,7 @@ try { if (ms != null) { ms.close(); } } catch (java.io.IOException ex) {}
         if (c <= 0x7f) {
           if (lenientLineBreaks) {
             if (c == 0x0d && (index + 1 >= endIndex || str.charAt(index + 1) !=
-                0x0a)) {
+              0x0a)) {
               // bare CR, convert to CRLF
               if (byteIndex + 2 > StreamedStringBufferLength) {
                 // Write bytes retrieved so far

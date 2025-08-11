@@ -41,7 +41,7 @@ Version 1.1.0:
   <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
+    <PublicSign>true</PublicSign><AssemblyOriginatorKeyFile>PeterO.snk</AssemblyOriginatorKeyFile>
     <DebugType>none</DebugType>
     <DocumentationFile>bin\Release\netstandard2.0\DataUtilities.xml</DocumentationFile>
 
@@ -57,5 +57,5 @@ Version 1.1.0:
   <PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" Version="1.2.0-beta.354" />
  <AdditionalFiles Include="stylecop.json" />
 <AdditionalFiles Include="rules.ruleset" />
-<!-- PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='9.0.0-preview.24454.1' --></ItemGroup>
+<PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers' PrivateAssets='All' Version='9.0.0-preview.24454.1'/></ItemGroup>
                   </Project>

@@ -182,9 +182,9 @@ private TestCommon() {
     public static <T extends Comparable<T>> void CompareTestEqual(T o1, T o2) {
       if (CompareTestReciprocal(o1, o2) != 0) {
         Assert.fail(ObjectMessages(
-            o1,
-            o2,
-            "Not equal: " + CompareTestReciprocal(o1, o2)));
+          o1,
+          o2,
+          "Not equal: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
@@ -232,9 +232,9 @@ private TestCommon() {
       T o2) {
       if (CompareTestReciprocal(o1, o2) >= 0) {
         Assert.fail(ObjectMessages(
-            o1,
-            o2,
-            "Not less: " + CompareTestReciprocal(o1, o2)));
+          o1,
+          o2,
+          "Not less: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
@@ -245,9 +245,9 @@ private TestCommon() {
     public static <T extends Comparable<T>> void CompareTestLessEqual(T o1, T o2) {
       if (CompareTestReciprocal(o1, o2) > 0) {
         Assert.fail(ObjectMessages(
-            o1,
-            o2,
-            "Not less or equal: " + CompareTestReciprocal(o1, o2)));
+          o1,
+          o2,
+          "Not less or equal: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
@@ -366,7 +366,7 @@ private TestCommon() {
         return "0";
       }
       boolean neg = value < 0;
-      char chars = new char[12];
+      char[] chars = new char[12];
       int count = 11;
       if (neg) {
         value = -value;
@@ -417,14 +417,14 @@ private TestCommon() {
         while (intlongValue > 43698) {
           int intdivValue = intlongValue / 10;
           char digit = ValueDigits.charAt((int)(intlongValue - (intdivValue *
-10)));
+            10)));
           chars[count--] = digit;
           intlongValue = intdivValue;
         }
         while (intlongValue > 9) {
           int intdivValue = (intlongValue * 26215) >> 18;
           char digit = ValueDigits.charAt((int)(intlongValue - (intdivValue *
-10)));
+            10)));
           chars[count--] = digit;
           intlongValue = intdivValue;
         }

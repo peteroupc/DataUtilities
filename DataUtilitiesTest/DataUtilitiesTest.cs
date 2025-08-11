@@ -261,7 +261,7 @@ namespace Test {
       {
         object objectTemp = -1;
         object objectTemp2 = Math.Sign(DataUtilities.CodePointCompare(null,
-              "A"));
+          "A"));
         Assert.AreEqual(objectTemp, objectTemp2);
       }
       integerTemp3 = Math.Sign(

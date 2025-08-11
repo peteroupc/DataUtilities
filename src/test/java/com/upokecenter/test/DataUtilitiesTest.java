@@ -261,8 +261,8 @@ import com.upokecenter.util.*;
       {
         Object objectTemp = -1;
         Object objectTemp2 = ((com.upokecenter.util.DataUtilities.CodePointCompare(null,
-              "A")==0) ? 0 : ((com.upokecenter.util.DataUtilities.CodePointCompare(null,
-              "A")< 0) ? -1 : 1));
+          "A")==0) ? 0 : ((com.upokecenter.util.DataUtilities.CodePointCompare(null,
+          "A")< 0) ? -1 : 1));
         Assert.assertEquals(objectTemp, objectTemp2);
       }
       integerTemp3 = ((

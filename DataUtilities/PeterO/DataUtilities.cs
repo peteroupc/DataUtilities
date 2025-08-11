@@ -352,7 +352,7 @@ namespace PeterO {
       // unpaired surrogate
       if ((c & 0xf800) == 0xd800) {
         return (surrogateBehavior == 0) ? 0xfffd : ((surrogateBehavior == 1) ?
-            c : -1);
+          c : -1);
       }
       return c;
     }
@@ -426,7 +426,7 @@ namespace PeterO {
       } else if ((c & 0xf800) == 0xd800) {
         // unpaired surrogate
         return (surrogateBehavior == 0) ? 0xfffd : ((surrogateBehavior == 1) ?
-            c : (-1));
+          c : (-1));
       }
       return c;
     }
@@ -564,7 +564,7 @@ namespace PeterO {
         }
       }
       return (strA.Length == strB.Length) ? 0 : ((strA.Length < strB.Length) ?
-          -1 : 1);
+        -1 : 1);
     }
 
     /// <summary>Writes a portion of a string in UTF-8 encoding to a data
@@ -671,8 +671,8 @@ namespace PeterO {
       int bufferLength = Math.Min(StreamedStringBufferLength, length);
       if (bufferLength < StreamedStringBufferLength) {
         bufferLength = Math.Min(
-          StreamedStringBufferLength,
-          bufferLength * 3);
+            StreamedStringBufferLength,
+            bufferLength * 3);
       }
       bytes = new byte[bufferLength];
       var byteIndex = 0;
@@ -682,7 +682,7 @@ namespace PeterO {
         if (c <= 0x7f) {
           if (lenientLineBreaks) {
             if (c == 0x0d && (index + 1 >= endIndex || str[index + 1] !=
-                0x0a)) {
+              0x0a)) {
               // bare CR, convert to CRLF
               if (byteIndex + 2 > StreamedStringBufferLength) {
                 // Write bytes retrieved so far

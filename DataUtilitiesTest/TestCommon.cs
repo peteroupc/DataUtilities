@@ -183,9 +183,9 @@ namespace Test {
       IComparable<T> {
       if (CompareTestReciprocal(o1, o2) != 0) {
         Assert.Fail(ObjectMessages(
-            o1,
-            o2,
-            "Not equal: " + CompareTestReciprocal(o1, o2)));
+          o1,
+          o2,
+          "Not equal: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
@@ -236,9 +236,9 @@ namespace Test {
       T o2) where T : IComparable<T> {
       if (CompareTestReciprocal(o1, o2) >= 0) {
         Assert.Fail(ObjectMessages(
-            o1,
-            o2,
-            "Not less: " + CompareTestReciprocal(o1, o2)));
+          o1,
+          o2,
+          "Not less: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
@@ -251,9 +251,9 @@ namespace Test {
       IComparable<T> {
       if (CompareTestReciprocal(o1, o2) > 0) {
         Assert.Fail(ObjectMessages(
-            o1,
-            o2,
-            "Not less or equal: " + CompareTestReciprocal(o1, o2)));
+          o1,
+          o2,
+          "Not less or equal: " + CompareTestReciprocal(o1, o2)));
       }
     }
 
@@ -428,14 +428,14 @@ namespace Test {
         while (intlongValue > 43698) {
           int intdivValue = intlongValue / 10;
           char digit = ValueDigits[(int)(intlongValue - (intdivValue *
-10))];
+            10))];
           chars[count--] = digit;
           intlongValue = intdivValue;
         }
         while (intlongValue > 9) {
           int intdivValue = (intlongValue * 26215) >> 18;
           char digit = ValueDigits[(int)(intlongValue - (intdivValue *
-10))];
+            10))];
           chars[count--] = digit;
           intlongValue = intdivValue;
         }
